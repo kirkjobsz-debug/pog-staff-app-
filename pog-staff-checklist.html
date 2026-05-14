@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Prince of Galle — Staff Daily Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ochre: #C8881A;
+    --ochre-light: #E8A830;
+    --teal: #1A4A4A;
+    --teal-mid: #2A6666;
+    --teal-light: #3A8888;
+    --cream: #F7F2EA;
+    --cream-dark: #EDE5D4;
+    --sand: #D4C4A0;
+    --text: #1A1A14;
+    --text-mid: #4A4438;
+    --red: #C0392B;
+    --green: #1E6B45;
+    --green-light: #27AE60;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; flex-direction: column; }
+
+  /* ── LOGIN SCREEN ── */
+  #screen-login {
+    background: var(--teal);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #screen-login::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 80%, rgba(200,136,26,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(200,136,26,0.12) 0%, transparent 50%);
+  }
+
+  .login-card {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .hotel-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--ochre-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.2rem;
+  }
+
+  .hotel-sub {
+    font-size: 0.72rem;
+    color: rgba(247,242,234,0.5);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .login-prompt {
+    font-size: 0.8rem;
+    color: rgba(247,242,234,0.6);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .staff-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    background: rgba(247,242,234,0.07);
+    border: 1px solid rgba(247,242,234,0.15);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 0.75rem;
+    color: var(--cream);
+    text-align: left;
+  }
+
+  .staff-btn:hover, .staff-btn:active {
+    background: rgba(200,136,26,0.2);
+    border-color: var(--ochre);
+    transform: translateY(-1px);
+  }
+
+  .staff-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .staff-info-name {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .staff-info-role {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-top: 1px;
+  }
+
+  /* ── HEADER ── */
+  .app-header {
+    background: var(--teal);
+    padding: 1rem 1.2rem 0.9rem;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-left { display: flex; flex-direction: column; }
+
+  .header-greeting {
+    font-size: 0.68rem;
+    opacity: 0.55;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .header-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--ochre-light);
+  }
+
+  .header-date {
+    font-size: 0.72rem;
+    opacity: 0.55;
+    text-align: right;
+  }
+
+  .logout-btn {
+    background: none;
+    border: none;
+    color: rgba(247,242,234,0.4);
+    font-size: 0.7rem;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem;
+  }
+
+  /* ── SCORE BANNER ── */
+  .score-banner {
+    background: var(--teal-mid);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(247,242,234,0.08);
+  }
+
+  .score-label {
+    font-size: 0.7rem;
+    color: rgba(247,242,234,0.55);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .score-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .score-pct span {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+
+  .score-multiplier {
+    text-align: right;
+  }
+
+  .multiplier-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--ochre-light);
+    line-height: 1;
+  }
+
+  .score-bar-wrap {
+    background: var(--teal-mid);
+    padding: 0 1.2rem 0.9rem;
+  }
+
+  .score-bar {
+    background: rgba(247,242,234,0.1);
+    border-radius: 3px;
+    height: 5px;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--ochre), var(--ochre-light));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist-wrap {
+    padding: 1.2rem;
+    flex: 1;
+  }
+
+  .section-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    opacity: 0.7;
+    margin-bottom: 0.7rem;
+    margin-top: 1.2rem;
+  }
+
+  .section-title:first-child { margin-top: 0; }
+
+  .task-item {
+    background: white;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+  }
+
+  .task-item:active { transform: scale(0.98); }
+
+  .task-item.done {
+    background: #F0FAF5;
+    border-color: #A8DFC0;
+  }
+
+  .task-item.flagged {
+    background: #FFF8F0;
+    border-color: #F0C070;
+  }
+
+  .task-checkbox {
+    width: 22px; height: 22px;
+    border: 2px solid var(--cream-dark);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.18s;
+    font-size: 0.85rem;
+  }
+
+  .task-item.done .task-checkbox {
+    background: var(--green-light);
+    border-color: var(--green-light);
+    color: white;
+  }
+
+  .task-item.flagged .task-checkbox {
+    background: #E8A030;
+    border-color: #E8A030;
+    color: white;
+  }
+
+  .task-text {
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .task-item.done .task-text {
+    color: var(--text-mid);
+    opacity: 0.7;
+  }
+
+  .task-photo-btn {
+    background: none;
+    border: 1px solid var(--cream-dark);
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    color: var(--text-mid);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .task-photo-btn.has-photo {
+    border-color: var(--ochre);
+    color: var(--ochre);
+    background: rgba(200,136,26,0.06);
+  }
+
+  /* ── NOTE FIELD ── */
+  .note-section {
+    padding: 0 1.2rem 1.2rem;
+  }
+
+  .note-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .note-field {
+    width: 100%;
+    background: white;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text);
+    resize: none;
+    outline: none;
+    transition: border-color 0.2s;
+    min-height: 80px;
+  }
+
+  .note-field:focus { border-color: var(--teal-light); }
+
+  /* ── SUBMIT ── */
+  .submit-wrap {
+    padding: 1rem 1.2rem 2rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--teal);
+    color: var(--cream);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .submit-btn:hover { background: var(--teal-mid); }
+  .submit-btn:active { transform: scale(0.98); }
+  .submit-btn.submitted { background: var(--green); }
+
+  /* ── ADMIN SCREEN ── */
+  #screen-admin {
+    background: var(--cream);
+  }
+
+  .admin-header {
+    background: var(--teal);
+    padding: 1.2rem;
+    color: var(--cream);
+  }
+
+  .admin-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--ochre-light);
+  }
+
+  .admin-sub {
+    font-size: 0.72rem;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  .admin-body { padding: 1.2rem; }
+
+  .staff-card {
+    background: white;
+    border-radius: 12px;
+    border: 1.5px solid var(--cream-dark);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .staff-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .card-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .card-name { font-weight: 500; font-size: 0.95rem; }
+  .card-role { font-size: 0.72rem; color: var(--text-mid); opacity: 0.7; }
+
+  .card-score-badge {
+    margin-left: auto;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--teal);
+  }
+
+  .card-score-badge.low { color: var(--red); }
+  .card-score-badge.mid { color: var(--ochre); }
+
+  .card-body { padding: 0.75rem 1rem; }
+
+  .card-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    font-size: 0.82rem;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .card-stat-row:last-child { border-bottom: none; }
+
+  .stat-label { color: var(--text-mid); opacity: 0.75; }
+
+  .stat-val { font-weight: 500; }
+
+  .stat-val.green { color: var(--green); }
+  .stat-val.red { color: var(--red); }
+  .stat-val.ochre { color: var(--ochre); }
+
+  .multiplier-pill {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--cream);
+    border-radius: 20px;
+    padding: 0.15rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  .multiplier-pill.low { background: var(--red); }
+  .multiplier-pill.mid { background: var(--ochre); }
+
+  .not-submitted-banner {
+    background: #FFF3F0;
+    border-top: 1px solid #FFCCC0;
+    padding: 0.6rem 1rem;
+    font-size: 0.78rem;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .month-summary {
+    background: var(--teal);
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--cream);
+  }
+
+  .month-title {
+    font-size: 0.65rem;
+    opacity: 0.5;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .month-staff-name {
+    font-size: 0.72rem;
+    opacity: 0.55;
+    margin-bottom: 0.2rem;
+  }
+
+  .month-staff-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--ochre-light);
+  }
+
+  /* ── SUBMITTED SCREEN ── */
+  #screen-done {
+    background: var(--teal);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .done-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .done-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--ochre-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .done-sub {
+    font-size: 0.88rem;
+    color: rgba(247,242,234,0.55);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .done-score {
+    background: rgba(247,242,234,0.08);
+    border: 1px solid rgba(247,242,234,0.15);
+    border-radius: 12px;
+    padding: 1.2rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .done-score-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .done-score-label {
+    font-size: 0.72rem;
+    opacity: 0.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  .done-multi {
+    font-size: 0.88rem;
+    color: var(--ochre-light);
+    margin-top: 0.8rem;
+  }
+
+  .back-login-btn {
+    background: none;
+    border: 1px solid rgba(247,242,234,0.25);
+    border-radius: 10px;
+    color: rgba(247,242,234,0.6);
+    padding: 0.7rem 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── PHOTO MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal-sheet {
+    background: white;
+    border-radius: 16px 16px 0 0;
+    padding: 1.5rem 1.2rem 2.5rem;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .modal-task-name {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    opacity: 0.7;
+    margin-bottom: 1.4rem;
+  }
+
+  .photo-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .photo-option-btn {
+    background: var(--cream);
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    transition: all 0.18s;
+  }
+
+  .photo-option-btn:active {
+    background: var(--cream-dark);
+    transform: scale(0.97);
+  }
+
+  .photo-option-icon { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+
+  .modal-cancel {
+    width: 100%;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    opacity: 0.6;
+    cursor: pointer;
+    padding: 0.6rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .hidden-file-input { display: none; }
+
+  /* ── TABS (Admin) ── */
+  .admin-tabs {
+    display: flex;
+    background: var(--teal-mid);
+    padding: 0 1.2rem;
+  }
+
+  .admin-tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.7rem 0.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(247,242,234,0.45);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.18s;
+  }
+
+  .admin-tab.active {
+    color: var(--ochre-light);
+    border-bottom-color: var(--ochre-light);
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .admin-back-btn {
+    background: none;
+    border: 1px solid rgba(247,242,234,0.2);
+    color: rgba(247,242,234,0.6);
+    border-radius: 6px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 0.3rem;
+  }
+
+  .automation-card {
+    background: white;
+    border-radius: 12px;
+    border: 1.5px solid var(--cream-dark);
+    padding: 1.1rem 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .automation-title {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .automation-desc {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    opacity: 0.75;
+    line-height: 1.5;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green-light);
+    display: inline-block;
+  }
+
+  .status-dot.off { background: var(--sand); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LOGIN SCREEN
+════════════════════════════════════════════ -->
+<div id="screen-login" class="screen active">
+  <div class="login-card">
+    <div class="hotel-name">Prince of Galle</div>
+    <div class="hotel-sub">Galle Fort · Staff Portal</div>
+
+    <div class="login-prompt">Who are you?</div>
+
+    <button class="staff-btn" onclick="login('saranga')">
+      <div class="staff-avatar" style="background:rgba(26,74,74,0.6);">🌿</div>
+      <div>
+        <div class="staff-info-name">Saranga</div>
+        <div class="staff-info-role">Maintenance & Gardens</div>
+      </div>
+    </button>
+
+    <button class="staff-btn" onclick="login('rukman')">
+      <div class="staff-avatar" style="background:rgba(200,136,26,0.25);">🏨</div>
+      <div>
+        <div class="staff-info-name">Rukman</div>
+        <div class="staff-info-role">General Manager</div>
+      </div>
+    </button>
+
+    <button class="staff-btn" onclick="login('erandi')">
+      <div class="staff-avatar" style="background:rgba(58,136,136,0.3);">📋</div>
+      <div>
+        <div class="staff-info-name">Erandi</div>
+        <div class="staff-info-role">General Admin</div>
+      </div>
+    </button>
+
+    <button class="staff-btn" onclick="login('admin')" style="margin-top:0.5rem; border-style:dashed;">
+      <div class="staff-avatar" style="background:rgba(247,242,234,0.06);">👁</div>
+      <div>
+        <div class="staff-info-name">Admin View</div>
+        <div class="staff-info-role" style="color:rgba(247,242,234,0.35);">Kirk — Overview</div>
+      </div>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CHECKLIST SCREEN
+════════════════════════════════════════════ -->
+<div id="screen-checklist" class="screen">
+
+  <div class="app-header">
+    <div class="header-left">
+      <div class="header-greeting">Daily Log</div>
+      <div class="header-name" id="header-name">—</div>
+    </div>
+    <div>
+      <div class="header-date" id="header-date">—</div>
+      <button class="logout-btn" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <div class="score-banner">
+    <div>
+      <div class="score-label">Today's score</div>
+      <div class="score-pct"><span id="score-num">0</span><span>%</span></div>
+    </div>
+    <div class="score-multiplier">
+      <div class="score-label">Service charge</div>
+      <div class="multiplier-val" id="multiplier-val">0.00×</div>
+    </div>
+  </div>
+  <div class="score-bar-wrap">
+    <div class="score-bar">
+      <div class="score-bar-fill" id="score-bar-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="checklist-wrap" id="checklist-wrap">
+    <!-- injected by JS -->
+  </div>
+
+  <div class="note-section">
+    <div class="note-label">Notes / Issues</div>
+    <textarea class="note-field" id="notes-field" placeholder="Any issues, requests, or observations for today…"></textarea>
+  </div>
+
+  <div class="submit-wrap">
+    <button class="submit-btn" id="submit-btn" onclick="submitChecklist()">
+      ✓ &nbsp;Submit Daily Log
+    </button>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DONE SCREEN
+════════════════════════════════════════════ -->
+<div id="screen-done" class="screen">
+  <div class="done-icon">✓</div>
+  <div class="done-title">Submitted</div>
+  <div class="done-sub" id="done-sub">Your daily log has been recorded.<br>Thank you.</div>
+  <div class="done-score">
+    <div class="done-score-val" id="done-score-val">—</div>
+    <div class="done-score-label">Completion today</div>
+    <div class="done-multi" id="done-multi">—</div>
+  </div>
+  <button class="back-login-btn" onclick="goBack()">← Return</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ADMIN SCREEN
+════════════════════════════════════════════ -->
+<div id="screen-admin" class="screen">
+
+  <div class="admin-header">
+    <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+      <div>
+        <div class="admin-title">Staff Overview</div>
+        <div class="admin-sub" id="admin-date-sub">Prince of Galle · Today</div>
+      </div>
+      <button class="admin-back-btn" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <div class="admin-tabs">
+    <div class="admin-tab active" onclick="switchTab('today')">Today</div>
+    <div class="admin-tab" onclick="switchTab('month')">Month</div>
+    <div class="admin-tab" onclick="switchTab('automation')">Automation</div>
+  </div>
+
+  <div class="admin-body">
+
+    <div id="tab-today" class="tab-content active">
+      <div id="admin-cards-today"></div>
+    </div>
+
+    <div id="tab-month" class="tab-content">
+      <div class="month-summary" id="month-summary-block">
+        <div class="month-title">Monthly Completion Average</div>
+        <div class="month-grid" id="month-grid"></div>
+      </div>
+      <div id="admin-cards-month"></div>
+    </div>
+
+    <div id="tab-automation" class="tab-content">
+      <p style="font-size:0.78rem; color:var(--text-mid); opacity:0.7; margin-bottom:1rem; line-height:1.6;">
+        The automations below run daily without any input from you. Connect to <strong>Make.com</strong> or <strong>Zapier</strong> to activate WhatsApp triggers.
+      </p>
+
+      <div class="automation-card">
+        <div class="automation-title"><span class="status-dot"></span> Morning Reminder — 7:00am</div>
+        <div class="automation-desc">WhatsApp message sent to each staff member with their personal checklist link. Triggered daily, 7 days a week.</div>
+      </div>
+
+      <div class="automation-card">
+        <div class="automation-title"><span class="status-dot"></span> Chase Message — 11:00am</div>
+        <div class="automation-desc">If a staff member has not submitted by 11am, an automatic follow-up is sent. No submission = flagged in admin view.</div>
+      </div>
+
+      <div class="automation-card">
+        <div class="automation-title"><span class="status-dot off"></span> Month-End Payroll Summary — 28th</div>
+        <div class="automation-desc">On the 28th of each month, a summary PDF is generated showing each person's average completion % and their service charge multiplier for that month.</div>
+      </div>
+
+      <div class="automation-card">
+        <div class="automation-title"><span class="status-dot off"></span> Photo Archive — Google Drive</div>
+        <div class="automation-desc">All submitted photos are automatically filed to a Google Drive folder, organised by staff member and date.</div>
+      </div>
+
+      <p style="font-size:0.72rem; color:var(--text-mid); opacity:0.55; margin-top:1rem; line-height:1.6; letter-spacing:0.03em;">
+        <strong>To deploy:</strong> Host this file on Vercel or Netlify (free). Connect a Google Sheet as the database via Make.com. WhatsApp messages via Twilio or WATI. Total monthly cost: ~$0–$15 USD.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PHOTO MODAL
+════════════════════════════════════════════ -->
+<div id="photo-modal" class="modal-overlay">
+  <div class="modal-sheet">
+    <div class="modal-title">Add Photo</div>
+    <div class="modal-task-name" id="modal-task-name">—</div>
+    <div class="photo-options">
+      <button class="photo-option-btn" onclick="triggerCamera()">
+        <span class="photo-option-icon">📸</span>
+        Take Photo
+      </button>
+      <button class="photo-option-btn" onclick="triggerGallery()">
+        <span class="photo-option-icon">🖼</span>
+        Choose from Library
+      </button>
+    </div>
+    <button class="modal-cancel" onclick="closePhotoModal()">Cancel</button>
+  </div>
+</div>
+
+<input type="file" accept="image/*" capture="environment" id="camera-input" class="hidden-file-input" onchange="handlePhoto(event)">
+<input type="file" accept="image/*" id="gallery-input" class="hidden-file-input" onchange="handlePhoto(event)">
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────
+const STAFF = {
+  saranga: {
+    name: 'Saranga',
+    role: 'Maintenance & Gardens',
+    emoji: '🌿',
+    color: 'rgba(26,74,74,0.6)',
+    sections: [
+      {
+        title: 'Pool & Water',
+        tasks: [
+          { id: 's1', text: 'Pool chemical levels checked & logged', requiresPhoto: false },
+          { id: 's2', text: 'Pool surface cleaned & debris removed', requiresPhoto: false },
+          { id: 's3', text: 'Water features checked (fountains, taps)', requiresPhoto: false },
+        ]
+      },
+      {
+        title: 'Gardens & Plants',
+        tasks: [
+          { id: 's4', text: 'All plants watered', requiresPhoto: false },
+          { id: 's5', text: 'Dead / damaged plants flagged', requiresPhoto: true },
+          { id: 's6', text: 'Garden paths & outdoor areas swept', requiresPhoto: false },
+          { id: 's7', text: 'Potted plants on terraces checked', requiresPhoto: false },
+        ]
+      },
+      {
+        title: 'Maintenance Walk',
+        tasks: [
+          { id: 's8', text: 'AC units checked & filters clear', requiresPhoto: false },
+          { id: 's9', text: 'Any repairs needed logged (photo required)', requiresPhoto: true },
+          { id: 's10', text: 'Property perimeter & gate secure', requiresPhoto: false },
+        ]
+      },
+      {
+        title: '🌙 Night Lighting — At Dusk (~6pm)',
+        tasks: [
+          { id: 's11', text: 'Entrance & gate lights on — welcoming for arriving guests', requiresPhoto: false },
+          { id: 's12', text: 'Garden path lights on — all walkways safe & lit', requiresPhoto: false },
+          { id: 's13', text: 'Pool area lighting on — perimeter & underwater if fitted', requiresPhoto: false },
+          { id: 's14', text: 'Terrace & courtyard ambience lights on', requiresPhoto: false },
+          { id: 's15', text: 'Common area interior lights on (lobby, lounge, corridors)', requiresPhoto: false },
+          { id: 's16', text: 'All guest room porch / balcony lights on', requiresPhoto: false },
+          { id: 's17', text: 'Back-of-house & staff areas lit for safety', requiresPhoto: false },
+          { id: 's18', text: 'Any blown bulbs or faults flagged (photo required)', requiresPhoto: true },
+          { id: 's19', text: 'Timers / smart switches confirmed set for auto-off', requiresPhoto: false },
+        ]
+      }
+    ]
+  },
+  rukman: {
+    name: 'Rukman',
+    role: 'General Manager',
+    emoji: '🏨',
+    color: 'rgba(200,136,26,0.25)',
+    sections: [
+      {
+        title: 'Guests',
+        tasks: [
+          { id: 'r1', text: 'Arrivals for today confirmed & rooms ready', requiresPhoto: false },
+          { id: 'r2', text: 'Departures checked out & rooms cleared', requiresPhoto: false },
+          { id: 'r3', text: 'Guest requests / feedback reviewed', requiresPhoto: false },
+        ]
+      },
+      {
+        title: 'Staff & Operations',
+        tasks: [
+          { id: 'r4', text: 'All staff attendance confirmed', requiresPhoto: false },
+          { id: 'r5', text: 'Shift handover briefing done', requiresPhoto: false },
+          { id: 'r6', text: 'Supplier deliveries checked off', requiresPhoto: false },
+        ]
+      },
+      {
+        title: 'Finance & Admin',
+        tasks: [
+          { id: 'r7', text: 'Daily revenue reconciliation done', requiresPhoto: false },
+          { id: 'r8', text: 'Cash float checked & correct', requiresPhoto: false },
+          { id: 'r9', text: 'Any incidents or issues logged', requiresPhoto: true },
+        ]
+      },
+      {
+        title: 'End of Day',
+        tasks: [
+          { id: 'r10', text: 'Property secure — doors, gates, lights', requiresPhoto: false },
+          { id: 'r11', text: 'Next day prep confirmed with team', requiresPhoto: false },
+        ]
+      }
+    ]
+  },
+  erandi: {
+    name: 'Erandi',
+    role: 'General Admin',
+    emoji: '📋',
+    color: 'rgba(58,136,136,0.3)',
+    sections: [
+      {
+        title: 'Reservations',
+        tasks: [
+          { id: 'e1', text: 'Booking platforms checked (Booking.com, Airbnb, direct)', requiresPhoto: false },
+          { id: 'e2', text: 'Upcoming arrivals confirmed & prepped', requiresPhoto: false },
+          { id: 'e3', text: 'Rate & availability calendar up to date', requiresPhoto: false },
+        ]
+      },
+      {
+        title: 'Guest Communications',
+        tasks: [
+          { id: 'e4', text: 'All guest messages responded to', requiresPhoto: false },
+          { id: 'e5', text: 'Review responses posted (Google / TripAdvisor)', requiresPhoto: false },
+        ]
+      },
+      {
+        title: 'Admin & Finance',
+        tasks: [
+          { id: 'e6', text: 'Invoices & receipts filed', requiresPhoto: false },
+          { id: 'e7', text: 'Inventory levels checked & restocking noted', requiresPhoto: false },
+          { id: 'e8', text: 'Daily report sent to management', requiresPhoto: false },
+        ]
+      },
+      {
+        title: 'Payments',
+        tasks: [
+          { id: 'e9', text: 'All payments due today processed', requiresPhoto: false },
+          { id: 'e10', text: 'Payment receipts saved & filed', requiresPhoto: false },
+          { id: 'e11', text: 'Any failed or pending payments flagged', requiresPhoto: false },
+        ]
+      },
+      {
+        title: '📊 Financial Reports — Upload',
+        tasks: [
+          { id: 'e12', text: 'Report 1 — Daily Revenue Summary uploaded', requiresPhoto: true },
+          { id: 'e13', text: 'Report 2 — Expenses & Payments Out uploaded', requiresPhoto: true },
+          { id: 'e14', text: 'Report 3 — Booking Platform Reconciliation uploaded', requiresPhoto: true },
+          { id: 'e15', text: 'Report 4 — Cash & Float Reconciliation uploaded', requiresPhoto: true },
+          { id: 'e16', text: 'Monthly Summary uploaded (1st of month only)', requiresPhoto: true },
+          { id: 'e17', text: 'All 4 reports cross-checked — balances confirmed ✓', requiresPhoto: false },
+        ]
+      },
+      {
+        title: 'Social & Marketing',
+        tasks: [
+          { id: 'e18', text: 'Social media post scheduled or published', requiresPhoto: false },
+          { id: 'e19', text: 'Any outstanding marketing tasks completed', requiresPhoto: false },
+        ]
+      }
+    ]
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────
+let currentUser = null;
+let taskState = {};   // { taskId: 'done' | 'flagged' | null }
+let photoState = {};  // { taskId: true/false }
+let modalTaskId = null;
+
+// Simulated submission history (would be a real DB)
+const submissionHistory = JSON.parse(localStorage.getItem('pogHistory') || '{}');
+
+// ── HELPERS ───────────────────────────────────────────────────────
+function today() {
+  return new Date().toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long' });
+}
+
+function todayKey() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function getScore() {
+  const profile = STAFF[currentUser];
+  const allTasks = profile.sections.flatMap(s => s.tasks);
+  const done = allTasks.filter(t => taskState[t.id] === 'done').length;
+  return Math.round((done / allTasks.length) * 100);
+}
+
+function getMultiplier(pct) {
+  if (pct >= 95) return 1.0;
+  if (pct >= 80) return 0.9;
+  if (pct >= 60) return 0.75;
+  if (pct >= 40) return 0.5;
+  return 0.0;
+}
+
+function updateScoreUI() {
+  const pct = getScore();
+  const multi = getMultiplier(pct);
+  document.getElementById('score-num').textContent = pct;
+  document.getElementById('multiplier-val').textContent = multi.toFixed(2) + '×';
+  document.getElementById('score-bar-fill').style.width = pct + '%';
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── LOGIN ─────────────────────────────────────────────────────────
+function login(user) {
+  if (user === 'admin') {
+    renderAdminView();
+    showScreen('admin');
+    return;
+  }
+  currentUser = user;
+  taskState = {};
+  photoState = {};
+
+  const profile = STAFF[user];
+  document.getElementById('header-name').textContent = profile.name;
+  document.getElementById('header-date').textContent = today();
+
+  renderChecklist();
+  updateScoreUI();
+  showScreen('checklist');
+}
+
+function goBack() {
+  currentUser = null;
+  showScreen('login');
+}
+
+// ── CHECKLIST RENDER ──────────────────────────────────────────────
+function renderChecklist() {
+  const profile = STAFF[currentUser];
+  const wrap = document.getElementById('checklist-wrap');
+  wrap.innerHTML = '';
+
+  profile.sections.forEach(section => {
+    const secTitle = document.createElement('div');
+    secTitle.className = 'section-title';
+    secTitle.textContent = section.title;
+    wrap.appendChild(secTitle);
+
+    section.tasks.forEach(task => {
+      taskState[task.id] = null;
+      const item = document.createElement('div');
+      item.className = 'task-item';
+      item.id = 'task-' + task.id;
+      item.onclick = () => toggleTask(task.id);
+
+      item.innerHTML = `
+        <div class="task-checkbox" id="chk-${task.id}"></div>
+        <div class="task-text">${task.text}</div>
+        ${task.requiresPhoto ? `<button class="task-photo-btn" id="photo-btn-${task.id}" onclick="event.stopPropagation(); openPhotoModal('${task.id}', '${task.text.replace(/'/g,"\\'")}')">📷 Photo</button>` : ''}
+      `;
+      wrap.appendChild(item);
+    });
+  });
+}
+
+// ── TASK TOGGLE ───────────────────────────────────────────────────
+function toggleTask(id) {
+  const current = taskState[id];
+  const next = current === 'done' ? null : 'done';
+  taskState[id] = next;
+
+  const item = document.getElementById('task-' + id);
+  const chk = document.getElementById('chk-' + id);
+
+  item.className = 'task-item' + (next === 'done' ? ' done' : '');
+  chk.textContent = next === 'done' ? '✓' : '';
+
+  updateScoreUI();
+}
+
+// ── PHOTO MODAL ───────────────────────────────────────────────────
+function openPhotoModal(taskId, taskName) {
+  modalTaskId = taskId;
+  document.getElementById('modal-task-name').textContent = taskName;
+  document.getElementById('photo-modal').classList.add('open');
+}
+
+function closePhotoModal() {
+  document.getElementById('photo-modal').classList.remove('open');
+  modalTaskId = null;
+}
+
+function triggerCamera() {
+  closePhotoModal();
+  document.getElementById('camera-input').click();
+}
+
+function triggerGallery() {
+  closePhotoModal();
+  document.getElementById('gallery-input').click();
+}
+
+function handlePhoto(event) {
+  const file = event.target.files[0];
+  if (!file || !modalTaskId) return;
+  photoState[modalTaskId] = true;
+  const btn = document.getElementById('photo-btn-' + modalTaskId);
+  if (btn) {
+    btn.textContent = '✓ Photo';
+    btn.classList.add('has-photo');
+  }
+  // In production: upload to server/Google Drive here
+  event.target.value = '';
+  modalTaskId = null;
+}
+
+// ── SUBMIT ────────────────────────────────────────────────────────
+function submitChecklist() {
+  const pct = getScore();
+  const multi = getMultiplier(pct);
+  const notes = document.getElementById('notes-field').value;
+
+  // Save to local history
+  if (!submissionHistory[currentUser]) submissionHistory[currentUser] = {};
+  submissionHistory[currentUser][todayKey()] = {
+    score: pct,
+    multiplier: multi,
+    notes,
+    photos: { ...photoState },
+    submittedAt: new Date().toLocaleTimeString('en-AU', { hour:'2-digit', minute:'2-digit' })
+  };
+  localStorage.setItem('pogHistory', JSON.stringify(submissionHistory));
+
+  // Show done screen
+  document.getElementById('done-score-val').textContent = pct + '%';
+  document.getElementById('done-multi').textContent = 'Service charge multiplier: ' + multi.toFixed(2) + '×';
+
+  const profile = STAFF[currentUser];
+  document.getElementById('done-sub').textContent =
+    `${profile.name}'s daily log has been recorded.\nThank you — see you tomorrow.`;
+
+  showScreen('done');
+}
+
+// ── ADMIN ─────────────────────────────────────────────────────────
+function renderAdminView() {
+  document.getElementById('admin-date-sub').textContent = 'Prince of Galle · ' + today();
+
+  const todayK = todayKey();
+  const staffKeys = ['saranga', 'rukman', 'erandi'];
+
+  // Today tab
+  const todayWrap = document.getElementById('admin-cards-today');
+  todayWrap.innerHTML = '';
+  staffKeys.forEach(key => {
+    const profile = STAFF[key];
+    const submission = submissionHistory[key]?.[todayK];
+    todayWrap.appendChild(buildStaffCard(profile, submission, 'today'));
+  });
+
+  // Month tab
+  const monthGrid = document.getElementById('month-grid');
+  monthGrid.innerHTML = '';
+  const monthWrap = document.getElementById('admin-cards-month');
+  monthWrap.innerHTML = '';
+
+  staffKeys.forEach(key => {
+    const profile = STAFF[key];
+    const history = submissionHistory[key] || {};
+    const scores = Object.values(history).map(s => s.score);
+    const avg = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
+
+    const gridItem = document.createElement('div');
+    gridItem.innerHTML = `
+      <div class="month-staff-name">${profile.name}</div>
+      <div class="month-staff-pct">${avg !== null ? avg + '%' : '—'}</div>
+    `;
+    monthGrid.appendChild(gridItem);
+    monthWrap.appendChild(buildStaffCard(profile, null, 'month', history));
+  });
+}
+
+function buildStaffCard(profile, submission, mode, history) {
+  const card = document.createElement('div');
+  card.className = 'staff-card';
+
+  const hasSubmission = !!submission;
+  const pct = hasSubmission ? submission.score : null;
+  const multi = pct !== null ? getMultiplier(pct) : null;
+
+  let scoreClass = '';
+  if (pct !== null) {
+    if (pct < 60) scoreClass = 'low';
+    else if (pct < 80) scoreClass = 'mid';
+  }
+
+  card.innerHTML = `
+    <div class="staff-card-header">
+      <div class="card-avatar" style="background:${profile.color}">${profile.emoji}</div>
+      <div>
+        <div class="card-name">${profile.name}</div>
+        <div class="card-role">${profile.role}</div>
+      </div>
+      <div class="card-score-badge ${scoreClass}">${pct !== null ? pct + '%' : '—'}</div>
+    </div>
+    <div class="card-body">
+      ${mode === 'today' ? renderTodayStats(submission, multi) : renderMonthStats(history)}
+    </div>
+    ${mode === 'today' && !hasSubmission ? `<div class="not-submitted-banner">⚠ Not yet submitted today</div>` : ''}
+  `;
+
+  return card;
+}
+
+function renderTodayStats(submission, multi) {
+  if (!submission) {
+    return `
+      <div class="card-stat-row">
+        <span class="stat-label">Status</span>
+        <span class="stat-val red">Not submitted</span>
+      </div>
+    `;
+  }
+  const pillClass = multi < 0.6 ? 'low' : multi < 0.9 ? 'mid' : '';
+  return `
+    <div class="card-stat-row">
+      <span class="stat-label">Submitted at</span>
+      <span class="stat-val">${submission.submittedAt}</span>
+    </div>
+    <div class="card-stat-row">
+      <span class="stat-label">Completion</span>
+      <span class="stat-val ${submission.score >= 80 ? 'green' : submission.score >= 60 ? 'ochre' : 'red'}">${submission.score}%</span>
+    </div>
+    <div class="card-stat-row">
+      <span class="stat-label">Service charge</span>
+      <span class="stat-val"><span class="multiplier-pill ${pillClass}">${multi.toFixed(2)}×</span></span>
+    </div>
+    ${submission.notes ? `<div class="card-stat-row"><span class="stat-label">Note</span><span class="stat-val" style="font-size:0.78rem;max-width:60%;text-align:right;">${submission.notes.substring(0,80)}${submission.notes.length>80?'…':''}</span></div>` : ''}
+  `;
+}
+
+function renderMonthStats(history) {
+  const entries = Object.entries(history);
+  if (!entries.length) return `<div class="card-stat-row"><span class="stat-label">No data yet</span></div>`;
+
+  const scores = entries.map(([,v]) => v.score);
+  const avg = Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+  const multi = getMultiplier(avg);
+  const pillClass = multi < 0.6 ? 'low' : multi < 0.9 ? 'mid' : '';
+
+  return `
+    <div class="card-stat-row">
+      <span class="stat-label">Days submitted</span>
+      <span class="stat-val">${entries.length}</span>
+    </div>
+    <div class="card-stat-row">
+      <span class="stat-label">Average score</span>
+      <span class="stat-val ${avg >= 80 ? 'green' : avg >= 60 ? 'ochre' : 'red'}">${avg}%</span>
+    </div>
+    <div class="card-stat-row">
+      <span class="stat-label">Month multiplier</span>
+      <span class="stat-val"><span class="multiplier-pill ${pillClass}">${multi.toFixed(2)}×</span></span>
+    </div>
+  `;
+}
+
+// ── ADMIN TABS ────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.admin-tab').forEach((t, i) => {
+    const tabs = ['today','month','automation'];
+    t.classList.toggle('active', tabs[i] === tab);
+  });
+  document.querySelectorAll('.tab-content').forEach(c => {
+    c.classList.toggle('active', c.id === 'tab-' + tab);
+  });
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+// Set today's date on login screen
+document.addEventListener('DOMContentLoaded', () => {
+  // no-op, screens handled by login()
+});
+</script>
+</body>
+</html>
