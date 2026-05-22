@@ -1,14 +1,249 @@
-const profile2 = STAFF[currentUser];
-  const allTasks2 = profile2.sections.flatMap(s => s.tasks);
-  fetch('https://script.google.com/macros/s/AKfycbwOVCpdFqO0JQE0hg5QOt0F4jeWo0_dolHUKh9sfxSA_vkO2gWs365Pypx63KuMmKXtxg/exec', {
-    method: 'POST', mode: 'no-cors',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      date: new Date().toLocaleDateString('en-AU'),
-      time: new Date().toLocaleTimeString('en-AU', {hour:'2-digit',minute:'2-digit'}),
-      staff: profile2.name, role: profile2.role,
-      score: pct, multiplier: multi,
-      tasksDone: allTasks2.filter(t => taskState[t.id] === 'done').length,
-      tasksTotal: allTasks2.length, notes: notes || ''
-    })
-  }).catch(()=>{});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DCC">
+<meta name="theme-color" content="#0f1115">
+<link rel="apple-touch-icon" href="/icon.svg">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="manifest" href="/manifest.json">
+<title>Daily Command Centre — Kirk</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #181b22;
+    --panel-2: #1f232c;
+    --ink: #e8e8ea;
+    --muted: #9aa0aa;
+    --accent: #b878d6;
+    --accent-2: #6ec1e4;
+    --urgent: #ff6b6b;
+    --good: #7ed957;
+    --warn: #ffc857;
+    --border: #2a2f3a;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 16px; line-height: 1.45; }
+  .wrap { max-width: 1400px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); margin-bottom: 16px; }
+  h1 { margin: 0; font-size: 22px; letter-spacing: 0.5px; }
+  h1 .name { color: var(--accent); }
+  .meta { color: var(--muted); font-size: 13px; text-align: right; }
+  .meta .gen { color: var(--accent-2); font-weight: 600; }
+  .refresh { display: inline-block; margin-top: 6px; padding: 6px 12px; background: var(--accent); color: #0f1115; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .col { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+  .col h2 { margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  .col h2.urgent { color: var(--urgent); }
+  .col h2.morning { color: var(--accent-2); }
+  .col h2.week { color: var(--warn); }
+  .col h2.wisdom { color: var(--good); }
+  .col h2.capture { color: #f0a3ff; }
+  .col ul { margin: 0; padding-left: 18px; }
+  .col li { margin-bottom: 8px; font-size: 14px; }
+  .col li .tag { display: inline-block; background: var(--panel-2); color: var(--accent-2); padding: 1px 6px; border-radius: 3px; font-size: 10px; margin-left: 4px; vertical-align: middle; }
+  .col li .tag.send { background: var(--urgent); color: #fff; }
+  .col li .tag.draft { background: var(--accent); color: #0f1115; }
+  .col li.done { color: var(--muted); text-decoration: line-through; }
+
+  /* Three Wisdoms block */
+  .wisdoms { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+  .wisdoms h2 { margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--good); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  .wisdom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .wisdom-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .wisdom-grid { grid-template-columns: 1fr; } }
+  .wcard { background: var(--panel-2); border-radius: 8px; padding: 10px 12px; border-left: 3px solid var(--good); }
+  .wcard .src { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .wcard .body { font-size: 13px; }
+  .wcard.word { border-left-color: var(--accent); }
+  .wcard.word .term { color: var(--accent); font-weight: 700; font-size: 15px; }
+
+  /* Quick Links */
+  .quicklinks { background: var(--panel); border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+  .ql-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+  .ql-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .ql-grid { grid-template-columns: 1fr 1fr; } }
+  .ql-cat { font-size: 12px; color: var(--accent-2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ql-grid ul { margin: 0; padding-left: 0; list-style: none; }
+  .ql-grid li { margin-bottom: 4px; font-size: 13px; }
+  .ql-grid a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--border); }
+  .ql-grid a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding-top: 10px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; }
+  footer .sig { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>Daily Command Centre <span class="name">— Kirk</span></h1>
+    <div style="color: var(--muted); font-size: 13px; margin-top: 4px;">One page, two gens a day, everything in view.</div>
+  </div>
+  <div class="meta">
+    <div><span class="gen">DEMO gen</span> · Friday 22 May 2026 · 09:30 AEST</div>
+    <div>Real gens: 06:00 + 18:00 AEST daily</div>
+    <a href="mailto:ollo@princeofgalle.com?subject=Refresh%20DCC&body=Refresh%20now" class="refresh">↻ Refresh now</a>
+  </div>
+</header>
+
+<!-- 6-column DCC grid -->
+<div class="grid">
+
+  <div class="col">
+    <h2>Today — deal with</h2>
+    <ul>
+      <li>10:00 Harley catch-up <span class="tag">CAL</span></li>
+      <li>Send Taara/SRP follow-up draft (switch From → ollo) <span class="tag draft">DRAFT READY</span></li>
+      <li>Reply to guest Gayan De Mel re 3-4am check-in (arrives tomorrow) <span class="tag send">PG</span></li>
+      <li>Reply to guest Veronica Moldovan re 11-12am check-in + WhatsApp <span class="tag send">PG</span></li>
+      <li>Pack for Zurich → Melbourne flight (departs tomorrow 6:35pm ZRH)</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2 class="urgent">Urgent</h2>
+    <ul>
+      <li>Trip.com first-ever booking arriving — VCC details check requested by Yali Zheng <span class="tag send">PG</span></li>
+      <li>New Booking.com res #5018619616 De Mel arriving 23-May (tomorrow)</li>
+      <li>Booking.com sign-in alert on Erandi's account 21-May — verify with Erandi <span class="tag">SECURITY</span></li>
+      <li>Booking.com platform tech issue 21-May affecting reservations — monitor</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2 class="morning">Morning routine</h2>
+    <ul>
+      <li>Check ollo Capture note</li>
+      <li>Scan Gmail (inbox + sent + archived + deleted) — proposed replies in Drafts</li>
+      <li>Review Three Wisdoms</li>
+      <li>Open Unfinished Business doc — grab one</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2 class="week">Tomorrow / this week</h2>
+    <ul>
+      <li><strong>Sat 23 May:</strong> Flight QR94 ZRH → DOH 18:35</li>
+      <li><strong>Sun 24 May:</strong> Flight QR904 DOH → MEL arrives 17:15</li>
+      <li><strong>Tue 26 May:</strong> John Mentiplay's birthday</li>
+      <li><strong>Wed 27 May:</strong> David Morley's birthday · Dave Harrap in town</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2 class="wisdom">Three Wisdoms — short read</h2>
+    <ul>
+      <li>See full block below ↓</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2 class="capture">Kirk's Reminders &amp; Ideas</h2>
+    <ul>
+      <li><em>Sourced from ollo Capture (Apple Notes). Type or say "<strong>ollo:</strong> [thing]" anywhere and it lands here.</em></li>
+      <li><strong>Galle Fort rotating closure</strong> — pitch Bungalow, Fort Bazaar, Fort Printer. Each shuts 1 month on rotation, partners absorb guests, staff get genuine paid holiday. (21 May)</li>
+      <li><em>Speak more in. ollo is listening.</em></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Three Wisdoms expanded -->
+<div class="wisdoms">
+  <h2>Three Wisdoms + Word of the day</h2>
+  <div class="wisdom-grid">
+
+    <div class="wcard">
+      <div class="src">AI / Cowork tip</div>
+      <div class="body">Drag any file into Cowork chat and ask "summarise this in 5 lines." Fastest way to brief yourself on a doc you haven't opened yet. Works for PDFs, Word, spreadsheets, transcripts.</div>
+    </div>
+
+    <div class="wcard">
+      <div class="src">Mental health — Gabor Maté</div>
+      <div class="body">"When the body says no, it's because you said yes when you meant no." Stress is data. The exhaustion after the call you didn't want to take is the signal, not the weakness.</div>
+    </div>
+
+    <div class="wcard">
+      <div class="src">Philosophy — Alan Watts</div>
+      <div class="body">"The menu is not the meal." Plans, lists, identity cards, even this DCC — they're not the life. Useful, but don't mistake the map for the territory. Build the page, then live the day.</div>
+    </div>
+
+    <div class="wcard word">
+      <div class="src">Word of the day</div>
+      <div class="body"><span class="term">Hiraeth</span> (Welsh, "HEER-eyeth") — a homesickness for a home you can't return to, or that maybe never was. The pull of a place that lives partly in memory and partly in imagination. Mel and Galle both, simultaneously.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Quick Links -->
+<div class="quicklinks">
+  <div class="ql-title">Quick Links</div>
+  <div class="ql-grid">
+
+    <div>
+      <div class="ql-cat">Daily Ops</div>
+      <ul>
+        <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail · mailmanchina</a></li>
+        <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
+        <li><a href="notes://showNote?name=ollo%20Capture">Apple Notes — ollo Capture</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="ql-cat">Prince of Galle</div>
+      <ul>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1teD4ZzxweaW10dzM9ElcJZSb7fx4vApD">PG Staff Files (Shared)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1cxJJI5lEovYdtUy8H1Bm2-4NPjIoA9sy">03 Prince of Galle (master)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g">Sri Lanka Accounting (Taara)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1za8PX-v4DA-vWpwoWvSrGf8XbCEPRki8">PG Chess Set</a></li>
+        <li><a href="https://admin.booking.com">Booking.com partner</a></li>
+        <li><a href="https://ycs.agoda.com">Agoda YCS</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="ql-cat">ollo system</div>
+      <ul>
+        <li><a href="https://docs.google.com/document/d/1Qz9utFAwOi9brQQabyjZ_ynml1W4PoGPQkILIO1nCqc">ollo Identity Card</a></li>
+        <li><a href="https://docs.google.com/document/d/170qSrZqBckVWsiYTIvSwRT9svS2pyAhSIgGFX7qpz-E">Unfinished Business backlog</a></li>
+        <li><a href="https://docs.google.com/document/d/1mUwcqi6wqQt94eVQi_fhOH_hxpOP_GuHofM3-S2P3ew">claude-ai-log MASTER</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts (proposed replies)</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#trash">Gmail Deleted</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="ql-cat">Legal · Property · Ventures</div>
+      <ul>
+        <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal — Jobsz &amp; Lawless</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1fcEpSQVHqQ5VBomxAGsOUlKXNij3BPoS">Bruce &amp; Legal (Diamonds Solicitors)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1bNjSb6Ee1fc3C9-zQkRESCJRetPRMmvf">02 Property &amp; Trust</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1o5Ly9hxgx44u-C7mBEzBcoLqc1zgobjN">Yarragon Property (Lots 5 &amp; 8)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1_ZQo-SZbgesp0tGjpSH5HwVi3v_pcOZP">Jobsz Family Trust</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">04 Solomon Spirits (Distillery)</a></li>
+        <li><a href="https://docs.google.com/document/d/1QqKLeAzRb-qi8m7lr3sDksLmopsr3K_SaZPJMp0gMGk">↳ Distillery tracker</a></li>
+        <li><a href="https://open.spotify.com">Spotify</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div>DCC v2 · auto-gen 06:00 + 18:00 AEST · weekly thread</div>
+  <div class="sig">ollo · fix file &amp; sort · For Kirk Jobsz · ollo@princeofgalle.com</div>
+</footer>
+
+</div>
+</body>
+</html>
