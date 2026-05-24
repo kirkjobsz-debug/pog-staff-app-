@@ -50,7 +50,6 @@
   .col li .tag.send { background: var(--urgent); color: #fff; }
   .col li .tag.draft { background: var(--accent); color: #0f1115; }
   .col li .tag.flag { background: var(--warn); color: #0f1115; }
-  .col li.done { color: var(--muted); text-decoration: line-through; }
 
   .wisdoms { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
   .wisdoms h2 { margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--good); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
@@ -94,14 +93,16 @@
     <div style="color: var(--muted); font-size: 13px; margin-top: 4px;">One page, two gens a day, everything in view.</div>
   </div>
   <div class="meta">
-    <div><span class="gen">{{GEN_LABEL}}</span> · {{DATE_LONG}} · {{GEN_TIME}} AEST</div>
+    <div><span class="gen">AM gen</span> · Sunday 24 May 2026 · 06:00 AEST</div>
     <div>Real gens: 06:00 + 18:00 AEST daily</div>
-    <a href="javascript:window.location.reload()" class="refresh">&#8635; Refresh now</a>
+    <a href="./?r=1" class="refresh" onclick="location.reload(true); return false;">&#8635; Refresh now</a>
   </div>
 </header>
 
-<!-- Optional travel banner (use only when Kirk has a flight today) -->
-{{TRAVEL_BANNER_OPTIONAL}}
+<!-- Travel banner -->
+<div class="travel-banner">
+  &#9992; TRAVEL DAY &mdash; Lora returns. QR904 Doha &rarr; Melbourne lands 17:15 AEST today.
+</div>
 
 <!-- 6-column DCC grid -->
 <div class="grid">
@@ -109,14 +110,21 @@
   <div class="col">
     <h2>Today — deal with</h2>
     <ul>
-      {{TODAY_ITEMS}}
+      <li><strong>Lora lands MEL 17:15</strong> on QR904 from Doha. Pickup or transfer arranged?</li>
+      <li><strong>Light day only.</strong> Inbox triage cap 30 min, then close laptop.</li>
+      <li><strong>Reggie distillery feasibility</strong> due Mon 25 May. Stub on plane / Sunday afternoon.</li>
+      <li><strong>Pegasus Price thread (book@).</strong> Already replied 01:08am. See Urgent for scam flag.</li>
+      <li><strong>Hydrate.</strong> Water before alcohol, electrolyte sachet on landing.</li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="urgent">Urgent</h2>
     <ul>
-      {{URGENT_ITEMS}}
+      <li><span class="tag flag">CHECK</span> <strong>Pegasus Price scam recon.</strong> alzoopdropz7@gmail.com sent generic "is this the right hotel contact" to book@. Classic pre-scam pattern (gmail, no booking details, fishing). You already replied. ollo watches the follow-up &mdash; if they ask for payment redirect or "new account", treat as fraud and route to Rukman.</li>
+      <li><strong>SRP / Taara.</strong> Replied Fri 22 May 11:06 UTC. Three days quiet. No chase needed yet, ollo will chase Tuesday if still silent.</li>
+      <li><strong>Trade Licence (PG).</strong> Officers visited, awaiting PHI certification. Rukman to confirm LKR for TDL payment + timeline.</li>
+      <li><strong>Weekly P&amp;L (WE-2026-05-22).</strong> All files landed. Closed out. Utility bills monthly only.</li>
     </ul>
   </div>
 
@@ -127,16 +135,22 @@
       <li><strong>AM:</strong> Scan Gmail (proposed replies in Drafts)</li>
       <li><strong>AM:</strong> Review Three Wisdoms below</li>
       <li><strong>AM:</strong> Open Unfinished Business doc, grab one</li>
-      <li><strong>AM + PM: Paste continuity prompt into every open claude.ai chat.</strong> See block below &#8595;</li>
-      <li><strong>End of day: say "ollo out" anywhere</strong> (Cowork, iMessage to ollo) to log completion</li>
-      {{TRAVEL_NOTE_OPTIONAL}}
+      <li><strong>AM + PM:</strong> Paste continuity prompt into every open claude.ai chat. See block below &#8595;</li>
+      <li><strong>End of day:</strong> say "ollo out" anywhere (Cowork, iMessage to ollo) to log completion</li>
+      <li style="color: var(--warn);"><strong>Travel note:</strong> Lora is in transit. Light hand on PG today, normal cadence Monday.</li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="week">Tomorrow / this week</h2>
     <ul>
-      {{WEEK_ITEMS}}
+      <li><strong>Mon 25 May:</strong> Reggie distillery feasibility due. Report CentreL marker.</li>
+      <li><strong>Tue 26 May:</strong> Imagine jobsz with Betty. John Mentiplay birthday.</li>
+      <li><strong>Wed 27 May:</strong> Dave Harrap in town. David Morley birthday. Report CentreL marker.</li>
+      <li><strong>Thu 28 May:</strong> Open.</li>
+      <li><strong>Fri 29 May:</strong> Open.</li>
+      <li><strong>Sat 30 May:</strong> Open.</li>
+      <li><strong>Sun 31 May:</strong> Getdown Services at Corner Hotel with Khandi, Imagine, Yarra.</li>
     </ul>
   </div>
 
@@ -144,26 +158,37 @@
     <h2 class="wisdom">Three Wisdoms — short read</h2>
     <ul>
       <li>See full block below &#8595;</li>
-      <li style="color: var(--muted); font-size: 13px;">{{WISDOM_PREVIEW}}</li>
+      <li style="color: var(--muted); font-size: 13px;">AM selection: Mate + Watts + AI tip + Word</li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="capture">Kirk's Reminders &amp; Ideas</h2>
     <ul>
-      {{CAPTURE_ITEMS}}
+      <li><strong>Sat 23 May, 14:47 Mel:</strong> Capture note "I don't really know what to say, explaining myself all over again..." &mdash; emotional / personal entry. Flagged your eyes only.</li>
+      <li><strong>Sat 23 May, 23:11 Mel:</strong> "FINANCE SCAN &mdash; Sat 23 May 2026 (6pm Galle / 10:30pm Mel) ITEMS RECEIVED" &mdash; Saturday evening scan. Worth re-opening.</li>
+      <li><strong>Overnight inbound:</strong> Lora forwarded two School of Life pieces: "How To Handle An Argument Differently" and "the goal is not the goal". Filed under personal reading.</li>
+      <li><strong>Note:</strong> Full body of ollo Capture notes couldn't be pulled remotely overnight (Apple Notes encoding). Open both manually.</li>
     </ul>
   </div>
 
 </div>
 
-<!-- Overnight audit callout (only when audit docs created last 24h) -->
-{{AUDIT_BAR_OPTIONAL}}
+<!-- Overnight audit callout -->
+<div class="audit-bar">
+  <h3>Overnight audit docs in Drive (Performance Reviews folder)</h3>
+  <ul>
+    <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Open Performance Reviews folder &rarr;</a></li>
+    <li>mailmanchina Gmail Audit (inbox counts, top senders, unsubscribe candidates)</li>
+    <li>mailmanchina Drive Audit (storage hogs, duplicates, archive candidates)</li>
+    <li>PG Finance Leak Audit (Booking.com commission, petty cash, personal card charges) &mdash; read this one first</li>
+  </ul>
+</div>
 
 <!-- Paste-procedure block -->
 <div class="wisdoms" style="border-left: 4px solid #f0a3ff;">
   <h2 style="color: #f0a3ff;">Daily claude.ai paste procedure (AM + PM)</h2>
-  <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--muted);">Anthropic blocks scraping of claude.ai chats. So once in the morning and once before sleep, open every active claude.ai chat and paste this prompt at the end. It self-summarises and pushes to your Drive log. Then say "ollo out" to log completion.</p>
+  <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--muted);">Anthropic blocks scraping of claude.ai chats. So once in the morning and once before sleep, open every active claude.ai chat and paste this prompt at the end. Then say "ollo out" to log completion.</p>
   <div style="background: var(--bg); border: 1px dashed var(--accent); padding: 10px 12px; border-radius: 6px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.5; user-select: all;">
 Create a new Google Doc in my Drive folder "Kirk - Daily Continuity" (id 1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA).<br><br>
 Auto-derive a short 2-3 word topic from THIS conversation. Do NOT ask me -- pick a topic yourself.<br><br>
@@ -174,32 +199,32 @@ Body should contain:<br>
 - Action items I said I would do<br><br>
 Do not read other files. Create the doc with that content. Confirm when done with the doc link.
   </div>
-  <p style="margin: 10px 0 0 0; font-size: 12px; color: var(--muted);">&#8593; Tap to select. Paste into each chat. When done for the day, say <strong style="color: #f0a3ff;">"ollo out"</strong> and ollo logs your day.</p>
+  <p style="margin: 10px 0 0 0; font-size: 12px; color: var(--muted);">&#8593; Tap to select. Paste into each chat. When done, say <strong style="color: #f0a3ff;">"ollo out"</strong>.</p>
 </div>
 
 <!-- Three Wisdoms expanded -->
 <div class="wisdoms">
-  <h2>Three Wisdoms + Word of the day — {{GEN_LABEL_SHORT}}</h2>
+  <h2>Three Wisdoms + Word of the day — AM</h2>
   <div class="wisdom-grid">
 
     <div class="wcard">
-      <div class="src">Mental health — {{MH_AUTHOR}}</div>
-      <div class="body">{{MH_QUOTE}}</div>
+      <div class="src">Mental health — Gabor Mate</div>
+      <div class="body">Sleep is the lever. Long-haul rule today (for Lora): no nap after 16:00 Mel time, even if she feels destroyed. One bad first night anchors a week of bad rhythm. Push through to 22:00. Same applies to anyone catching her wave.</div>
     </div>
 
     <div class="wcard">
-      <div class="src">Philosophy — {{PHIL_AUTHOR}}</div>
-      <div class="body">{{PHIL_QUOTE}}</div>
+      <div class="src">Philosophy — Alan Watts</div>
+      <div class="body">"This is the real secret of life &mdash; to be completely engaged with what you are doing in the here and now. And instead of calling it work, realise it is play."</div>
     </div>
 
     <div class="wcard">
       <div class="src">AI / Cowork tip</div>
-      <div class="body">{{AI_TIP}}</div>
+      <div class="body">Add this to the end of any AI prompt: "<em>What assumptions did you make to answer this? List them before your answer.</em>" Surfaces hallucinations before they propagate. Costs 2 seconds, saves hours.</div>
     </div>
 
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">{{WORD}}</span> {{WORD_PRONOUNCE}} -- {{WORD_MEANING}}</div>
+      <div class="body"><span class="term">Petrichor</span> (n.) &mdash; the earthy scent in the air after rain falls on dry ground. Fitting for a Melbourne autumn arrival.</div>
     </div>
 
   </div>
@@ -216,7 +241,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
         <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail &middot; mailmanchina</a></li>
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
-        <li><a href="notes://showNote?name=ollo%20Capture">Apple Notes -- ollo Capture</a></li>
+        <li><a href="notes://showNote?name=ollo%20Capture">Apple Notes &mdash; ollo Capture</a></li>
       </ul>
     </div>
 
@@ -237,7 +262,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
       <ul>
         <li><a href="https://docs.google.com/document/d/1Qz9utFAwOi9brQQabyjZ_ynml1W4PoGPQkILIO1nCqc">ollo Identity Card</a></li>
         <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews folder</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk -- Daily Continuity folder</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk &mdash; Daily Continuity folder</a></li>
         <li><a href="https://docs.google.com/document/d/1mUwcqi6wqQt94eVQi_fhOH_hxpOP_GuHofM3-S2P3ew">claude-ai-log MASTER</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
@@ -247,7 +272,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
     <div>
       <div class="ql-cat">Legal / Property / Ventures</div>
       <ul>
-        <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal -- Jobsz &amp; Lawless</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal &mdash; Jobsz &amp; Lawless</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1fcEpSQVHqQ5VBomxAGsOUlKXNij3BPoS">Bruce &amp; Legal (Diamonds)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1bNjSb6Ee1fc3C9-zQkRESCJRetPRMmvf">02 Property &amp; Trust</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">04 Solomon Spirits (Distillery)</a></li>
@@ -259,7 +284,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
 </div>
 
 <footer>
-  <div>DCC v2 &middot; auto-gen 06:00 + 18:00 AEST &middot; {{DATE_LONG}} &middot; {{GEN_LABEL_SHORT}}</div>
+  <div>DCC v2 &middot; auto-gen 06:00 + 18:00 AEST &middot; Sunday 24 May 2026 &middot; AM</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
