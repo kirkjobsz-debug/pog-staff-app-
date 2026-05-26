@@ -1,17 +1,8 @@
-<!-- last auto-push test: 2026-05-25 11:42:49 AEST -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="DCC">
-<meta name="theme-color" content="#0f1115">
-<link rel="apple-touch-icon" href="/icon.svg">
-<link rel="icon" type="image/svg+xml" href="/icon.svg">
-<link rel="manifest" href="/manifest.json">
-<title>Daily Command Centre — Kirk</title>
+<title>Daily Command Centre v2 — Kirk</title>
 <style>
   :root {
     --bg: #0f1115;
@@ -35,7 +26,6 @@
   .meta { color: var(--muted); font-size: 13px; text-align: right; }
   .meta .gen { color: var(--accent-2); font-weight: 600; }
   .refresh { display: inline-block; margin-top: 6px; padding: 6px 12px; background: var(--accent); color: #0f1115; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; }
-
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
   @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
   .col { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
@@ -51,7 +41,6 @@
   .col li .tag.send { background: var(--urgent); color: #fff; }
   .col li .tag.draft { background: var(--accent); color: #0f1115; }
   .col li .tag.flag { background: var(--warn); color: #0f1115; }
-
   .wisdoms { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
   .wisdoms h2 { margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--good); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
   .wisdom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -62,13 +51,6 @@
   .wcard .body { font-size: 13px; }
   .wcard.word { border-left-color: var(--accent); }
   .wcard.word .term { color: var(--accent); font-weight: 700; font-size: 15px; }
-
-  .audit-bar { background: var(--panel); border: 1px solid var(--border); border-left: 4px solid var(--warn); border-radius: 10px; padding: 12px 16px; margin-bottom: 18px; }
-  .audit-bar h3 { margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--warn); }
-  .audit-bar ul { margin: 0; padding-left: 18px; }
-  .audit-bar li { font-size: 13px; margin-bottom: 6px; }
-  .audit-bar a { color: var(--accent-2); text-decoration: none; border-bottom: 1px dotted var(--accent-2); }
-
   .quicklinks { background: var(--panel); border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
   .ql-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
   .ql-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -78,11 +60,8 @@
   .ql-grid li { margin-bottom: 4px; font-size: 13px; }
   .ql-grid a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--border); }
   .ql-grid a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
   footer { border-top: 1px solid var(--border); padding-top: 10px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; }
   footer .sig { color: var(--accent); font-weight: 600; }
-
-  .travel-banner { background: #1a1400; border: 2px solid var(--warn); border-radius: 10px; padding: 10px 16px; margin-bottom: 16px; font-size: 14px; color: var(--warn); font-weight: 600; letter-spacing: 0.3px; text-align: center; }
 </style>
 </head>
 <body>
@@ -94,38 +73,32 @@
     <div style="color: var(--muted); font-size: 13px; margin-top: 4px;">One page, two gens a day, everything in view.</div>
   </div>
   <div class="meta">
-    <div><span class="gen">AM gen</span> · Monday 25 May 2026 · 06:00 AEST</div>
+    <div><span class="gen">AM gen</span> &middot; Tuesday 26 May 2026 &middot; 06:00 AEST</div>
     <div>Real gens: 06:00 + 18:00 AEST daily</div>
     <a href="./?r=1" class="refresh" onclick="location.reload(true); return false;">&#8635; Refresh now</a>
   </div>
 </header>
 
-<!-- Monday banner -->
-<div class="travel-banner" style="background:#001a0e; border-color: var(--good); color: var(--good);">
-  &#127780; MONDAY &mdash; Lora landed safely Sunday evening. Normal week resumes. Reggie distillery feasibility is due today.
-</div>
-
-<!-- 6-column DCC grid -->
 <div class="grid">
-
   <div class="col">
-    <h2>Today — deal with</h2>
+    <h2>Today &mdash; deal with</h2>
     <ul>
-      <li><strong>Reggie distillery feasibility DUE TODAY.</strong> Finalise the doc, hand off to Reggie. <span class="tag flag">DUE</span></li>
-      <li><strong>Check on Lora</strong> after the long-haul return. Day one is the hardest.</li>
-      <li><strong>Pegasus Price thread (book@).</strong> Monitor for any payment-redirect ask. Already flagged in Urgent.</li>
-      <li><strong>SRP / Taara</strong> still silent since Fri 22 May. ollo will chase Tuesday (tomorrow) if no reply by EOD today.</li>
-      <li><strong>Normal Monday ops:</strong> staff schedule, OTA rate check, inbox triage.</li>
+      <li><strong>Betty:</strong> Meeting tonight 18:00 AEST. "Imagine jobsz with Betty" all-day note on cal <span class="tag draft">tonight</span></li>
+      <li><strong>Bookkeeper:</strong> Email Chandima (accntaxation@gmail.com) re interview &mdash; Rukman intro'd Sun 25 May <span class="tag draft">action</span></li>
+      <li><strong>Trade Licence:</strong> Follow up Rukman &mdash; TDL amount, timeline, CEA fee questions sent 23 May, no reply yet <span class="tag flag">follow-up</span></li>
+      <li><strong>senura kohombange</strong> (Booking #5931786982): Guest fell ill, 4 msgs overnight. Latest msg grateful for gesture &mdash; appears resolved, monitor <span class="tag">booking</span></li>
+      <li><strong>TJ Lekkerkerker:</strong> book@ replied to Little Hotelier enquiry, ollo cc'd &mdash; verify reply is good <span class="tag">check</span></li>
+      <li><strong>CommSec:</strong> SpaceX International IPO promo in inbox &mdash; your call <span class="tag">fyi</span></li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="urgent">Urgent</h2>
     <ul>
-      <li><span class="tag flag">CHECK</span> <strong>Pegasus Price scam recon.</strong> alzoopdropz7@gmail.com sent generic "is this the right hotel contact" to book@. Classic pre-scam pattern (gmail, no booking details, fishing). You already replied. ollo watches the follow-up &mdash; if they ask for payment redirect or "new account", treat as fraud and route to Rukman.</li>
-      <li><strong>SRP / Taara.</strong> Replied Fri 22 May 11:06 UTC. Three days quiet. No chase needed yet, ollo will chase Tuesday if still silent.</li>
-      <li><strong>Trade Licence (PG).</strong> Officers visited, awaiting PHI certification. Rukman to confirm LKR for TDL payment + timeline.</li>
-      <li><strong>Weekly P&amp;L (WE-2026-05-22).</strong> All files landed. Closed out. Utility bills monthly only.</li>
+      <li><strong>Taara / SRP:</strong> Last reply 22 May 11:06 &mdash; "we will review and get back to you soon." 4 days silence. Chase today <span class="tag flag">SRP</span></li>
+      <li><strong>Imagine &mdash; Appointment:</strong> Halaxy reminder overnight &mdash; consultation Thu 28 May 2pm at 15 Waterloo Place, Richmond. Confirm it's in diary <span class="tag flag">check</span></li>
+      <li><strong>Weekly Financials:</strong> No new Drive upload since WE-2026-05-22. Next due ~Fri 30 May. Watch for Taara submission <span class="tag flag">finance</span></li>
+      <li><strong>Draft P&amp;L + Ledger:</strong> Prasadi sent draft to Taara 22 May (cc'd Kirk) &mdash; FY 25/26. Confirm Taara has actioned it <span class="tag">SRP</span></li>
     </ul>
   </div>
 
@@ -136,60 +109,47 @@
       <li><strong>AM:</strong> Scan Gmail (proposed replies in Drafts)</li>
       <li><strong>AM:</strong> Review Three Wisdoms below</li>
       <li><strong>AM:</strong> Open Unfinished Business doc, grab one</li>
-      <li><strong>AM + PM:</strong> Paste continuity prompt into every open claude.ai chat. See block below &#8595;</li>
-      <li><strong>End of day:</strong> say "ollo out" anywhere (Cowork, iMessage to ollo) to log completion</li>
-      <li style="color: var(--warn);"><strong>Travel note:</strong> Lora is in transit. Light hand on PG today, normal cadence Monday.</li>
+      <li><strong>AM + PM: Paste continuity prompt into every open claude.ai chat.</strong> See block below &#8595;</li>
+      <li><strong>End of day: say "ollo out" anywhere</strong> (Cowork, iMessage to ollo) to log completion</li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="week">Tomorrow / this week</h2>
     <ul>
-      <li><strong>Mon 25 May:</strong> Reggie distillery feasibility due. Report CentreL marker.</li>
-      <li><strong>Tue 26 May:</strong> Imagine jobsz with Betty. John Mentiplay birthday.</li>
-      <li><strong>Wed 27 May:</strong> Dave Harrap in town. David Morley birthday. Report CentreL marker.</li>
-      <li><strong>Thu 28 May:</strong> Open.</li>
-      <li><strong>Fri 29 May:</strong> Open.</li>
-      <li><strong>Sat 30 May:</strong> Open.</li>
-      <li><strong>Sun 31 May:</strong> Getdown Services at Corner Hotel with Khandi, Imagine, Yarra.</li>
+      <li><strong>Wed 27 May:</strong> Dave Harrap in town &mdash; confirm plans. David Morley's birthday. report centreL (recurring)</li>
+      <li><strong>Thu 28 May:</strong> Imagine consultation 2pm &mdash; 15 Waterloo Place, Richmond. Only &amp; Co VIP "Forever Now" (if RSVP'd)</li>
+      <li><strong>Fri 30 May:</strong> Weekly Financials 2026 due &mdash; next upload expected Taara/Prasadi</li>
+      <li><strong>Sun 31 May:</strong> Getdown @ Corner Hotel (Khandi, Imagine, Yarra). Stay at Prince of Galle Sri Lanka begins</li>
+      <li><strong>Mon 1 Jun:</strong> Lora birthday party</li>
     </ul>
   </div>
 
   <div class="col">
-    <h2 class="wisdom">Three Wisdoms — short read</h2>
+    <h2 class="wisdom">Three Wisdoms &mdash; short read</h2>
     <ul>
       <li>See full block below &#8595;</li>
-      <li style="color: var(--muted); font-size: 13px;">AM selection: Mate + Watts + AI tip + Word</li>
+      <li style="color: var(--muted); font-size: 13px;">AM selection today: Gabor Mat&eacute; + Alan Watts + AI/Cowork tip + Word of the day</li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="capture">Kirk's Reminders &amp; Ideas</h2>
     <ul>
-      <li><strong>Sat 23 May, 14:47 Mel:</strong> Capture note "I don't really know what to say, explaining myself all over again..." &mdash; emotional / personal entry. Flagged your eyes only.</li>
-      <li><strong>Sat 23 May, 23:11 Mel:</strong> "FINANCE SCAN &mdash; Sat 23 May 2026 (6pm Galle / 10:30pm Mel) ITEMS RECEIVED" &mdash; Saturday evening scan. Worth re-opening.</li>
-      <li><strong>Overnight inbound:</strong> Lora forwarded two School of Life pieces: "How To Handle An Argument Differently" and "the goal is not the goal". Filed under personal reading.</li>
-      <li><strong>Note:</strong> Full body of ollo Capture notes couldn't be pulled remotely overnight (Apple Notes encoding). Open both manually.</li>
+      <li><strong>Finance scan:</strong> Last updated Sun 25 May 06:30am Galle. No approvals. No new Drive uploads. Next WF due ~Fri 30 May <span class="tag">finance</span></li>
+      <li><strong>Bookkeeper replacement:</strong> Chandima intro'd by Rukman &mdash; schedule interview this week <span class="tag draft">action</span></li>
+      <li><strong>Trade Licence:</strong> TDL payment + timeline + CEA fee questions sent 23 May. No Rukman reply yet <span class="tag flag">follow-up</span></li>
+      <li><strong>SRP:</strong> Taara "will review" &mdash; 22 May. 4 days elapsed. ollo's detailed questions unanswered <span class="tag flag">SRP</span></li>
+      <li><strong>john mentiplays birthday</strong> today &mdash; in cal <span class="tag">social</span></li>
     </ul>
   </div>
 
 </div>
 
-<!-- Overnight audit callout -->
-<div class="audit-bar">
-  <h3>Overnight audit docs in Drive (Performance Reviews folder)</h3>
-  <ul>
-    <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Open Performance Reviews folder &rarr;</a></li>
-    <li>mailmanchina Gmail Audit (inbox counts, top senders, unsubscribe candidates)</li>
-    <li>mailmanchina Drive Audit (storage hogs, duplicates, archive candidates)</li>
-    <li>PG Finance Leak Audit (Booking.com commission, petty cash, personal card charges) &mdash; read this one first</li>
-  </ul>
-</div>
-
 <!-- Paste-procedure block -->
 <div class="wisdoms" style="border-left: 4px solid #f0a3ff;">
   <h2 style="color: #f0a3ff;">Daily claude.ai paste procedure (AM + PM)</h2>
-  <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--muted);">Anthropic blocks scraping of claude.ai chats. So once in the morning and once before sleep, open every active claude.ai chat and paste this prompt at the end. Then say "ollo out" to log completion.</p>
+  <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--muted);">Anthropic blocks scraping of claude.ai chats. Once in the morning and once before sleep, open every active claude.ai chat and paste this prompt. It self-summarises and pushes to your Drive log. Then say "ollo out" to log completion.</p>
   <div style="background: var(--bg); border: 1px dashed var(--accent); padding: 10px 12px; border-radius: 6px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.5; user-select: all;">
 Create a new Google Doc in my Drive folder "Kirk - Daily Continuity" (id 1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA).<br><br>
 Auto-derive a short 2-3 word topic from THIS conversation. Do NOT ask me -- pick a topic yourself.<br><br>
@@ -200,34 +160,29 @@ Body should contain:<br>
 - Action items I said I would do<br><br>
 Do not read other files. Create the doc with that content. Confirm when done with the doc link.
   </div>
-  <p style="margin: 10px 0 0 0; font-size: 12px; color: var(--muted);">&#8593; Tap to select. Paste into each chat. When done, say <strong style="color: #f0a3ff;">"ollo out"</strong>.</p>
+  <p style="margin: 10px 0 0 0; font-size: 12px; color: var(--muted);">&#8593; Tap to select. Paste into each chat. When done for the day, say <strong style="color: #f0a3ff;">"ollo out"</strong> and ollo logs your day.</p>
 </div>
 
 <!-- Three Wisdoms expanded -->
 <div class="wisdoms">
-  <h2>Three Wisdoms + Word of the day — AM</h2>
+  <h2>Three Wisdoms + Word of the day &mdash; AM</h2>
   <div class="wisdom-grid">
-
     <div class="wcard">
-      <div class="src">Mental health — Gabor Mate</div>
-      <div class="body">Sleep is the lever. Long-haul rule today (for Lora): no nap after 16:00 Mel time, even if she feels destroyed. One bad first night anchors a week of bad rhythm. Push through to 22:00. Same applies to anyone catching her wave.</div>
+      <div class="src">Mental health &mdash; Gabor Mat&eacute;</div>
+      <div class="body">"Trauma is not what happens to you. Trauma is what happens inside you as a result of what happens to you." The wound isn't the event &mdash; it's the disconnection it creates. Reconnection is the medicine.</div>
     </div>
-
     <div class="wcard">
-      <div class="src">Philosophy — Alan Watts</div>
-      <div class="body">"This is the real secret of life &mdash; to be completely engaged with what you are doing in the here and now. And instead of calling it work, realise it is play."</div>
+      <div class="src">Philosophy &mdash; Alan Watts</div>
+      <div class="body">"You are under no obligation to be the same person you were five minutes ago." Identity is fluid. Let yourself be updated &mdash; like a good system, not a monument.</div>
     </div>
-
     <div class="wcard">
       <div class="src">AI / Cowork tip</div>
-      <div class="body">Add this to the end of any AI prompt: "<em>What assumptions did you make to answer this? List them before your answer.</em>" Surfaces hallucinations before they propagate. Costs 2 seconds, saves hours.</div>
+      <div class="body">When chasing a silent thread (like Taara/SRP), don't resend the same message. Brief ollo: "draft a polite one-paragraph chase, new angle." Fresh framing gets fresh responses.</div>
     </div>
-
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">Petrichor</span> (n.) &mdash; the earthy scent in the air after rain falls on dry ground. Fitting for a Melbourne autumn arrival.</div>
+      <div class="body"><span class="term">Sanguine</span> /ˈsaŋɡwɪn/ &mdash; Optimistic, especially in difficult situations; cheerfully confident. <em>"Despite the delays with Taara and the licence, Kirk remained sanguine &mdash; he'd built systems to hold the weight."</em></div>
     </div>
-
   </div>
 </div>
 
@@ -235,17 +190,15 @@ Do not read other files. Create the doc with that content. Confirm when done wit
 <div class="quicklinks">
   <div class="ql-title">Quick Links</div>
   <div class="ql-grid">
-
     <div>
       <div class="ql-cat">Daily Ops</div>
       <ul>
         <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail &middot; mailmanchina</a></li>
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
-        <li><a href="notes://showNote?name=ollo%20Capture">Apple Notes &mdash; ollo Capture</a></li>
+        <li><a href="notes://showNote?name=ollo%20Capture">Apple Notes -- ollo Capture</a></li>
       </ul>
     </div>
-
     <div>
       <div class="ql-cat">Prince of Galle</div>
       <ul>
@@ -257,35 +210,32 @@ Do not read other files. Create the doc with that content. Confirm when done wit
         <li><a href="https://ycs.agoda.com">Agoda YCS</a></li>
       </ul>
     </div>
-
     <div>
       <div class="ql-cat">ollo system</div>
       <ul>
         <li><a href="https://docs.google.com/document/d/1Qz9utFAwOi9brQQabyjZ_ynml1W4PoGPQkILIO1nCqc">ollo Identity Card</a></li>
         <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews folder</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk &mdash; Daily Continuity folder</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk -- Daily Continuity folder</a></li>
         <li><a href="https://docs.google.com/document/d/1mUwcqi6wqQt94eVQi_fhOH_hxpOP_GuHofM3-S2P3ew">claude-ai-log MASTER</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
       </ul>
     </div>
-
     <div>
       <div class="ql-cat">Legal / Property / Ventures</div>
       <ul>
-        <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal &mdash; Jobsz &amp; Lawless</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal -- Jobsz &amp; Lawless</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1fcEpSQVHqQ5VBomxAGsOUlKXNij3BPoS">Bruce &amp; Legal (Diamonds)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1bNjSb6Ee1fc3C9-zQkRESCJRetPRMmvf">02 Property &amp; Trust</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">04 Solomon Spirits (Distillery)</a></li>
         <li><a href="https://docs.google.com/document/d/1QqKLeAzRb-qi8m7lr3sDksLmopsr3K_SaZPJMp0gMGk">Distillery tracker</a></li>
       </ul>
     </div>
-
   </div>
 </div>
 
 <footer>
-  <div>DCC v2 &middot; auto-gen 06:00 + 18:00 AEST &middot; Monday 25 May 2026 &middot; AM</div>
+  <div>DCC v2 &middot; auto-gen 06:00 + 18:00 AEST &middot; Tuesday 26 May 2026 &middot; AM</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
