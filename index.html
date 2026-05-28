@@ -55,12 +55,6 @@
   .wcard.word { border-left-color: var(--accent); }
   .wcard.word .term { color: var(--accent); font-weight: 700; font-size: 15px; }
 
-  .audit-bar { background: var(--panel); border: 1px solid var(--border); border-left: 4px solid var(--warn); border-radius: 10px; padding: 12px 16px; margin-bottom: 18px; }
-  .audit-bar h3 { margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--warn); }
-  .audit-bar ul { margin: 0; padding-left: 18px; }
-  .audit-bar li { font-size: 13px; margin-bottom: 6px; }
-  .audit-bar a { color: var(--accent-2); text-decoration: none; border-bottom: 1px dotted var(--accent-2); }
-
   .quicklinks { background: var(--panel); border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
   .ql-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
   .ql-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -86,90 +80,75 @@
     <div style="color: var(--muted); font-size: 13px; margin-top: 4px;">One page, two gens a day, everything in view.</div>
   </div>
   <div class="meta">
-    <div><span class="gen">AM gen</span> · Wednesday 27 May 2026 · 06:00 AEST</div>
+    <div><span class="gen">AM gen</span> &middot; Thursday 28 May 2026 &middot; 06:00 AEST</div>
     <div>Real gens: 06:00 + 18:00 AEST daily</div>
     <a href="./?r=1" class="refresh" onclick="location.reload(true); return false;">&#8635; Refresh now</a>
   </div>
 </header>
 
-<!-- Overnight audit callout -->
-<div class="audit-bar">
-  <h3>Overnight audit / brief activity (last 24h)</h3>
-  <ul>
-    <li><strong>SRP Audit (Prasadi inbox) - COMPLETE.</strong> Full doc with 10 compliance flags. CIT returns FY23/24 + FY24/25 status unclear, WHT stalled, two SRP invoices overdue, FY24/25 audit blocked by director-name issues. <a href="https://docs.google.com/document/d/1W9HijKblC1f7Gc4ACzR2HJHgYd26TGCPfQS21zcrJDs/edit">Open doc</a></li>
-    <li><strong>Geoffrey Lease Termination - Brief &amp; Draft.</strong> Lease No. 1108 summary + termination correspondence chronology Oct 2025 to today. <a href="https://docs.google.com/document/d/1rX15uYnM0y7pGU644_pI-n5veIa-2kwlV94xBwbnUF0/edit">Open doc</a></li>
-    <li><strong>Erandi - Owner Need Docs.</strong> New subfolder in Weekly Financials/2026 with 11 PDFs (bank statements, supplier list, staff details, insurance, sales). Transparency dump. Worth a 30 min review when calm. <a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">Open folder</a></li>
-  </ul>
-</div>
-
 <!-- 6-column DCC grid -->
 <div class="grid">
 
   <div class="col">
-    <h2>Today — deal with</h2>
+    <h2>Today &mdash; deal with</h2>
     <ul>
-      <li><strong>Excise dept payment:</strong> Rukman wants LKR 30,000 cash, monthly informal payment to excise officers (no liquor licence). Kirk replied in-thread 26 May questioning. Decide policy today <span class="tag flag">decide</span></li>
-      <li><strong>Tile contractor:</strong> Rukman wants LKR 20,000 cash for supplies. Standard, video update due from Saranga <span class="tag">approve</span></li>
-      <li><strong>Google reviews:</strong> Two reviews from "Mark" overnight on Prince of Galle. Respond <span class="tag send">reply</span></li>
-      <li><strong>Booking modification #5931786982:</strong> Senura Kohombange wants dates changed to 26-27 (illness). Multiple messages — needs booking team reply via book@PG <span class="tag send">reply</span></li>
-      <li><strong>Booking cancellation:</strong> Weerasiri hansi cancelled #5719423804 (was due in 27 May today). Note for arrivals board <span class="tag">noted</span></li>
-      <li><strong>Dave Harrap in town today:</strong> Confirm plans <span class="tag">action</span></li>
-      <li><strong>David Morley birthday:</strong> Send message <span class="tag">birthday</span></li>
-      <li><strong>report centreL</strong> — all-day calendar item today <span class="tag">calendar</span></li>
+      <li><strong>Excise Dept LKR 30K:</strong> This is not a routine approval. It is a YES/NO on keeping liquor on the menu. Rukman is waiting. Decide today. <span class="tag flag">DECIDE</span></li>
+      <li><strong>Gordon House &mdash; Hot Water ballot:</strong> Overnight email from michelle.galeno@aocm.com.au. Owners Corp electronic ballot incoming to formalise communal hot water decision. Read + respond. <span class="tag flag">action</span></li>
+      <li><strong>Take Gigi to Betty's Burgers</strong> &mdash; 14:00 AEST. 97-103 Elizabeth St, Melbourne. Leave by 13:40. <span class="tag">calendar</span></li>
+      <li><strong>Rukman draft reply (excise + tile):</strong> ollo saved a draft reply to Rukman acknowledging LKR 50K (excise + tile contractor). Review and send. <span class="tag draft">draft ready</span></li>
+      <li><strong>Tile Contractor LKR 20K:</strong> Supplies purchase. Standard approval needed alongside excise decision. <span class="tag draft">approve</span></li>
+      <li><strong>SRP / Taara:</strong> No reply yet. Kirk flagged follow-up 27 May. Chase Taara directly today. <span class="tag flag">follow-up</span></li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="urgent">Urgent</h2>
     <ul>
-      <li><strong>VIP Reception - Thu 28 May (tomorrow):</strong> Only &amp; Co. "Forever Now" by Julinka Doenhoff. Private opening. RSVP today to studio@onlyandco.com <span class="tag send">RSVP today</span></li>
-      <li><strong>Taara / SRP:</strong> Last reply 22 May 11:06 UTC: "We will review all the details with our team and get back to you soon." Now 5 days silent. Chase today <span class="tag flag">SRP chase</span></li>
-      <li><strong>Excise payment policy:</strong> Decide today — keep informal monthly cash, or pursue actual liquor licence. Ongoing legal/reputational risk <span class="tag flag">decide</span></li>
-      <li><strong>Cash burn flag:</strong> Main LKR ops account 14.2M (1 Feb) → 403K (14 May). Largest debit LKR 3.5M to N Rajasekaran 2 Feb. Worth understanding <span class="tag flag">finance</span></li>
-      <li><strong>Bookkeeper - Chandima:</strong> ollo emailed 26 May 07:42 UTC. Awaiting reply. Re-prompt if silent today <span class="tag draft">follow-up</span></li>
-      <li><strong>Trade Licence:</strong> Rukman still not replied to TDL amount / timeline / CEA fee questions from 23 May. Day 4 <span class="tag flag">follow-up</span></li>
+      <li><strong>EXCISE DECISION &mdash; LKR 30K:</strong> Rukman says if we stop paying, we must stop selling liquor and remove from menu. This is a fork-in-the-road call. Not a payment &mdash; a policy. <span class="tag flag">KIRK ONLY</span></li>
+      <li><strong>Gordon House &mdash; ballot:</strong> Electronic ballot being set up re communal hot water. Landed overnight. Read now. <span class="tag send">read + reply</span></li>
+      <li><strong>Rukman draft not sent:</strong> ollo's reply to Rukman (excise + tile) is in Drafts. Needs Kirk review before sending. <span class="tag draft">check drafts</span></li>
+      <li><strong>SRP &mdash; Taara still silent:</strong> Kirk replied 27 May to follow up. Still no Taara response. Escalate or contact SRP account manager directly. <span class="tag flag">SRP</span></li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="morning">Morning + Night rituals (manual)</h2>
     <ul>
-      <li><strong>AM:</strong> Check ollo Capture note in Apple Notes</li>
-      <li><strong>AM:</strong> Scan Gmail (no PG drafts created today — finance thread is live, Kirk already in it)</li>
+      <li><strong>AM:</strong> Check ollo Capture note</li>
+      <li><strong>AM:</strong> Scan Gmail (proposed replies in Drafts)</li>
       <li><strong>AM:</strong> Review Three Wisdoms below</li>
-      <li><strong>AM:</strong> Open Unfinished Business doc, grab one (10:00 reminder)</li>
+      <li><strong>AM:</strong> Open Unfinished Business doc, grab one</li>
       <li><strong>AM + PM: Paste continuity prompt into every open claude.ai chat.</strong> See block below &#8595;</li>
-      <li><strong>End of day: say "ollo out"</strong> anywhere (Cowork, iMessage to ollo) to log completion</li>
+      <li><strong>End of day: say &ldquo;ollo out&rdquo; anywhere</strong> (Cowork, iMessage to ollo) to log completion</li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="week">Tomorrow / this week</h2>
     <ul>
-      <li><strong>Thu 28 May:</strong> Only &amp; Co VIP Reception "Forever Now" (RSVP today)</li>
-      <li><strong>Fri 30 May:</strong> Weekly Financials 2026 upload due. Confirm pipeline with Erandi (still post-Prasadi)</li>
-      <li><strong>Sun 31 May:</strong> Getdown Services @ Corner Hotel (with Khandi, Imagine, Yarra). Stay at Prince of Galle continues</li>
-      <li><strong>Mon 1 Jun:</strong> Lora birthday party</li>
-      <li><strong>Open SRP loops:</strong> CIT FY23/24 + FY24/25 IRD status, WHT activation, RAMIS login, FY24/25 audit director-name fix. Push on Taara chase today</li>
+      <li><strong>Fri 29 May:</strong> Harley catch-up (time TBC &mdash; check calendar). Also recurring morning brief + unfinished business.</li>
+      <li><strong>Fri 29 May &mdash; Finance:</strong> Weekly Financials 2026 upload expected. Watch for new Drive files from Erandi / Taara.</li>
+      <li><strong>Owner Need Docs:</strong> Erandi uploaded 8+ files 26 May (cash float, bank statements, staff details, supplier list, inventory). Review when ready.</li>
+      <li><strong>Ongoing:</strong> Bookkeeper replacement &mdash; Chandima (intro'd by Rukman). Interview not yet scheduled.</li>
+      <li><strong>Gordon House:</strong> Watch for ballot notice in inbox &mdash; may require formal vote.</li>
     </ul>
   </div>
 
   <div class="col">
-    <h2 class="wisdom">Three Wisdoms — short read</h2>
+    <h2 class="wisdom">Three Wisdoms &mdash; short read</h2>
     <ul>
       <li>See full block below &#8595;</li>
-      <li style="color: var(--muted); font-size: 13px;">AM selection today: Gabor Maté + Alan Watts + AI/Cowork tip + Word of the day</li>
+      <li style="color: var(--muted); font-size: 13px;">AM selection today: Gabor Mat&eacute; + Alan Watts + AI/Cowork tip + Word of the day</li>
     </ul>
   </div>
 
   <div class="col">
-    <h2 class="capture">Kirk's Reminders &amp; Ideas</h2>
+    <h2 class="capture">Kirk's Reminders &amp; ollo Capture</h2>
     <ul>
-      <li><strong>Finance scan (PM 26 May):</strong> 2 cash items totalling LKR 50k awaiting approval. Excise FLAGGED, tile standard <span class="tag">finance</span></li>
-      <li><strong>Owner Need Docs:</strong> Erandi delivered the transparency package. Reward this — schedule 30 min review <span class="tag">action</span></li>
-      <li><strong>Cash burn:</strong> Need clarity on Rajasekaran LKR 3.5M Feb payment and ongoing run rate <span class="tag flag">finance</span></li>
-      <li><strong>Geoffrey lease:</strong> Termination brief in Performance Reviews. Decide next step on Michael Dobbs counter <span class="tag">legal</span></li>
-      <li><strong>New booking #5408086496:</strong> Aleyna Mert 14-16 Aug 2026. Standard, no action <span class="tag">booking</span></li>
+      <li><strong>Finance scan 27 May 18:00 Galle:</strong> LKR 50K pending &mdash; Excise LKR 30K (STRATEGIC) + Tile LKR 20K (routine). Draft reply to Rukman saved. <span class="tag flag">decide</span></li>
+      <li><strong>Erandi filing:</strong> Owner Need Docs subfolder created in Weekly Financials/2026 &mdash; 8+ files including bank statements, cash float YTD LKR 2.62M, staff details, supplier list, room inventory. System is working. <span class="tag">good news</span></li>
+      <li><strong>SRP newsletter</strong> arrived 25 May from aaron@srpitl.com &mdash; 3 financial threads for clients. Worth a read when you have 5 mins. <span class="tag">SRP</span></li>
+      <li><strong>No new audit docs</strong> in Performance Reviews folder in last 24h. <span class="tag">clear</span></li>
     </ul>
   </div>
 
@@ -194,27 +173,27 @@ Do not read other files. Create the doc with that content. Confirm when done wit
 
 <!-- Three Wisdoms expanded -->
 <div class="wisdoms">
-  <h2>Three Wisdoms + Word of the day — AM</h2>
+  <h2>Three Wisdoms + Word of the day &mdash; AM</h2>
   <div class="wisdom-grid">
 
     <div class="wcard">
-      <div class="src">Mental health — Gabor Maté</div>
-      <div class="body">"Safety is not the absence of threat. Safety is the presence of connection." Translate today: clear one conversation that is sitting open and unspoken. The act, not the answer, is the relief.</div>
+      <div class="src">Mental health &mdash; Gabor Mat&eacute;</div>
+      <div class="body">"The greatest damage done by neglect, trauma or emotional loss is not the immediate pain it inflicts but the long-range distortions it induces in the way a developing child will continue to interpret the world." When a decision feels heavier than it should, it's worth asking what layer you're actually carrying.</div>
     </div>
 
     <div class="wcard">
-      <div class="src">Philosophy — Alan Watts</div>
-      <div class="body">"You are an aperture through which the universe is looking at and exploring itself." Mid-week reset: stop checking, start noticing. One slow coffee before the inbox.</div>
+      <div class="src">Philosophy &mdash; Alan Watts</div>
+      <div class="body">"No valid plans for the future can be made by those who have no capacity for living now." Today has one real decision (excise), one real outing (Gigi + Betty's), and one real follow-up (Taara). That's the day. Do those three things.</div>
     </div>
 
     <div class="wcard">
       <div class="src">AI / Cowork tip</div>
-      <div class="body">When a thread starts repeating itself (5+ days, no movement) it is not a follow-up problem, it is a channel problem. Switch medium — WhatsApp voice, phone call, or in-person — once and only once. Then back to email.</div>
+      <div class="body">When a decision keeps bouncing in your head, paste it to ollo as a note. ollo can lay out the trade-offs in plain language &mdash; not advice, just the map. Your brain stops carrying the weight and you can actually choose. Works well for the excise call today.</div>
     </div>
 
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">Exigent</span> /ˈɛk.sɪ.dʒənt/ &mdash; Pressing, demanding immediate attention. <em>"An exigent matter is one that does not wait for your mood to improve."</em></div>
+      <div class="body"><span class="term">Bifurcation</span> /ˌbaɪ.fɜːˈkeɪ.ʃən/ &mdash; A division into two branches or forks. <em>"The excise decision is a bifurcation: liquor stays on the menu or it doesn't. Both paths are viable. Pick one and move."</em></div>
     </div>
 
   </div>
@@ -231,7 +210,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
         <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail &middot; mailmanchina</a></li>
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
-        <li><a href="notes://showNote?name=ollo%20Capture">Apple Notes -- ollo Capture</a></li>
+        <li><a href="notes://showNote?name=ollo%20Capture">Apple Notes &mdash; ollo Capture</a></li>
       </ul>
     </div>
 
@@ -242,7 +221,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
         <li><a href="https://drive.google.com/drive/u/0/folders/1cxJJI5lEovYdtUy8H1Bm2-4NPjIoA9sy">03 Prince of Galle (master)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g">Sri Lanka Accounting (Taara)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">Weekly Financials 2026</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">Owner Need Docs (Erandi, new)</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">Owner Need Docs (Erandi, 26 May)</a></li>
         <li><a href="https://admin.booking.com">Booking.com partner</a></li>
         <li><a href="https://ycs.agoda.com">Agoda YCS</a></li>
       </ul>
@@ -253,9 +232,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
       <ul>
         <li><a href="https://docs.google.com/document/d/1Qz9utFAwOi9brQQabyjZ_ynml1W4PoGPQkILIO1nCqc">ollo Identity Card</a></li>
         <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews folder</a></li>
-        <li><a href="https://docs.google.com/document/d/1W9HijKblC1f7Gc4ACzR2HJHgYd26TGCPfQS21zcrJDs/edit">SRP Audit (Prasadi inbox) doc</a></li>
-        <li><a href="https://docs.google.com/document/d/1rX15uYnM0y7pGU644_pI-n5veIa-2kwlV94xBwbnUF0/edit">Geoffrey Lease Termination Brief</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk -- Daily Continuity folder</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk &mdash; Daily Continuity folder</a></li>
         <li><a href="https://docs.google.com/document/d/1mUwcqi6wqQt94eVQi_fhOH_hxpOP_GuHofM3-S2P3ew">claude-ai-log MASTER</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
@@ -265,7 +242,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
     <div>
       <div class="ql-cat">Legal / Property / Ventures</div>
       <ul>
-        <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal -- Jobsz &amp; Lawless</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal &mdash; Jobsz &amp; Lawless</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1fcEpSQVHqQ5VBomxAGsOUlKXNij3BPoS">Bruce &amp; Legal (Diamonds)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1bNjSb6Ee1fc3C9-zQkRESCJRetPRMmvf">02 Property &amp; Trust</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">04 Solomon Spirits (Distillery)</a></li>
@@ -277,7 +254,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
 </div>
 
 <footer>
-  <div>DCC v2 &middot; auto-gen 06:00 + 18:00 AEST &middot; Wednesday 27 May 2026 &middot; AM</div>
+  <div>DCC v2 &middot; auto-gen 06:00 + 18:00 AEST &middot; Thursday 28 May 2026 &middot; AM</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
