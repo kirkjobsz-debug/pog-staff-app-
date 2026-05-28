@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Daily Command Centre v2 — Kirk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCC v3 — Kirk</title>
 <style>
   :root {
     --bg: #0f1115;
@@ -16,201 +17,262 @@
     --good: #7ed957;
     --warn: #ffc857;
     --border: #2a2f3a;
+    --ideas: #f0a3ff;
   }
-  * { box-sizing: border-box; }
-  body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 16px; line-height: 1.45; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; padding: 14px; line-height: 1.45; font-size: 14px; }
   .wrap { max-width: 1400px; margin: 0 auto; }
-  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); margin-bottom: 16px; }
-  h1 { margin: 0; font-size: 22px; letter-spacing: 0.5px; }
-  h1 .name { color: var(--accent); }
-  .meta { color: var(--muted); font-size: 13px; text-align: right; }
-  .meta .gen { color: var(--accent-2); font-weight: 600; }
-  .refresh { display: inline-block; margin-top: 6px; padding: 6px 12px; background: var(--accent); color: #0f1115; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; }
 
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
-  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
-  .col { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
-  .col h2 { margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
-  .col h2.urgent { color: var(--urgent); }
-  .col h2.morning { color: var(--accent-2); }
-  .col h2.week { color: var(--warn); }
-  .col h2.wisdom { color: var(--good); }
-  .col h2.capture { color: #f0a3ff; }
-  .col ul { margin: 0; padding-left: 18px; }
-  .col li { margin-bottom: 8px; font-size: 14px; }
-  .col li .tag { display: inline-block; background: var(--panel-2); color: var(--accent-2); padding: 1px 6px; border-radius: 3px; font-size: 10px; margin-left: 4px; vertical-align: middle; }
-  .col li .tag.send { background: var(--urgent); color: #fff; }
-  .col li .tag.draft { background: var(--accent); color: #0f1115; }
-  .col li .tag.flag { background: var(--warn); color: #0f1115; }
-  .col li.done { color: var(--muted); text-decoration: line-through; }
+  /* HEADER */
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); margin-bottom: 12px; flex-wrap: wrap; }
+  .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: 0.3px; }
+  .header-left h1 .name { color: var(--accent); }
+  .header-left .tagline { color: var(--muted); font-size: 12px; margin-top: 3px; }
+  .header-right { text-align: right; font-size: 12px; color: var(--muted); }
+  .gen-label { color: var(--accent-2); font-weight: 700; }
+  .refresh-btn { display: inline-block; margin-top: 6px; padding: 5px 12px; background: var(--accent); color: #0f1115; border-radius: 5px; font-weight: 700; font-size: 11px; text-decoration: none; cursor: pointer; border: none; }
 
-  .wisdoms { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
-  .wisdoms h2 { margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--good); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
-  .wisdom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  /* STATUS STRIP */
+  .status-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 10px 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
+  .status-pill { display: flex; align-items: center; gap: 5px; font-size: 12px; padding: 3px 8px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--border); white-space: nowrap; }
+  .status-pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dot-red { background: var(--urgent); }
+  .dot-yellow { background: var(--warn); }
+  .dot-green { background: var(--good); }
+  .dot-grey { background: var(--muted); }
+  .dot-purple { background: var(--accent); }
+  .pill-label { color: var(--muted); }
+  .pill-val { color: var(--ink); font-weight: 600; }
+
+  /* MAIN GRID */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+  @media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+  /* CELLS */
+  .col { background: var(--panel); border: 1px solid var(--border); border-radius: 9px; padding: 11px 13px; }
+  .col-head { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 7px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .col-head.today { color: var(--accent); }
+  .col-head.urgent { color: var(--urgent); }
+  .col-head.rituals { color: var(--accent-2); }
+  .col-head.week { color: var(--warn); }
+  .col-head.ideas { color: var(--ideas); }
+  .col-head.capture { color: #c8a0ff; }
+
+  .col ul { padding-left: 16px; }
+  .col li { margin-bottom: 7px; font-size: 13px; line-height: 1.4; }
+  .col li:last-child { margin-bottom: 0; }
+
+  .tag { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 3px; vertical-align: middle; line-height: 1.5; }
+  .tag-red { background: var(--urgent); color: #fff; }
+  .tag-yellow { background: var(--warn); color: #0f1115; }
+  .tag-purple { background: var(--accent); color: #0f1115; }
+  .tag-blue { background: var(--accent-2); color: #0f1115; }
+  .tag-grey { background: var(--panel-2); color: var(--muted); border: 1px solid var(--border); }
+  .tag-green { background: var(--good); color: #0f1115; }
+
+  /* IDEAS CELL SPECIAL */
+  .ideas-add-link { display: block; margin-top: 9px; padding: 6px 10px; background: var(--panel-2); border: 1px dashed var(--ideas); border-radius: 6px; color: var(--ideas); font-size: 12px; font-weight: 600; text-align: center; text-decoration: none; }
+  .ideas-add-link:hover { background: #2a1f33; }
+
+  /* RITUALS CELL — ollo out callout */
+  .ollo-out-box { margin-top: 9px; padding: 6px 10px; background: var(--panel-2); border-left: 3px solid var(--accent-2); border-radius: 5px; font-size: 12px; }
+  .ollo-out-box strong { color: var(--accent-2); }
+
+  /* PASTE PROCEDURE — compact */
+  .paste-block { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--ideas); border-radius: 9px; padding: 10px 13px; margin-bottom: 12px; }
+  .paste-head { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ideas); margin-bottom: 6px; }
+  .paste-note { font-size: 12px; color: var(--muted); margin-bottom: 7px; }
+  .paste-note strong { color: var(--ink); }
+  .paste-code { background: var(--bg); border: 1px dashed var(--accent); border-radius: 5px; padding: 8px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; line-height: 1.5; color: var(--ink); position: relative; user-select: all; }
+  .copy-btn { float: right; padding: 2px 8px; background: var(--accent); color: #0f1115; border: none; border-radius: 4px; font-size: 10px; font-weight: 700; cursor: pointer; margin-left: 8px; }
+
+  /* THREE WISDOMS */
+  .wisdoms { background: var(--panel); border: 1px solid var(--border); border-radius: 9px; padding: 12px 14px; margin-bottom: 12px; }
+  .wisdoms-head { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--good); border-bottom: 1px solid var(--border); padding-bottom: 7px; margin-bottom: 12px; }
+  .wisdom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   @media (max-width: 900px) { .wisdom-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .wisdom-grid { grid-template-columns: 1fr; } }
-  .wcard { background: var(--panel-2); border-radius: 8px; padding: 10px 12px; border-left: 3px solid var(--good); }
-  .wcard .src { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .wcard .body { font-size: 13px; }
+  .wcard { background: var(--panel-2); border-radius: 7px; padding: 9px 11px; border-left: 3px solid var(--good); }
   .wcard.word { border-left-color: var(--accent); }
-  .wcard.word .term { color: var(--accent); font-weight: 700; font-size: 15px; }
+  .wcard .src { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .wcard .body { font-size: 12px; line-height: 1.5; }
+  .wcard .term { color: var(--accent); font-weight: 700; font-size: 14px; display: block; margin-bottom: 2px; }
 
-  .quicklinks { background: var(--panel); border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
-  .ql-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+  /* QUICK LINKS */
+  .quicklinks { background: var(--panel); border-top: 3px solid var(--accent); border-radius: 9px; padding: 12px 14px; margin-bottom: 12px; }
+  .ql-head { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
   .ql-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   @media (max-width: 900px) { .ql-grid { grid-template-columns: 1fr 1fr; } }
-  .ql-cat { font-size: 12px; color: var(--accent-2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .ql-grid ul { margin: 0; padding-left: 0; list-style: none; }
-  .ql-grid li { margin-bottom: 4px; font-size: 13px; }
-  .ql-grid a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--border); }
-  .ql-grid a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  @media (max-width: 600px) { .ql-grid { grid-template-columns: 1fr; } }
+  .ql-cat { font-size: 11px; color: var(--accent-2); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+  .ql-grid ul { list-style: none; }
+  .ql-grid li { margin-bottom: 4px; }
+  .ql-grid a { color: var(--ink); text-decoration: none; font-size: 12px; border-bottom: 1px dotted var(--border); }
+  .ql-grid a:hover { color: var(--accent); }
 
-  footer { border-top: 1px solid var(--border); padding-top: 10px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; }
-  footer .sig { color: var(--accent); font-weight: 600; }
-
-  .travel-banner { background: #1a1400; border: 2px solid var(--warn); border-radius: 10px; padding: 10px 16px; margin-bottom: 16px; font-size: 14px; color: var(--warn); font-weight: 600; letter-spacing: 0.3px; text-align: center; }
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding-top: 9px; color: var(--muted); font-size: 11px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer .sig { color: var(--accent); font-weight: 700; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+<!-- HEADER -->
 <header>
-  <div>
+  <div class="header-left">
     <h1>Daily Command Centre <span class="name">— Kirk</span></h1>
-    <div style="color: var(--muted); font-size: 13px; margin-top: 4px;">One page, two gens a day, everything in view.</div>
+    <div class="tagline">All ventures. One view. Updated 06:00 + 18:00 AEST.</div>
   </div>
-  <div class="meta">
-    <div><span class="gen">AM gen</span> &middot; Thursday 28 May 2026 &middot; 06:00 AEST</div>
-    <div>Real gens: 06:00 + 18:00 AEST daily</div>
-    <a href="./?r=1" class="refresh" onclick="location.reload(true); return false;">&#8635; Refresh now</a>
+  <div class="header-right">
+    <div><span class="gen-label">AM gen</span> &middot; Thursday 28 May 2026 &middot; 06:00 AEST</div>
+    <div style="margin-top:3px; color:var(--muted);">Next gen: 18:00 AEST</div>
+    <button class="refresh-btn" onclick="window.location.href=window.location.pathname+'?v='+Date.now()">&#8635; Refresh</button>
   </div>
 </header>
 
-<!-- 6-column DCC grid -->
+<!-- STATUS STRIP — 5-second scan across all ventures -->
+<div class="status-strip">
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">PG Finance</span><span class="pill-val">LKR 50K pending &mdash; decide today</span></div>
+  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">No reply &mdash; chase now</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Gordon House</span><span class="pill-val">Ballot incoming</span></div>
+  <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Distillery</span><span class="pill-val">Feasibility in progress</span></div>
+  <div class="status-pill"><span class="dot dot-green"></span><span class="pill-label">Bookings</span><span class="pill-val">Erandi filing &mdash; working</span></div>
+  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">Say "ollo out" tonight</span></div>
+</div>
+
+<!-- 6-CELL GRID -->
 <div class="grid">
 
+  <!-- TODAY -->
   <div class="col">
-    <h2>Today &mdash; deal with</h2>
+    <div class="col-head today">Today &mdash; clear these</div>
     <ul>
-      <li><strong>Excise Dept LKR 30K:</strong> This is not a routine approval. It is a YES/NO on keeping liquor on the menu. Rukman is waiting. Decide today. <span class="tag flag">DECIDE</span></li>
-      <li><strong>Gordon House &mdash; Hot Water ballot:</strong> Overnight email from michelle.galeno@aocm.com.au. Owners Corp electronic ballot incoming to formalise communal hot water decision. Read + respond. <span class="tag flag">action</span></li>
-      <li><strong>Take Gigi to Betty's Burgers</strong> &mdash; 14:00 AEST. 97-103 Elizabeth St, Melbourne. Leave by 13:40. <span class="tag">calendar</span></li>
-      <li><strong>Rukman draft reply (excise + tile):</strong> ollo saved a draft reply to Rukman acknowledging LKR 50K (excise + tile contractor). Review and send. <span class="tag draft">draft ready</span></li>
-      <li><strong>Tile Contractor LKR 20K:</strong> Supplies purchase. Standard approval needed alongside excise decision. <span class="tag draft">approve</span></li>
-      <li><strong>SRP / Taara:</strong> No reply yet. Kirk flagged follow-up 27 May. Chase Taara directly today. <span class="tag flag">follow-up</span></li>
+      <li><strong>Excise Dept LKR 30K:</strong> YES/NO on keeping liquor on menu. Rukman waiting. This is a policy decision, not a payment. <span class="tag tag-red">DECIDE</span></li>
+      <li><strong>Gordon House ballot:</strong> Overnight email &mdash; electronic ballot incoming on communal hot water. Read and respond. <span class="tag tag-yellow">action</span></li>
+      <li><strong>Gigi &rarr; Betty's Burgers</strong> &mdash; 14:00 AEST, 97-103 Elizabeth St. Leave 13:40. <span class="tag tag-grey">14:00</span></li>
+      <li><strong>Rukman draft:</strong> LKR 50K reply (excise + tile) saved in Drafts. Review and send. <span class="tag tag-purple">draft</span></li>
+      <li><strong>SRP &mdash; Taara:</strong> Still no reply. Chase directly today. <span class="tag tag-yellow">follow-up</span></li>
     </ul>
   </div>
 
+  <!-- URGENT -->
   <div class="col">
-    <h2 class="urgent">Urgent</h2>
+    <div class="col-head urgent">Urgent</div>
     <ul>
-      <li><strong>EXCISE DECISION &mdash; LKR 30K:</strong> Rukman says if we stop paying, we must stop selling liquor and remove from menu. This is a fork-in-the-road call. Not a payment &mdash; a policy. <span class="tag flag">KIRK ONLY</span></li>
-      <li><strong>Gordon House &mdash; ballot:</strong> Electronic ballot being set up re communal hot water. Landed overnight. Read now. <span class="tag send">read + reply</span></li>
-      <li><strong>Rukman draft not sent:</strong> ollo's reply to Rukman (excise + tile) is in Drafts. Needs Kirk review before sending. <span class="tag draft">check drafts</span></li>
-      <li><strong>SRP &mdash; Taara still silent:</strong> Kirk replied 27 May to follow up. Still no Taara response. Escalate or contact SRP account manager directly. <span class="tag flag">SRP</span></li>
+      <li><strong>EXCISE &mdash; LKR 30K:</strong> If we stop paying, liquor comes off the menu. Fork in the road. <span class="tag tag-red">KIRK ONLY</span></li>
+      <li><strong>Gordon House:</strong> Ballot email landed 09:44 AEST. Action needed from owner. <span class="tag tag-red">read now</span></li>
+      <li><strong>Rukman draft not sent:</strong> Awaiting Kirk review before ollo can send. <span class="tag tag-purple">check drafts</span></li>
+      <li><strong>SRP / Taara:</strong> No reply since Kirk followed up 27 May. Escalate or contact Aaron at SRP directly (aaron@srpitl.com). <span class="tag tag-yellow">SRP</span></li>
     </ul>
   </div>
 
+  <!-- MORNING + NIGHT -->
   <div class="col">
-    <h2 class="morning">Morning + Night rituals (manual)</h2>
+    <div class="col-head rituals">Morning + Night</div>
     <ul>
-      <li><strong>AM:</strong> Check ollo Capture note</li>
-      <li><strong>AM:</strong> Scan Gmail (proposed replies in Drafts)</li>
-      <li><strong>AM:</strong> Review Three Wisdoms below</li>
-      <li><strong>AM:</strong> Open Unfinished Business doc, grab one</li>
-      <li><strong>AM + PM: Paste continuity prompt into every open claude.ai chat.</strong> See block below &#8595;</li>
-      <li><strong>End of day: say &ldquo;ollo out&rdquo; anywhere</strong> (Cowork, iMessage to ollo) to log completion</li>
+      <li><strong>AM:</strong> Check ollo Capture (Apple Notes)</li>
+      <li><strong>AM:</strong> Scan Gmail Drafts &mdash; proposed replies from ollo</li>
+      <li><strong>AM:</strong> Grab one item from Unfinished Business</li>
+      <li><strong>PM:</strong> If you used claude.ai in browser &mdash; paste continuity prompt (see below)</li>
+    </ul>
+    <div class="ollo-out-box">
+      <strong>End of day &rarr; "ollo out"</strong><br>
+      Say it once, in any Cowork chat. That's it. ollo logs your day and updates Drive.
+    </div>
+  </div>
+
+  <!-- TOMORROW / THIS WEEK -->
+  <div class="col">
+    <div class="col-head week">Tomorrow / This week</div>
+    <ul>
+      <li><strong>Fri 29 May:</strong> Harley catch-up &mdash; confirm time. Weekly Financials upload expected.</li>
+      <li><strong>Review Owner Need Docs:</strong> Erandi uploaded 8+ files 26 May &mdash; bank statements, cash float LKR 2.62M YTD, staff, suppliers, room inventory.</li>
+      <li><strong>Bookkeeper:</strong> Chandima intro'd by Rukman. Interview not yet scheduled &mdash; this week.</li>
+      <li><strong>Gordon House:</strong> Monitor for formal ballot notice. Vote required.</li>
+      <li><strong>Solomon Spirits:</strong> Distillery feasibility &mdash; next steps after Reggie's report.</li>
     </ul>
   </div>
 
+  <!-- IDEAS / QUICK ADD -->
   <div class="col">
-    <h2 class="week">Tomorrow / this week</h2>
+    <div class="col-head ideas">Ideas &amp; Quick Add</div>
     <ul>
-      <li><strong>Fri 29 May:</strong> Harley catch-up (time TBC &mdash; check calendar). Also recurring morning brief + unfinished business.</li>
-      <li><strong>Fri 29 May &mdash; Finance:</strong> Weekly Financials 2026 upload expected. Watch for new Drive files from Erandi / Taara.</li>
-      <li><strong>Owner Need Docs:</strong> Erandi uploaded 8+ files 26 May (cash float, bank statements, staff details, supplier list, inventory). Review when ready.</li>
-      <li><strong>Ongoing:</strong> Bookkeeper replacement &mdash; Chandima (intro'd by Rukman). Interview not yet scheduled.</li>
-      <li><strong>Gordon House:</strong> Watch for ballot notice in inbox &mdash; may require formal vote.</li>
+      <li>Voice-to-DCC shortcut &mdash; set up "Hey Siri, add to ollo" on Watch + iPhone</li>
+      <li>DCC v3 refresh fix &mdash; vercel.json deployed today, test it</li>
+      <li>Distillery &mdash; what's the next concrete step after Reggie's feasibility?</li>
+      <li>ManyChat / PG staff app &mdash; revisit when excise decision is made</li>
+      <li>Bookkeeper interview &mdash; Chandima, schedule this week</li>
     </ul>
+    <a class="ideas-add-link" href="notes://showNote?name=ollo%20Capture">+ Add idea &rarr; opens ollo Capture in Notes</a>
   </div>
 
+  <!-- KIRK'S REMINDERS / CAPTURE -->
   <div class="col">
-    <h2 class="wisdom">Three Wisdoms &mdash; short read</h2>
+    <div class="col-head capture">ollo Capture digest</div>
     <ul>
-      <li>See full block below &#8595;</li>
-      <li style="color: var(--muted); font-size: 13px;">AM selection today: Gabor Mat&eacute; + Alan Watts + AI/Cowork tip + Word of the day</li>
-    </ul>
-  </div>
-
-  <div class="col">
-    <h2 class="capture">Kirk's Reminders &amp; ollo Capture</h2>
-    <ul>
-      <li><strong>Finance scan 27 May 18:00 Galle:</strong> LKR 50K pending &mdash; Excise LKR 30K (STRATEGIC) + Tile LKR 20K (routine). Draft reply to Rukman saved. <span class="tag flag">decide</span></li>
-      <li><strong>Erandi filing:</strong> Owner Need Docs subfolder created in Weekly Financials/2026 &mdash; 8+ files including bank statements, cash float YTD LKR 2.62M, staff details, supplier list, room inventory. System is working. <span class="tag">good news</span></li>
-      <li><strong>SRP newsletter</strong> arrived 25 May from aaron@srpitl.com &mdash; 3 financial threads for clients. Worth a read when you have 5 mins. <span class="tag">SRP</span></li>
-      <li><strong>No new audit docs</strong> in Performance Reviews folder in last 24h. <span class="tag">clear</span></li>
+      <li><strong>Finance scan 27 May:</strong> LKR 50K pending. Excise LKR 30K (strategic) + Tile LKR 20K (routine). Draft reply to Rukman saved. <span class="tag tag-yellow">act</span></li>
+      <li><strong>Erandi filing working:</strong> Owner Need Docs folder created. 8+ files uploaded. System working. <span class="tag tag-green">good</span></li>
+      <li><strong>SRP newsletter</strong> from aaron@srpitl.com &mdash; 3 financial threads relevant to PG. Read when ready.</li>
+      <li><strong>No new audit docs</strong> in Performance Reviews last 24h. <span class="tag tag-grey">clear</span></li>
     </ul>
   </div>
 
 </div>
 
-<!-- Paste-procedure block -->
-<div class="wisdoms" style="border-left: 4px solid #f0a3ff;">
-  <h2 style="color: #f0a3ff;">Daily claude.ai paste procedure (AM + PM)</h2>
-  <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--muted);">Anthropic blocks scraping of claude.ai chats. So once in the morning and once before sleep, open every active claude.ai chat and paste this prompt at the end. It self-summarises and pushes to your Drive log. Then say "ollo out" to log completion.</p>
-  <div style="background: var(--bg); border: 1px dashed var(--accent); padding: 10px 12px; border-radius: 6px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.5; user-select: all;">
-Create a new Google Doc in my Drive folder "Kirk - Daily Continuity" (id 1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA).<br><br>
-Auto-derive a short 2-3 word topic from THIS conversation. Do NOT ask me -- pick a topic yourself.<br><br>
-Title the doc: chat-log [TOPIC] [today's date as YYYY-MM-DD]<br><br>
-Body should contain:<br>
-- One-paragraph summary of this conversation so far<br>
-- Key decisions made<br>
-- Action items I said I would do<br><br>
-Do not read other files. Create the doc with that content. Confirm when done with the doc link.
+<!-- PASTE PROCEDURE — compact, only if using claude.ai in browser -->
+<div class="paste-block">
+  <div class="paste-head">claude.ai browser paste &mdash; only if you opened claude.ai in a tab today (not needed for Cowork)</div>
+  <div class="paste-note">Open each claude.ai browser tab. Paste the prompt below. It logs the chat to your Drive. <strong>Only needed for claude.ai tabs, not this Cowork session.</strong></div>
+  <div class="paste-code">
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('paste-text').innerText); this.innerText='Copied!'; setTimeout(()=>this.innerText='Copy',2000)">Copy</button>
+    <span id="paste-text">Create a new Google Doc in my Drive folder "Kirk - Daily Continuity" (id 1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA). Auto-derive a short 2-3 word topic from THIS conversation. Do NOT ask me — pick a topic yourself. Title: chat-log [TOPIC] [YYYY-MM-DD]. Body: 1-para summary, key decisions, action items. Do not read other files. Confirm with doc link.</span>
   </div>
-  <p style="margin: 10px 0 0 0; font-size: 12px; color: var(--muted);">&#8593; Tap to select. Paste into each chat. When done for the day, say <strong style="color: #f0a3ff;">"ollo out"</strong> and ollo logs your day.</p>
 </div>
 
-<!-- Three Wisdoms expanded -->
+<!-- THREE WISDOMS — full width -->
 <div class="wisdoms">
-  <h2>Three Wisdoms + Word of the day &mdash; AM</h2>
+  <div class="wisdoms-head">Three Wisdoms + Word of the day &mdash; AM</div>
   <div class="wisdom-grid">
 
     <div class="wcard">
       <div class="src">Mental health &mdash; Gabor Mat&eacute;</div>
-      <div class="body">"The greatest damage done by neglect, trauma or emotional loss is not the immediate pain it inflicts but the long-range distortions it induces in the way a developing child will continue to interpret the world." When a decision feels heavier than it should, it's worth asking what layer you're actually carrying.</div>
+      <div class="body">"The greatest damage done by neglect, trauma or emotional loss is not the immediate pain it inflicts but the long-range distortions it induces." When a decision feels heavier than it should, ask what layer you're actually carrying.</div>
     </div>
 
     <div class="wcard">
       <div class="src">Philosophy &mdash; Alan Watts</div>
-      <div class="body">"No valid plans for the future can be made by those who have no capacity for living now." Today has one real decision (excise), one real outing (Gigi + Betty's), and one real follow-up (Taara). That's the day. Do those three things.</div>
+      <div class="body">"No valid plans for the future can be made by those who have no capacity for living now." Today: one decision (excise), one outing (Gigi + Betty's), one follow-up (Taara). That's the whole day.</div>
     </div>
 
     <div class="wcard">
       <div class="src">AI / Cowork tip</div>
-      <div class="body">When a decision keeps bouncing in your head, paste it to ollo as a note. ollo can lay out the trade-offs in plain language &mdash; not advice, just the map. Your brain stops carrying the weight and you can actually choose. Works well for the excise call today.</div>
+      <div class="body">Say "Hey Siri, add a note to ollo Capture" on your Watch or iPhone. It drops straight into your Apple Notes and ollo reads it at the next gen. Your voice is now part of your system.</div>
     </div>
 
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">Bifurcation</span> /ˌbaɪ.fɜːˈkeɪ.ʃən/ &mdash; A division into two branches or forks. <em>"The excise decision is a bifurcation: liquor stays on the menu or it doesn't. Both paths are viable. Pick one and move."</em></div>
+      <div class="body"><span class="term">Bifurcation</span>/bai.fer.KAY.shun/ &mdash; A division into two branches. <em>"The excise decision is a bifurcation: liquor stays on the menu or it doesn't. Both paths are viable. Pick one and move."</em></div>
     </div>
 
   </div>
 </div>
 
-<!-- Quick Links -->
+<!-- QUICK LINKS -->
 <div class="quicklinks">
-  <div class="ql-title">Quick Links</div>
+  <div class="ql-head">Quick Links</div>
   <div class="ql-grid">
 
     <div>
       <div class="ql-cat">Daily Ops</div>
       <ul>
         <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail &middot; mailmanchina</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts</a></li>
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
         <li><a href="notes://showNote?name=ollo%20Capture">Apple Notes &mdash; ollo Capture</a></li>
+        <li><a href="https://docs.google.com/document/d/170qSrZqBckVWsiYTIvSwRT9svS2pyAhSIgGFX7qpz-E/edit">Unfinished Business doc</a></li>
       </ul>
     </div>
 
@@ -219,34 +281,33 @@ Do not read other files. Create the doc with that content. Confirm when done wit
       <ul>
         <li><a href="https://drive.google.com/drive/u/0/folders/1teD4ZzxweaW10dzM9ElcJZSb7fx4vApD">PG Staff Files (Shared)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1cxJJI5lEovYdtUy8H1Bm2-4NPjIoA9sy">03 Prince of Galle (master)</a></li>
-        <li><a href="https://drive.google.com/drive/u/0/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g">Sri Lanka Accounting (Taara)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">Weekly Financials 2026</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">Owner Need Docs (Erandi, 26 May)</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">Owner Need Docs (Erandi)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g">Sri Lanka Accounting (Taara)</a></li>
         <li><a href="https://admin.booking.com">Booking.com partner</a></li>
         <li><a href="https://ycs.agoda.com">Agoda YCS</a></li>
       </ul>
     </div>
 
     <div>
-      <div class="ql-cat">ollo system</div>
+      <div class="ql-cat">ollo System</div>
       <ul>
         <li><a href="https://docs.google.com/document/d/1Qz9utFAwOi9brQQabyjZ_ynml1W4PoGPQkILIO1nCqc">ollo Identity Card</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews folder</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk &mdash; Daily Continuity folder</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk &mdash; Daily Continuity</a></li>
         <li><a href="https://docs.google.com/document/d/1mUwcqi6wqQt94eVQi_fhOH_hxpOP_GuHofM3-S2P3ew">claude-ai-log MASTER</a></li>
-        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts</a></li>
-        <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews</a></li>
+        <li><a href="https://pog-staff-app-2.vercel.app">DCC live app (Vercel)</a></li>
       </ul>
     </div>
 
     <div>
-      <div class="ql-cat">Legal / Property / Ventures</div>
+      <div class="ql-cat">Ventures</div>
       <ul>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">Solomon Spirits (Distillery)</a></li>
+        <li><a href="https://docs.google.com/document/d/1QqKLeAzRb-qi8m7lr3sDksLmopsr3K_SaZPJMp0gMGk">Distillery tracker</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1bNjSb6Ee1fc3C9-zQkRESCJRetPRMmvf">02 Property &amp; Trust</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal &mdash; Jobsz &amp; Lawless</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1fcEpSQVHqQ5VBomxAGsOUlKXNij3BPoS">Bruce &amp; Legal (Diamonds)</a></li>
-        <li><a href="https://drive.google.com/drive/u/0/folders/1bNjSb6Ee1fc3C9-zQkRESCJRetPRMmvf">02 Property &amp; Trust</a></li>
-        <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">04 Solomon Spirits (Distillery)</a></li>
-        <li><a href="https://docs.google.com/document/d/1QqKLeAzRb-qi8m7lr3sDksLmopsr3K_SaZPJMp0gMGk">Distillery tracker</a></li>
       </ul>
     </div>
 
@@ -254,7 +315,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
 </div>
 
 <footer>
-  <div>DCC v2 &middot; auto-gen 06:00 + 18:00 AEST &middot; Thursday 28 May 2026 &middot; AM</div>
+  <div>DCC v3 &middot; Thursday 28 May 2026 &middot; AM &middot; auto-gen 06:00 + 18:00 AEST</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
