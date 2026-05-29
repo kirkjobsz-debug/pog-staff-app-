@@ -78,11 +78,11 @@
   .ideas-add-link { display: block; margin-top: 9px; padding: 6px 10px; background: var(--panel-2); border: 1px dashed var(--ideas); border-radius: 6px; color: var(--ideas); font-size: 12px; font-weight: 600; text-align: center; text-decoration: none; }
   .ideas-add-link:hover { background: #2a1f33; }
 
-  /* RITUALS CELL — ollo out callout */
+  /* RITUALS CELL */
   .ollo-out-box { margin-top: 9px; padding: 6px 10px; background: var(--panel-2); border-left: 3px solid var(--accent-2); border-radius: 5px; font-size: 12px; }
   .ollo-out-box strong { color: var(--accent-2); }
 
-  /* PASTE PROCEDURE — compact */
+  /* PASTE PROCEDURE */
   .paste-block { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--ideas); border-radius: 9px; padding: 10px 13px; margin-bottom: 12px; }
   .paste-head { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ideas); margin-bottom: 6px; }
   .paste-note { font-size: 12px; color: var(--muted); margin-bottom: 7px; }
@@ -129,34 +129,33 @@
     <div class="tagline">All ventures. One view. Updated 06:00 + 18:00 AEST.</div>
   </div>
   <div class="header-right">
-    <div><span class="gen-label">AM gen</span> &middot; Thursday 28 May 2026 &middot; 06:00 AEST</div>
-    <div style="margin-top:3px; color:var(--muted);">Next gen: 18:00 AEST</div>
+    <div><span class="gen-label">PM gen</span> &middot; Thursday 28 May 2026 &middot; 18:00 AEST</div>
+    <div style="margin-top:3px; color:var(--muted);">Next gen: 06:00 AEST Friday</div>
     <button class="refresh-btn" onclick="window.location.href=window.location.pathname+'?v='+Date.now()">&#8635; Refresh</button>
   </div>
 </header>
 
-<!-- STATUS STRIP — 5-second scan across all ventures -->
+<!-- STATUS STRIP -->
 <div class="status-strip">
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">PG Finance</span><span class="pill-val">LKR 50K pending &mdash; decide today</span></div>
-  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">No reply &mdash; chase now</span></div>
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Gordon House</span><span class="pill-val">Ballot incoming</span></div>
-  <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Distillery</span><span class="pill-val">Feasibility in progress</span></div>
-  <div class="status-pill"><span class="dot dot-green"></span><span class="pill-label">Bookings</span><span class="pill-val">Erandi filing &mdash; working</span></div>
-  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">Say "ollo out" tonight</span></div>
+  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">Excise LKR 30K</span><span class="pill-val">Decision still open</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Wine lead</span><span class="pill-val">Patrick replied, needs pricelist</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Gordon House</span><span class="pill-val">Ballot notice received</span></div>
+  <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Distillery</span><span class="pill-val">Reggie deal terms pending</span></div>
+  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Tomorrow</span><span class="pill-val">Pullman check-in 14:00</span></div>
+  <div class="status-pill"><span class="dot dot-green"></span><span class="pill-label">Betty's Burgers</span><span class="pill-val">Done. Good outing.</span></div>
 </div>
 
 <!-- 6-CELL GRID -->
 <div class="grid">
 
-  <!-- TODAY -->
+  <!-- TODAY — UNDONE -->
   <div class="col">
-    <div class="col-head today">Today &mdash; clear these</div>
+    <div class="col-head today">Today &mdash; still open</div>
     <ul>
-      <li><strong>Excise Dept LKR 30K:</strong> YES/NO on keeping liquor on menu. Rukman waiting. This is a policy decision, not a payment. <span class="tag tag-red">DECIDE</span></li>
-      <li><strong>Gordon House ballot:</strong> Overnight email &mdash; electronic ballot incoming on communal hot water. Read and respond. <span class="tag tag-yellow">action</span></li>
-      <li><strong>Gigi &rarr; Betty's Burgers</strong> &mdash; 14:00 AEST, 97-103 Elizabeth St. Leave 13:40. <span class="tag tag-grey">14:00</span></li>
-      <li><strong>Rukman draft:</strong> LKR 50K reply (excise + tile) saved in Drafts. Review and send. <span class="tag tag-purple">draft</span></li>
-      <li><strong>SRP &mdash; Taara:</strong> Still no reply. Chase directly today. <span class="tag tag-yellow">follow-up</span></li>
+      <li><strong>Excise LKR 30K:</strong> This was not resolved this morning. YES to keep paying = liquor stays on menu. NO = liquor comes off. Rukman is waiting. <span class="tag tag-red">DECIDE TONIGHT</span></li>
+      <li><strong>PG weekly financials reminder:</strong> No financials uploaded for week ending 29 May. Pog-weekly-financials task is waiting for your YES/NO to send the chase to Erandi and Rukman. <span class="tag tag-yellow">reply YES/NO</span></li>
+      <li><strong>Geoffrey lease deed:</strong> Draft Deed in Drive (Performance Reviews Confidential). Must choose renovation option (clause 5) before routing to Adamaly. <span class="tag tag-purple">review deed</span></li>
+      <li><strong>Kaesura email:</strong> PG social media onboarding stalled. Two options given (draft via jobszdone + switch From manually, or copy to ollo webmail). No decision captured. <span class="tag tag-grey">decide</span></li>
     </ul>
   </div>
 
@@ -164,67 +163,68 @@
   <div class="col">
     <div class="col-head urgent">Urgent</div>
     <ul>
-      <li><strong>EXCISE &mdash; LKR 30K:</strong> If we stop paying, liquor comes off the menu. Fork in the road. <span class="tag tag-red">KIRK ONLY</span></li>
-      <li><strong>Gordon House:</strong> Ballot email landed 09:44 AEST. Action needed from owner. <span class="tag tag-red">read now</span></li>
-      <li><strong>Rukman draft not sent:</strong> Awaiting Kirk review before ollo can send. <span class="tag tag-purple">check drafts</span></li>
-      <li><strong>SRP / Taara:</strong> No reply since Kirk followed up 27 May. Escalate or contact Aaron at SRP directly (aaron@srpitl.com). <span class="tag tag-yellow">SRP</span></li>
+      <li><strong>Patrick Greenwood (MMIELR):</strong> Replied to Australian wine lead. Wants an export pricelist. Contact jenkevineyards.com.au (admin@jenkevineyards.com.au) and ask for it to forward. <span class="tag tag-yellow">new lead</span></li>
+      <li><strong>Gordon House ballot:</strong> Committee has resolved to proceed with electronic ballot for communal hot water. Action required from owner. Read Michelle Galeno's email (AOCM). <span class="tag tag-red">vote required</span></li>
+      <li><strong>Taara (SRP):</strong> Last reply 22 May "will review and get back to you soon." Seven days, no update. If nothing by tomorrow morning, contact Aaron directly (aaron@srpitl.com). <span class="tag tag-yellow">SRP</span></li>
+      <li><strong>Rukman draft (LKR 50K):</strong> Still in Gmail Drafts. Review and send once excise decision is made. <span class="tag tag-purple">check drafts</span></li>
     </ul>
   </div>
 
-  <!-- MORNING + NIGHT -->
+  <!-- EVENING RITUALS -->
   <div class="col">
-    <div class="col-head rituals">Morning + Night</div>
+    <div class="col-head rituals">Evening Rituals</div>
     <ul>
-      <li><strong>AM:</strong> Check ollo Capture (Apple Notes)</li>
-      <li><strong>AM:</strong> Scan Gmail Drafts &mdash; proposed replies from ollo</li>
-      <li><strong>AM:</strong> Grab one item from Unfinished Business</li>
-      <li><strong>PM:</strong> If you used claude.ai in browser &mdash; paste continuity prompt (see below)</li>
+      <li><strong>PM scan:</strong> Check ollo Capture for anything you voiced today</li>
+      <li><strong>Drafts:</strong> Scan Gmail Drafts before bed. Two drafts pending: Rukman LKR 50K reply + Geoffrey lease summary.</li>
+      <li><strong>Pack for Pullman:</strong> Check-in tomorrow 14:00. Booking QKLSDDCQ. 65 Queens Road, Albert Park.</li>
+      <li><strong>If claude.ai used in browser today:</strong> Paste continuity prompt in each tab before closing.</li>
     </ul>
     <div class="ollo-out-box">
-      <strong>End of day &rarr; "ollo out"</strong><br>
-      Say it once, in any Cowork chat. That's it. ollo logs your day and updates Drive.
+      <strong>Say "ollo out" tonight</strong><br>
+      One message in any Cowork chat. ollo logs the day and updates Drive.
     </div>
   </div>
 
-  <!-- TOMORROW / THIS WEEK -->
+  <!-- TOMORROW -->
   <div class="col">
-    <div class="col-head week">Tomorrow / This week</div>
+    <div class="col-head week">Tomorrow &mdash; Friday 29 May</div>
     <ul>
-      <li><strong>Fri 29 May:</strong> Harley catch-up &mdash; confirm time. Weekly Financials upload expected.</li>
-      <li><strong>Review Owner Need Docs:</strong> Erandi uploaded 8+ files 26 May &mdash; bank statements, cash float LKR 2.62M YTD, staff, suppliers, room inventory.</li>
-      <li><strong>Bookkeeper:</strong> Chandima intro'd by Rukman. Interview not yet scheduled &mdash; this week.</li>
-      <li><strong>Gordon House:</strong> Monitor for formal ballot notice. Vote required.</li>
-      <li><strong>Solomon Spirits:</strong> Distillery feasibility &mdash; next steps after Reggie's report.</li>
+      <li><strong>Pullman Melbourne Albert Park:</strong> Check-in from 14:00. Booking QKLSDDCQ. 65 Queens Road, Albert Park. Phone +61 3 9529 4300. <span class="tag tag-blue">14:00</span></li>
+      <li><strong>Harley catch-up:</strong> Weekly financials review. Confirm time. No financials uploaded yet for week ending 29 May. <span class="tag tag-yellow">confirm</span></li>
+      <li><strong>Patrick Greenwood wine:</strong> Reply once you have the Jen Ke Vineyards export pricelist. He's waiting. <span class="tag tag-green">new biz</span></li>
+      <li><strong>Chandima (bookkeeper):</strong> Intro'd by Rukman. Interview not yet scheduled. This week was the target. <span class="tag tag-yellow">overdue</span></li>
+      <li><strong>Taara watcher fires AM:</strong> If no reply, escalate to Aaron at SRP directly. <span class="tag tag-grey">automatic</span></li>
     </ul>
   </div>
 
-  <!-- IDEAS / QUICK ADD -->
+  <!-- IDEAS -->
   <div class="col">
-    <div class="col-head ideas">Ideas &amp; Quick Add</div>
+    <div class="col-head ideas">Ideas &amp; Notes</div>
     <ul>
-      <li>Voice-to-DCC shortcut &mdash; set up "Hey Siri, add to ollo" on Watch + iPhone</li>
-      <li>DCC v3 refresh fix &mdash; vercel.json deployed today, test it</li>
-      <li>Distillery &mdash; what's the next concrete step after Reggie's feasibility?</li>
-      <li>ManyChat / PG staff app &mdash; revisit when excise decision is made</li>
-      <li>Bookkeeper interview &mdash; Chandima, schedule this week</li>
+      <li><strong>Kaesura (MK):</strong> Once email channel is sorted, he can start running PG social from his phone. Low effort, high upside for PG Instagram + email.</li>
+      <li><strong>Wine play:</strong> If Patrick takes the Barossa Valley wine, that's a new PG revenue stream. Needs: supplier pricelist, import/customs check, storage at PG.</li>
+      <li><strong>Airbnb St Kilda:</strong> Breezy Studio booked May 31 to Sep 30. Check-in manual shared via Drive. Read before handover.</li>
+      <li><strong>Check-In Manual:</strong> "Check-In Manual 7/50 Fitzroy St St Kilda.pdf" shared in Drive today. Review before May 31.</li>
     </ul>
     <a class="ideas-add-link" href="notes://showNote?name=ollo%20Capture">+ Add idea &rarr; opens ollo Capture in Notes</a>
   </div>
 
-  <!-- KIRK'S REMINDERS / CAPTURE -->
+  <!-- CAPTURE DIGEST -->
   <div class="col">
-    <div class="col-head capture">ollo Capture digest</div>
+    <div class="col-head capture">Today in summary</div>
     <ul>
-      <li><strong>Finance scan 27 May:</strong> LKR 50K pending. Excise LKR 30K (strategic) + Tile LKR 20K (routine). Draft reply to Rukman saved. <span class="tag tag-yellow">act</span></li>
-      <li><strong>Erandi filing working:</strong> Owner Need Docs folder created. 8+ files uploaded. System working. <span class="tag tag-green">good</span></li>
-      <li><strong>SRP newsletter</strong> from aaron@srpitl.com &mdash; 3 financial threads relevant to PG. Read when ready.</li>
-      <li><strong>No new audit docs</strong> in Performance Reviews last 24h. <span class="tag tag-grey">clear</span></li>
+      <li><strong>Betty's Burgers 14:00:</strong> Done. Gigi outing complete. <span class="tag tag-green">done</span></li>
+      <li><strong>Imagine / NIB:</strong> Betty confirmed next two Imagine sessions will run on NIB (not Medicare). Today's invoice already processed incorrectly but no action needed. <span class="tag tag-green">sorted</span></li>
+      <li><strong>Melbourne Water LCLW-6691:</strong> Withdrawal initiated. Rachel Jones confirmed. Possible Red Hill property sale flagged. <span class="tag tag-grey">closed</span></li>
+      <li><strong>Gippsland Water executor:</strong> Kirk replied with DOB + address. Account update in progress. <span class="tag tag-grey">in train</span></li>
+      <li><strong>Fikafi payout:</strong> PG payout request confirmed by accounts@fikafi.com. Processing underway. <span class="tag tag-green">confirmed</span></li>
+      <li><strong>Dansal / SRP newsletter:</strong> Unread email from aaron@srpitl.com in PrinceOfGalle inbox. Separate from the accounting thread. Read when ready. <span class="tag tag-grey">unread</span></li>
     </ul>
   </div>
 
 </div>
 
-<!-- PASTE PROCEDURE — compact, only if using claude.ai in browser -->
+<!-- PASTE PROCEDURE -->
 <div class="paste-block">
   <div class="paste-head">claude.ai browser paste &mdash; only if you opened claude.ai in a tab today (not needed for Cowork)</div>
   <div class="paste-note">Open each claude.ai browser tab. Paste the prompt below. It logs the chat to your Drive. <strong>Only needed for claude.ai tabs, not this Cowork session.</strong></div>
@@ -234,29 +234,29 @@
   </div>
 </div>
 
-<!-- THREE WISDOMS — full width -->
+<!-- THREE WISDOMS — PM EDITION -->
 <div class="wisdoms">
-  <div class="wisdoms-head">Three Wisdoms + Word of the day &mdash; AM</div>
+  <div class="wisdoms-head">Three Wisdoms + Word of the day &mdash; PM</div>
   <div class="wisdom-grid">
 
     <div class="wcard">
-      <div class="src">Mental health &mdash; Gabor Mat&eacute;</div>
-      <div class="body">"The greatest damage done by neglect, trauma or emotional loss is not the immediate pain it inflicts but the long-range distortions it induces." When a decision feels heavier than it should, ask what layer you're actually carrying.</div>
+      <div class="src">Reflection &mdash; Viktor Frankl</div>
+      <div class="body">"Between stimulus and response there is a space. In that space is our power to choose our response." Today you handled a lot of scattered signals. The excise call is still in that space. That's not avoidance. That's the space.</div>
     </div>
 
     <div class="wcard">
-      <div class="src">Philosophy &mdash; Alan Watts</div>
-      <div class="body">"No valid plans for the future can be made by those who have no capacity for living now." Today: one decision (excise), one outing (Gigi + Betty's), one follow-up (Taara). That's the whole day.</div>
+      <div class="src">Wind-down &mdash; Marcus Aurelius</div>
+      <div class="body">"Confine yourself to the present." Tomorrow has a hotel, a catch-up, and a wine lead. Tonight has one decision left (excise) and a bag to pack. The rest can wait until 06:00. Let the system hold it.</div>
     </div>
 
     <div class="wcard">
-      <div class="src">AI / Cowork tip</div>
-      <div class="body">Say "Hey Siri, add a note to ollo Capture" on your Watch or iPhone. It drops straight into your Apple Notes and ollo reads it at the next gen. Your voice is now part of your system.</div>
+      <div class="src">ollo tip &mdash; evening</div>
+      <div class="body">If you voice an idea tonight and don't want to open your phone: send a WhatsApp to yourself (your own number). ollo can't read WhatsApp yet, but you can paste it into ollo Capture in the morning in 5 seconds. Voice gets in the system.</div>
     </div>
 
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">Bifurcation</span>/bai.fer.KAY.shun/ &mdash; A division into two branches. <em>"The excise decision is a bifurcation: liquor stays on the menu or it doesn't. Both paths are viable. Pick one and move."</em></div>
+      <div class="body"><span class="term">Attrition</span>/uh.TRISH.un/ &mdash; Gradual wearing down through persistent pressure. <em>"Taara's silence is attrition strategy, not incompetence. Seven days is long enough. Tomorrow: Aaron."</em></div>
     </div>
 
   </div>
@@ -318,10 +318,169 @@
 </div>
 
 <footer>
-  <div>DCC v3 &middot; Thursday 28 May 2026 &middot; AM &middot; auto-gen 06:00 + 18:00 AEST</div>
+  <div>DCC v3 &middot; Thursday 28 May 2026 &middot; PM &middot; auto-gen 06:00 + 18:00 AEST</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
 </div>
 </body>
-</html>
+</html>  .wisdoms { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+  .wisdoms h2 { margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--good); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  .wisdom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .wisdom-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .wisdom-grid { grid-template-columns: 1fr; } }
+  .wcard { background: var(--panel-2); border-radius: 8px; padding: 10px 12px; border-left: 3px solid var(--good); }
+  .wcard .src { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .wcard .body { font-size: 13px; }
+  .wcard.word { border-left-color: var(--accent); }
+  .wcard.word .term { color: var(--accent); font-weight: 700; font-size: 15px; }
+  .quicklinks { background: var(--panel); border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+  .ql-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+  .ql-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .ql-grid { grid-template-columns: 1fr 1fr; } }
+  .ql-cat { font-size: 12px; color: var(--accent-2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ql-grid ul { margin: 0; padding-left: 0; list-style: none; }
+  .ql-grid li { margin-bottom: 4px; font-size: 13px; }
+  .ql-grid a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--border); }
+  .ql-grid a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .command-bar { background: linear-gradient(135deg, #1a2540, #0f1a30); border: 1px solid var(--accent-2); border-radius: 12px; padding: 14px 18px; margin-bottom: 18px; }
+  .command-bar h3 { margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-2); display: flex; align-items: center; gap: 6px; }
+  .command-bar .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .command-bar button, .command-bar a.btn { background: var(--panel-2); color: var(--accent-2); border: 1px solid var(--accent-2); border-radius: 16px; padding: 6px 12px; font-size: 12px; cursor: pointer; text-decoration: none; font-family: inherit; }
+  .command-bar button:hover, .command-bar a.btn:hover { background: var(--accent-2); color: var(--bg); }
+  .command-bar .note { margin: 8px 0 0 0; font-size: 11px; color: var(--muted); }
+  .finsum { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--warn); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+  .finsum summary { font-size: 14px; font-weight: 600; color: var(--warn); cursor: pointer; list-style: none; padding: 4px 0; }
+  .finsum summary::-webkit-details-marker { display: none; }
+  .finsum summary::before { content: "\25B6 "; font-size: 10px; color: var(--accent-2); }
+  .finsum[open] summary::before { content: "\25BC "; }
+  .finsum .body { padding: 8px 0 4px 0; font-size: 13px; line-height: 1.55; }
+  .finsum .body .row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dotted var(--border); }
+  .finsum .body .row:last-child { border: none; }
+  .finsum .body .row .lbl { color: var(--muted); }
+  .finsum .body .row .val.r { color: var(--urgent); }
+  .finsum .body .row .val.g { color: var(--good); }
+  .finsum .body .row .val.y { color: var(--warn); }
+  .finsum .body .actions { margin-top: 10px; }
+  .finsum .body .actions a { color: var(--accent-2); margin-right: 12px; font-size: 12px; }
+  .paste-mini { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid #f0a3ff; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+  .paste-mini h3 { margin: 0 0 6px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #f0a3ff; }
+  .paste-mini p { margin: 0 0 6px 0; font-size: 11px; color: var(--muted); }
+  .paste-mini .snippet { background: var(--bg); border: 1px dashed var(--accent); padding: 6px 10px; border-radius: 4px; font-family: ui-monospace, Menlo, monospace; font-size: 10px; line-height: 1.4; color: var(--ink); user-select: all; max-height: 60px; overflow: auto; }
+  footer { border-top: 1px solid var(--border); padding-top: 10px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; }
+  footer .sig { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Daily Command Centre <span class="name">— Kirk</span></h1>
+    <div style="color: var(--muted); font-size: 13px; margin-top: 4px;">Evening edition. End of day Melbourne, start of day Galle.</div>
+  </div>
+  <div class="meta">
+    <div><span class="gen">PM gen</span> &middot; Friday 29 May 2026 &middot; 18:00 AEST</div>
+    <div>Auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
+    <a href="./?r=1" class="refresh" onclick="location.reload(true); return false;">&#8635; Reload page</a>
+    <div class="refresh-note">Reload = re-fetch this snapshot. For LIVE state open ollo DCC Live in Cowork.</div>
+  </div>
+</header>
+<div class="status-strip">
+  <div class="pill"><span class="dot y"></span><span class="lbl">PG Finance</span><span class="sub">3 drafts staged &middot; Erandi chase sent</span></div>
+  <div class="pill"><span class="dot r"></span><span class="lbl">SRP / Taara</span><span class="sub">chase staged &middot; 6d silent</span></div>
+  <div class="pill"><span class="dot g"></span><span class="lbl">Gordon House</span><span class="sub">no action</span></div>
+  <div class="pill"><span class="dot g"></span><span class="lbl">Solomon</span><span class="sub">stable</span></div>
+  <div class="pill"><span class="dot g"></span><span class="lbl">Bookings</span><span class="sub">new arrival today &middot; Jonathan Edward</span></div>
+  <div class="pill"><span class="dot y"></span><span class="lbl">Continuity</span><span class="sub">say "ollo out" tonight</span></div>
+</div>
+<div class="travel-banner">
+  Pullman Melbourne Albert Park &middot; checked in today &middot; Booking QKLSDDCQ &middot; departure Sun 31 May 11:00am &rarr; St Kilda (Breezy Studio, 50 Fitzroy St)
+</div>
+<div class="approvals">
+  <h2><span class="blink"></span>Awaiting your YES / NO — tap each to act</h2>
+  <ul>
+    <li>
+      <span class="q">SEND draft &rarr; Taara / SRP (6-day chase, Drive access &amp; doc request)</span>
+      <span class="ctx"><a href="https://mail.google.com/mail/u/0/#all/19e245ffe8fbc16d" style="color: var(--accent-2); font-weight: 600;">&rarr; Open Taara/SRP thread, switch From to ollo, Send</a></span>
+    </li>
+    <li>
+      <span class="q">SEND draft &rarr; Rukman (Financial matters / excise decision)</span>
+      <span class="ctx"><a href="https://mail.google.com/mail/u/0/#all/19e62d6be7cd845c" style="color: var(--accent-2); font-weight: 600;">&rarr; Open Financial matters thread, switch From, Send</a></span>
+    </li>
+    <li>
+      <span class="q">SEND draft &rarr; Amila (bookings close-loop)</span>
+      <span class="ctx"><a href="https://mail.google.com/mail/u/0/#all/19e4e83007e0ea6f" style="color: var(--accent-2); font-weight: 600;">&rarr; Open Amila thread, switch From, Send</a></span>
+    </li>
+    <li>
+      <span class="q">Erandi chase SENT 19:22 &mdash; check Drive after 9:30pm deadline</span>
+      <span class="ctx">Reminder went to office@ (cc gm@) today. WE-29-May folder still empty. <a href="https://drive.google.com/drive/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77" style="color: var(--accent-2);">&rarr; Check folder tonight</a></span>
+    </li>
+    <li>
+      <span class="q">Call Jemoin (new finance lady) &mdash; confirm she got the email</span>
+      <span class="ctx">From Apple Notes "Do it". Then pull NTB loan repayment schedule from email and share with her.</span>
+    </li>
+  </ul>
+  <div class="footnote">ollo never auto-sends. This panel refreshes every gen. Rukman trade-licence reply went out earlier today. Kaesura onboarding email sent. &#10003;</div>
+</div>
+<div class="grid">
+  <div class="col">
+    <h2>Today — done + still open</h2>
+    <ul>
+      <li><strong>Erandi WE-29-May chase sent</strong> 19:22 by ollo <span class="tag done">DONE</span></li>
+      <li><strong>Rukman trade-licence reply sent</strong> <span class="tag done">DONE</span></li>
+      <li><strong>Kaesura onboarding sent</strong> (MK@PG, social/promo setup) <span class="tag done">DONE</span></li>
+      <li><strong>Pullman check-in 2pm</strong> &middot; in for the weekend <span class="tag done">DONE</span></li>
+      <li style="color: var(--warn);"><strong>Still open:</strong> 3 PG drafts to send (Taara/SRP, Rukman fin, Amila) <span class="tag draft">DRAFT</span></li>
+      <li style="color: var(--warn);"><strong>Still open:</strong> call Jemoin, confirm email received <span class="tag flag">DO IT</span></li>
+      <li style="color: var(--warn);"><strong>Still open:</strong> NTB loan repayment schedule &mdash; pull from email, share with Jemoin</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h2 class="urgent">Urgent — send today, not yet sent</h2>
+    <ul>
+      <li><strong><a href="https://mail.google.com/mail/u/0/#all/19e245ffe8fbc16d" style="color: var(--ink);">Taara / SRP</a>:</strong> 6 days silent. Drive access + doc request chase staged <span class="tag send">SEND</span></li>
+      <li><strong><a href="https://mail.google.com/mail/u/0/#all/19e62d6be7cd845c" style="color: var(--ink);">Rukman Financial matters</a>:</strong> excise decision pending, draft staged <span class="tag send">SEND</span></li>
+      <li><strong><a href="https://mail.google.com/mail/u/0/#all/19e4e83007e0ea6f" style="color: var(--ink);">Amila ack</a>:</strong> bookings close-loop reply staged <span class="tag send">SEND</span></li>
+      <li><strong><a href="https://drive.google.com/drive/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77" style="color: var(--ink);">Weekly Financials WE-29-May</a>:</strong> deadline tonight 9:30pm Mel (5pm Galle). Folder still empty &mdash; chase already sent</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h2 class="morning">Morning + Night rituals</h2>
+    <ul>
+      <li><strong>AM:</strong> Check Apple Notes "Do it"</li>
+      <li><strong>AM:</strong> Scan Gmail Drafts before Inbox</li>
+      <li><strong>AM:</strong> Read Three Wisdoms (below)</li>
+      <li><strong>iPhone / Watch shortcut</strong> writes to "Do it" Apple Note &middot; DCC reads it 4x daily</li>
+      <li><strong>End of day:</strong> say <strong style="color: #f0a3ff">"ollo out"</strong> anywhere</li>
+      <li><strong>Switch FROM to ollo</strong> before sending PG mail</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h2 class="week">Tomorrow / this week</h2>
+    <ul>
+      <li><strong>Sat 30 May:</strong> Pullman Albert Park &middot; clear weekend</li>
+      <li><strong>Sun 31 May:</strong> Pullman departure 11am &rarr; St Kilda (Breezy Studio, 50 Fitzroy St) &middot; Getdown Services @ Corner Hotel (Khandi &middot; Imagine &middot; Yarra)</li>
+      <li><strong>Mon 1 Jun:</strong> Lora birthday party</li>
+      <li><strong>Tue 2 Jun:</strong> Taara/SRP deliverables ETA &middot; Khandi blood test with Pieter Mack</li>
+      <li><strong>End next week:</strong> Rukman draft 2026 annual budget</li>
+      <li><strong>Pending spin-off:</strong> Geoffrey Dobbs lease termination &mdash; draft deed ready, review with Adamaly</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h2 class="wisdom">Evening wisdom — short</h2>
+    <ul>
+      <li><strong>Tactical:</strong> 3 drafts still frozen. One tap each unfreezes a conversation. Clear them before the weekend swallows them.</li>
+      <li><strong>ADHD note:</strong> you closed real work today. Name the wins before you name the gaps.</li>
+      <li style="color: var(--muted); font-size: 13px;">Full Wisdoms block below.</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h2 class="capture">Kirk's reminders &amp; ideas (Apple Notes "Do it")</h2>
+    <ul>
+      <li><strong>Loan repayments:</strong> get onto Jemoin + chase Rukman to follow up &middot; call Jemoin, confirm she got the email <span class="tag flag">today</span></li>
+      <li><strong>NTB bank loan:</strong> archived repayment schedule &middot; pull from email to understand the loan</li>
+      <li><strong>Accountant handover note:</strong> capture history for Jemoin onboarding</li>
+      <li><a href="notes://showNote?name=Do%20it" style="color: var(--accent-2)">&#43; Add idea to "Do it" note</a></li>
+    </ul>
+  </div>
+</div>
