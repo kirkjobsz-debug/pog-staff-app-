@@ -96,6 +96,28 @@
   .ql-grid a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--border); }
   .ql-grid a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
+  .command-bar { background: linear-gradient(135deg, #1a2540, #0f1a30); border: 1px solid var(--accent-2); border-radius: 12px; padding: 14px 18px; margin-bottom: 18px; }
+  .command-bar h3 { margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-2); display: flex; align-items: center; gap: 6px; }
+  .command-bar .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .command-bar button, .command-bar a.btn { background: var(--panel-2); color: var(--accent-2); border: 1px solid var(--accent-2); border-radius: 16px; padding: 6px 12px; font-size: 12px; cursor: pointer; text-decoration: none; font-family: inherit; }
+  .command-bar button:hover, .command-bar a.btn:hover { background: var(--accent-2); color: var(--bg); }
+  .command-bar .note { margin: 8px 0 0 0; font-size: 11px; color: var(--muted); }
+
+  .finsum { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--warn); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+  .finsum summary { font-size: 14px; font-weight: 600; color: var(--warn); cursor: pointer; list-style: none; padding: 4px 0; }
+  .finsum summary::-webkit-details-marker { display: none; }
+  .finsum summary::before { content: "▶ "; font-size: 10px; color: var(--accent-2); }
+  .finsum[open] summary::before { content: "▼ "; }
+  .finsum .body { padding: 8px 0 4px 0; font-size: 13px; line-height: 1.55; }
+  .finsum .body .row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dotted var(--border); }
+  .finsum .body .row:last-child { border: none; }
+  .finsum .body .row .lbl { color: var(--muted); }
+  .finsum .body .row .val.r { color: var(--urgent); }
+  .finsum .body .row .val.g { color: var(--good); }
+  .finsum .body .row .val.y { color: var(--warn); }
+  .finsum .body .actions { margin-top: 10px; }
+  .finsum .body .actions a { color: var(--accent-2); margin-right: 12px; font-size: 12px; }
+
   .paste-mini { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid #f0a3ff; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
   .paste-mini h3 { margin: 0 0 6px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #f0a3ff; }
   .paste-mini p { margin: 0 0 6px 0; font-size: 11px; color: var(--muted); }
@@ -145,28 +167,51 @@
       <span class="ctx"><a href="https://mail.google.com/mail/u/0/#all/19e62d6be7cd845c" style="color: var(--accent-2); font-weight: 600;">→ Open Rukman Financial Matters thread, switch From, Send</a></span>
     </li>
     <li>
-      <span class="q">SEND draft → Rukman (Trade Licence / PHI + CEA next steps)</span>
-      <span class="ctx"><a href="https://mail.google.com/mail/u/0/#all/19e43818a2417afc" style="color: var(--accent-2); font-weight: 600;">→ Open Rukman Trade Licence thread, switch From, Send</a></span>
-    </li>
-    <li>
       <span class="q">SEND draft → Taara / SRP (6-day chase, prioritised top 4)</span>
       <span class="ctx"><a href="https://mail.google.com/mail/u/0/#all/19e245ffe8fbc16d" style="color: var(--accent-2); font-weight: 600;">→ Open Taara/SRP thread, switch From, Send</a></span>
     </li>
     <li>
-      <span class="q">SEND Friday financials chase to Erandi NOW (don't wait for 5pm scheduled)?</span>
-      <span class="ctx">Deadline tonight 9:30pm Mel (5pm Galle). Reply YES in Cowork chat for ollo to draft and stage. <a href="https://drive.google.com/drive/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77" style="color: var(--accent-2);">→ Check Weekly Financials 2026 folder</a></span>
+      <span class="q">SEND Friday financials chase to Erandi NOW?</span>
+      <span class="ctx">Deadline tonight 9:30pm Mel (5pm Galle). WE-29-May folder not yet created in Drive. <a href="https://drive.google.com/drive/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77" style="color: var(--accent-2);">→ Check folder</a> · reply YES in Cowork to draft chase.</span>
     </li>
     <li>
       <span class="q">APPROVE infoPG handover sharing (Phase 1)?</span>
-      <span class="ctx"><a href="https://drive.google.com/drive/folders/1UpJ7W36M7EJKzjdvlUSs1viz5yY7TD8v" style="color: var(--accent-2); font-weight: 600;">→ Open infoPG Handover Intake</a> · then share OUT to info@PG with Editor access. Procedure in chat history.</span>
-    </li>
-    <li>
-      <span class="q">DELETE 15 redundant scheduled tasks via Cowork UI?</span>
-      <span class="ctx">All disabled, won't fire. Open Cowork → Settings → Scheduled Tasks → delete each (list in chat).</span>
+      <span class="ctx"><a href="https://drive.google.com/drive/folders/1UpJ7W36M7EJKzjdvlUSs1viz5yY7TD8v" style="color: var(--accent-2); font-weight: 600;">→ Open infoPG Handover Intake</a> · share OUT to info@PG with Editor access.</span>
     </li>
   </ul>
-  <div class="footnote">ollo never auto-sends. This panel only shows what is waiting on your decision right now. It refreshes at every gen.</div>
+  <div class="footnote">Auto-refreshes every gen. Items disappear here once you act (Sent folder check + Drive verification). Rukman Trade Licence cleared at 13:06 Mel today. ✓</div>
 </div>
+
+<div class="command-bar">
+  <h3>Command ollo — tap to copy a prompt, then paste into Cowork chat</h3>
+  <div class="row">
+    <button onclick="navigator.clipboard.writeText('ollo: remove the calendar entry [TITLE] on [DATE]'); this.textContent='Copied!'">📅 Remove calendar entry</button>
+    <button onclick="navigator.clipboard.writeText('ollo: add task [TASK] due [DATE] to my list'); this.textContent='Copied!'">✓ Add task</button>
+    <button onclick="navigator.clipboard.writeText('ollo: draft a reply to [PERSON] saying [WHAT] — stage in Gmail Drafts'); this.textContent='Copied!'">✉️ Draft email</button>
+    <button onclick="navigator.clipboard.writeText('ollo: scan my inbox now for anything unreplied and classify FAST/WARM/STALE'); this.textContent='Copied!'">🔄 Scan inbox now</button>
+    <button onclick="navigator.clipboard.writeText('ollo: summarise this week financials and what is still missing for WE-29-May'); this.textContent='Copied!'">💰 Financials summary</button>
+    <button onclick="navigator.clipboard.writeText('ollo: rebuild the DCC midday now with current state'); this.textContent='Copied!'">🔁 Rebuild DCC now</button>
+  </div>
+  <p class="note">Vercel pages can't host live chat. This is the closest workaround: tap a button → prompt copies to clipboard → switch to Cowork app → paste → press Enter. If you want a fully live AI chat in the DCC instead, we'd convert the dashboard from Vercel to a Cowork artifact (loses iPhone home-screen persistence).</p>
+</div>
+
+<details class="finsum">
+  <summary>💰 Financials snapshot — quick read before approving anything</summary>
+  <div class="body">
+    <div class="row"><span class="lbl">Latest week submitted</span><span class="val g">WE-2026-05-22 ✓ (folder live)</span></div>
+    <div class="row"><span class="lbl">This week (WE-29-May)</span><span class="val r">Not started — folder not yet created by Erandi</span></div>
+    <div class="row"><span class="lbl">Deadline</span><span class="val y">Tonight 9:30pm Mel (5pm Galle)</span></div>
+    <div class="row"><span class="lbl">Items expected per week</span><span class="val">P&amp;L · daily sales · petty cash · NDB statement · supplier invoices · utilities</span></div>
+    <div class="row"><span class="lbl">Owner Need Docs (separate stream)</span><span class="val g">5 PDFs landed 26 May ✓ (supplier list, staff, cash float, software, inventory)</span></div>
+    <div class="row"><span class="lbl">Pending Galle cash asks</span><span class="val y">LKR 20k tile contractor · LKR 30k excise (on hold pending decision)</span></div>
+    <div class="row"><span class="lbl">SRP / Taara deliverables</span><span class="val r">6 days no reply since chase scope (balance sheet, tax tracker, ITR, AoA)</span></div>
+    <div class="actions">
+      <a href="https://drive.google.com/drive/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">→ Weekly Financials 2026 folder</a>
+      <a href="https://drive.google.com/drive/folders/1j0a39Ne_wM3ATC__Yg030CRlHWdhQq1R">→ Last week (WE-22-May)</a>
+      <a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">→ Owner Need Docs</a>
+    </div>
+  </div>
+</details>
 
 <div class="checkin">
   <h3>Midday check-in</h3>
@@ -189,9 +234,10 @@
   <div class="col">
     <h2 class="urgent">Urgent</h2>
     <ul>
-      <li><strong><a href="https://mail.google.com/mail/u/0/#all/19e43818a2417afc" style="color: var(--ink);">Rukman Trade Licence</a>:</strong> 25 May reply unanswered (4d STALE). Draft staged <span class="tag send">SEND</span></li>
+      <li style="color: var(--muted); text-decoration: line-through;">Rukman Trade Licence — sent 13:06 Mel ✓</li>
       <li><strong><a href="https://mail.google.com/mail/u/0/#all/19e62d6be7cd845c" style="color: var(--ink);">Rukman Financial Matters</a>:</strong> excise decision pending. Draft staged with 60-day P&amp;L ask <span class="tag send">SEND</span></li>
       <li><strong><a href="https://mail.google.com/mail/u/0/#all/19e245ffe8fbc16d" style="color: var(--ink);">Taara/SRP</a>:</strong> 6 days silent. Top-4 priority chase staged <span class="tag send">SEND</span></li>
+      <li><strong><a href="https://mail.google.com/mail/u/0/#all/19e4e83007e0ea6f" style="color: var(--ink);">Amila ack</a>:</strong> close-loop reply staged <span class="tag send">SEND</span></li>
       <li><strong><a href="https://drive.google.com/drive/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77" style="color: var(--ink);">Weekly Financials WE-29-May</a>:</strong> Erandi not uploaded. Deadline tonight 9:30pm Mel</li>
     </ul>
   </div>
