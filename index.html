@@ -10,61 +10,101 @@
 <link rel="manifest" href="manifest.json">
 <title>DCC v3 Midday — Fri 29 May 2026</title>
 <style>
-  :root{--bg:#0f1115;--panel:#181b22;--panel-2:#1f232c;--ink:#e8e8ea;--muted:#9aa0aa;--accent:#b878d6;--accent-2:#6ec1e4;--urgent:#ff6b6b;--good:#7ed957;--warn:#ffc857;--border:#2a2f3a}
-  *{box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;margin:0;padding:16px;line-height:1.45}
-  .wrap{max-width:1400px;margin:0 auto}
-  header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:12px;border-bottom:2px solid var(--accent);margin-bottom:16px}
-  h1{margin:0;font-size:22px;letter-spacing:0.5px}
-  h1 .name{color:var(--accent)}
-  .meta{color:var(--muted);font-size:13px;text-align:right}
-  .meta .gen{color:var(--accent-2);font-weight:600}
-  .refresh{display:inline-block;margin-top:6px;padding:6px 12px;background:var(--accent);color:#0f1115;border-radius:6px;font-weight:600;font-size:12px;text-decoration:none}
-  .travel-banner{background:#1a1400;border:2px solid var(--warn);border-radius:10px;padding:10px 16px;margin-bottom:16px;font-size:14px;color:var(--warn);font-weight:600;letter-spacing:0.3px;text-align:center}
-  .checkin{background:var(--panel);border-left:4px solid var(--accent-2);border-radius:10px;padding:12px 16px;margin-bottom:16px}
-  .checkin h3{margin:0 0 6px 0;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--accent-2)}
-  .checkin .body{font-size:14px}
-  .checkin .body strong{color:var(--warn)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
-  @media (max-width:900px){.grid{grid-template-columns:1fr}}
-  .col{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
-  .col h2{margin:0 0 10px 0;font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:6px}
-  .col h2.urgent{color:var(--urgent)}
-  .col h2.morning{color:var(--accent-2)}
-  .col h2.week{color:var(--warn)}
-  .col ul{margin:0;padding-left:18px}
-  .col li{margin-bottom:8px;font-size:14px}
-  .col li .tag{display:inline-block;background:var(--panel-2);color:var(--accent-2);padding:1px 6px;border-radius:3px;font-size:10px;margin-left:4px;vertical-align:middle}
-  .col li .tag.send{background:var(--urgent);color:#fff}
-  .col li .tag.draft{background:var(--accent);color:#0f1115}
-  .col li .tag.flag{background:var(--warn);color:#0f1115}
-  .capture{background:var(--panel);border:1px solid var(--border);border-left:4px solid #f0a3ff;border-radius:10px;padding:12px 16px;margin-bottom:18px}
-  .capture h3{margin:0 0 8px 0;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#f0a3ff}
-  .capture ul{margin:0;padding-left:18px}
-  .capture li{font-size:13px;margin-bottom:6px}
-  .quicklinks{background:var(--panel);border-top:3px solid var(--accent);border-radius:10px;padding:14px 16px;margin-bottom:18px}
-  .ql-title{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:10px}
-  .ql-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  @media (max-width:900px){.ql-grid{grid-template-columns:1fr 1fr}}
-  .ql-cat{font-size:12px;color:var(--accent-2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
-  .ql-grid ul{margin:0;padding-left:0;list-style:none}
-  .ql-grid li{margin-bottom:4px;font-size:13px}
-  .ql-grid a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--border)}
-  .ql-grid a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-  footer{border-top:1px solid var(--border);padding-top:10px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:16px}
-  footer .sig{color:var(--accent);font-weight:600}
+  :root {
+    --bg: #0f1115;
+    --panel: #181b22;
+    --panel-2: #1f232c;
+    --ink: #e8e8ea;
+    --muted: #9aa0aa;
+    --accent: #b878d6;
+    --accent-2: #6ec1e4;
+    --urgent: #ff6b6b;
+    --good: #7ed957;
+    --warn: #ffc857;
+    --border: #2a2f3a;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 16px; line-height: 1.45; }
+  .wrap { max-width: 1400px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); margin-bottom: 16px; }
+  h1 { margin: 0; font-size: 22px; letter-spacing: 0.5px; }
+  h1 .name { color: var(--accent); }
+  .meta { color: var(--muted); font-size: 13px; text-align: right; }
+  .meta .gen { color: var(--accent-2); font-weight: 600; }
+  .refresh { display: inline-block; margin-top: 6px; padding: 6px 12px; background: var(--accent); color: #0f1115; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; }
+
+  .status-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .pill { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 6px 12px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .pill .dot.r { background: var(--urgent); }
+  .pill .dot.y { background: var(--warn); }
+  .pill .dot.g { background: var(--good); }
+  .pill .lbl { font-weight: 600; color: var(--ink); }
+  .pill .sub { color: var(--muted); }
+
+  .travel-banner { background: #1a1400; border: 2px solid var(--warn); border-radius: 10px; padding: 10px 16px; margin-bottom: 16px; font-size: 14px; color: var(--warn); font-weight: 600; letter-spacing: 0.3px; text-align: center; }
+
+  .checkin { background: var(--panel); border: 1px solid var(--border); border-left: 4px solid var(--accent-2); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; }
+  .checkin h3 { margin: 0 0 6px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-2); }
+  .checkin p { margin: 0; font-size: 14px; }
+  .checkin strong { color: var(--warn); }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .col { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+  .col h2 { margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  .col h2.urgent { color: var(--urgent); }
+  .col h2.morning { color: var(--accent-2); }
+  .col h2.week { color: var(--warn); }
+  .col h2.wisdom { color: var(--good); }
+  .col h2.capture { color: #f0a3ff; }
+  .col ul { margin: 0; padding-left: 18px; }
+  .col li { margin-bottom: 8px; font-size: 14px; }
+  .col li .tag { display: inline-block; background: var(--panel-2); color: var(--accent-2); padding: 1px 6px; border-radius: 3px; font-size: 10px; margin-left: 4px; vertical-align: middle; }
+  .col li .tag.send { background: var(--urgent); color: #fff; }
+  .col li .tag.draft { background: var(--accent); color: #0f1115; }
+  .col li .tag.flag { background: var(--warn); color: #0f1115; }
+
+  .wisdoms { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+  .wisdoms h2 { margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--good); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+
+  .quicklinks { background: var(--panel); border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+  .ql-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+  .ql-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .ql-grid { grid-template-columns: 1fr 1fr; } }
+  .ql-cat { font-size: 12px; color: var(--accent-2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ql-grid ul { margin: 0; padding-left: 0; list-style: none; }
+  .ql-grid li { margin-bottom: 4px; font-size: 13px; }
+  .ql-grid a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--border); }
+  .ql-grid a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding-top: 10px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; }
+  footer .sig { color: var(--accent); font-weight: 600; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <header>
-  <h1>Daily Command Centre <span class="name">— Kirk</span></h1>
+  <div>
+    <h1>Daily Command Centre <span class="name">— Kirk</span></h1>
+    <div style="color: var(--muted); font-size: 13px; margin-top: 4px;">One page, four gens a day, everything in view.</div>
+  </div>
   <div class="meta">
     <div><span class="gen">Midday gen</span> · Friday 29 May 2026 · 12:00 AEST</div>
-    <a class="refresh" href="./?r=1" onclick="location.reload(true); return false;">Refresh</a>
+    <div>Auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
+    <a href="./?r=1" class="refresh" onclick="location.reload(true); return false;">&#8635; Refresh now</a>
   </div>
 </header>
+
+<div class="status-strip">
+  <div class="pill"><span class="dot y"></span><span class="lbl">PG Finance</span><span class="sub">4 drafts ready</span></div>
+  <div class="pill"><span class="dot r"></span><span class="lbl">SRP / Taara</span><span class="sub">chase staged · 6d silent</span></div>
+  <div class="pill"><span class="dot g"></span><span class="lbl">Gordon House</span><span class="sub">no action</span></div>
+  <div class="pill"><span class="dot g"></span><span class="lbl">Solomon</span><span class="sub">stable</span></div>
+  <div class="pill"><span class="dot g"></span><span class="lbl">Bookings</span><span class="sub">Amila sheet live</span></div>
+  <div class="pill"><span class="dot y"></span><span class="lbl">Continuity</span><span class="sub">say "ollo out" tonight</span></div>
+</div>
 
 <div class="travel-banner">
   Pullman Melbourne Albert Park check-in TODAY 2:00pm · Booking QKLSDDCQ · departure Sun 31 May 11:00am
@@ -72,95 +112,140 @@
 
 <div class="checkin">
   <h3>Midday check-in</h3>
-  <div class="body">
-    Half-day gone. <strong>4 drafts sitting in Gmail Drafts</strong> (Amila ack, Rukman trade licence, Rukman financial matters, Taara SRP chase) — switch From to ollo and send. Pullman check-in at 2pm. Friday financials check fires at 5pm.
-  </div>
+  <p>Half-day gone. <strong>4 drafts sitting in Gmail Drafts</strong> (Amila ack, Rukman trade licence, Rukman financial matters, Taara SRP chase). Switch From to ollo and send each one. Pullman check-in at 2pm. Friday financials check fires at 5pm.</p>
 </div>
 
 <div class="grid">
 
   <div class="col">
-    <h2 class="urgent">URGENT — send today</h2>
+    <h2>Today — still open</h2>
     <ul>
-      <li>Send Rukman <strong>Financial Matters</strong> draft (excise decision pending) <span class="tag draft">DRAFT</span></li>
-      <li>Send Rukman <strong>Trade Licence</strong> draft (PHI/CEA next steps) <span class="tag draft">DRAFT</span></li>
-      <li>Send Taara/SRP <strong>chase</strong> (6 days, prioritised top 4) <span class="tag draft">DRAFT</span></li>
-      <li>Send Amila <strong>close-loop</strong> ack <span class="tag draft">DRAFT</span></li>
-      <li>Approve Prasadi handover share + intake folder structure <span class="tag flag">CONFIRM</span></li>
+      <li><strong>Send 4 drafts</strong> in Gmail Drafts (Amila / Rukman fin / Rukman trade / Taara) <span class="tag draft">DRAFT</span></li>
+      <li><strong>Pullman check-in 2pm</strong> · pack DCC iPad + chargers</li>
+      <li><strong>Call Jemoin</strong> (new finance lady) · confirm she got the email · per Apple Notes "Do it" <span class="tag flag">DO IT</span></li>
+      <li><strong>NTB loan archive</strong> · pull repayment schedule from email · share with Jemoin <span class="tag">finance</span></li>
+      <li><strong>Approve Prasadi + infoPG handover folders</strong> · sharing waiting on your sign-off <span class="tag flag">confirm</span></li>
+      <li><strong>Friday Financials Check</strong> auto-runs 5:00pm · Erandi chase logic if not uploaded <span class="tag">scheduled</span></li>
     </ul>
   </div>
 
   <div class="col">
-    <h2 class="morning">TODAY — work in motion</h2>
+    <h2 class="urgent">Urgent</h2>
     <ul>
-      <li>Pullman check-in 2:00pm — pack DCC iPad ready</li>
-      <li>Call Jemoin (new finance lady) — confirm she received the email <span class="tag flag">DO IT</span></li>
-      <li>NTB loan archive — pull the loan repayment schedule from email so we understand the position</li>
-      <li>Friday financials check fires 5:00pm — Erandi chase logic if not uploaded</li>
-      <li>6:00pm DCC PM auto-gen · 8:00pm EOD save · 9:00pm DCC night push</li>
+      <li><strong>Rukman Trade Licence:</strong> 25 May reply unanswered — 4 days STALE. Draft staged on PHI/CEA next steps <span class="tag send">SEND</span></li>
+      <li><strong>Rukman Financial Matters:</strong> excise vs liquor decision pending. Draft staged with 60-day P&amp;L request <span class="tag send">SEND</span></li>
+      <li><strong>Taara/SRP:</strong> 6 days silent since "we'll review and get back". Chase staged with prioritised top-4 ask <span class="tag send">SEND</span></li>
+      <li><strong>Erandi infoPG handover:</strong> ollo asked her to drop files; zero from info@PG in Drive yet. Chase if not actioned by Mon</li>
+      <li><strong>15 redundant scheduled tasks</strong> still need UI delete from your end</li>
     </ul>
   </div>
 
   <div class="col">
-    <h2 class="week">THIS WEEK / NEXT</h2>
+    <h2 class="morning">Morning + Night rituals</h2>
     <ul>
-      <li>Rukman 60-day liquor revenue vs excise + COGS read</li>
-      <li>Rukman 2026 annual budget — even rough — by end next week</li>
-      <li>SRP Taara — chase ETA on top 4 deliverables by Tuesday Galle</li>
-      <li>Geoffrey Dobbs lease termination thread — spin off Cowork chat</li>
-      <li>info@PG password rotation post Prasadi audit</li>
-      <li>Delete 15 redundant scheduled tasks via Cowork UI</li>
+      <li><strong>AM:</strong> Check Apple Notes "Do it"</li>
+      <li><strong>AM:</strong> Scan Gmail Drafts before opening Inbox</li>
+      <li><strong>AM:</strong> Glance Three Wisdoms (full block in AM gen)</li>
+      <li><strong>AM + PM: Paste continuity prompt</strong> into every open claude.ai chat. Block below &#8595;</li>
+      <li><strong>End of day:</strong> say <strong style="color: #f0a3ff">"ollo out"</strong> anywhere (Cowork, iMessage) to log day</li>
+      <li><strong>Switch FROM to ollo</strong> before sending PG mail · alias only attaches at send time</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2 class="week">Tomorrow / this week</h2>
+    <ul>
+      <li><strong>Sat 30 May:</strong> Pullman Albert Park · clear weekend</li>
+      <li><strong>Sun 31 May:</strong> Pullman departure 11am · Getdown Services @ Corner Hotel (Khandi · Imagine · Yarra)</li>
+      <li><strong>Mon 1 Jun:</strong> Lora birthday party</li>
+      <li><strong>Tue 2 Jun:</strong> Taara/SRP deliverables ETA deadline (per today's chase)</li>
+      <li><strong>End next week:</strong> Rukman draft 2026 annual budget — even rough</li>
+      <li><strong>Pending spin-off:</strong> Geoffrey Dobbs lease termination · separate Cowork thread</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2 class="wisdom">Midday wisdom — short</h2>
+    <ul>
+      <li><strong>Tactical:</strong> 4 drafts in Drafts is 4 conversations frozen. Each Send unfreezes a thread.</li>
+      <li><strong>ADHD note:</strong> dopamine sits in the Send button. Get it now while the energy is here.</li>
+      <li style="color: var(--muted); font-size: 13px;">Full Three Wisdoms block returns in AM and PM gens.</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h2 class="capture">Kirk's reminders &amp; ideas (Apple Notes "Do it")</h2>
+    <ul>
+      <li><strong>Loan repayments:</strong> get onto Jemoin AND Rukman follow-up · call Jemoin, confirm email received <span class="tag flag">today</span></li>
+      <li><strong>NTB bank loan:</strong> archived repayment schedule · pull from email · understand · share with Jemoin if useful</li>
+      <li><strong>Accountant inheritance note:</strong> capture for Jemoin onboarding pack</li>
+      <li><a href="notes://showNote?name=Do%20it" style="color: var(--accent-2)">&#43; Add idea to "Do it" note</a></li>
     </ul>
   </div>
 
 </div>
 
-<div class="capture">
-  <h3>Kirk's reminders &amp; ideas (Apple Notes "Do it")</h3>
-  <ul>
-    <li>Loan repayments — get onto Jemoin AND get Rukman to follow up · call Jemoin, confirm she received the email</li>
-    <li>NTB bank loan repayment schedule is archived in email — pull it, understand the loan, share with Jemoin if useful</li>
-    <li>Note tail re accountant inheritance — capture for Jemoin onboarding pack</li>
-  </ul>
+<div class="wisdoms" style="border-left: 4px solid #f0a3ff;">
+  <h2 style="color: #f0a3ff;">Daily claude.ai paste procedure (AM + PM)</h2>
+  <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--muted);">Anthropic blocks scraping of claude.ai chats. So once in the morning and once before sleep, open every active claude.ai chat and paste this prompt at the end. It self-summarises and pushes to your Drive log. Then say "ollo out" to log completion.</p>
+  <div style="background: var(--bg); border: 1px dashed var(--accent); padding: 10px 12px; border-radius: 6px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.5; user-select: all;">
+Create a new Google Doc in my Drive folder "Kirk - Daily Continuity" (id 1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA).<br><br>
+Auto-derive a short 2-3 word topic from THIS conversation. Do NOT ask me -- pick a topic yourself.<br><br>
+Title the doc: chat-log [TOPIC] [today's date as YYYY-MM-DD]<br><br>
+Body should contain:<br>
+- One-paragraph summary of this conversation so far<br>
+- Key decisions made<br>
+- Action items I said I would do<br><br>
+Do not read other files. Create the doc with that content. Confirm when done with the doc link.
+  </div>
+  <p style="margin: 10px 0 0 0; font-size: 12px; color: var(--muted);">&#8593; Tap to select. Paste into each chat. When done for the day, say <strong style="color: #f0a3ff;">"ollo out"</strong> and ollo logs your day.</p>
 </div>
 
 <div class="quicklinks">
-  <div class="ql-title">Quick links</div>
+  <div class="ql-title">Quick Links</div>
   <div class="ql-grid">
 
     <div>
-      <div class="ql-cat">DCC / Drive</div>
+      <div class="ql-cat">Daily Ops</div>
       <ul>
-        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA" target="_blank">Kirk – Daily Continuity</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1cxJJI5lEovYdtUy8H1Bm2-4NPjIoA9sy" target="_blank">03 Prince of Galle</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g" target="_blank">Sri Lanka Accounting</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77" target="_blank">Weekly Financials 2026</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts (4 waiting)</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail Inbox &middot; mailmanchina</a></li>
+        <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
+        <li><a href="notes://showNote?name=Do%20it">Apple Notes -- Do it</a></li>
       </ul>
     </div>
 
     <div>
-      <div class="ql-cat">Finance handover</div>
+      <div class="ql-cat">Prince of Galle</div>
       <ul>
-        <li><a href="https://drive.google.com/drive/folders/1CiVhkjRo4CVIFTt8SvrYNYrOQCZ2hYNC" target="_blank">Prasadi Handover Intake</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1UpJ7W36M7EJKzjdvlUSs1viz5yY7TD8v" target="_blank">infoPG Handover Intake</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs" target="_blank">Erandi — Owner Need Docs</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1cxJJI5lEovYdtUy8H1Bm2-4NPjIoA9sy">03 Prince of Galle (master)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g">Sri Lanka Accounting</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">Weekly Financials 2026</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1CiVhkjRo4CVIFTt8SvrYNYrOQCZ2hYNC">Prasadi Handover Intake</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1UpJ7W36M7EJKzjdvlUSs1viz5yY7TD8v">infoPG Handover Intake</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">Erandi - Owner Need Docs</a></li>
+        <li><a href="https://admin.booking.com">Booking.com partner</a></li>
+        <li><a href="https://ycs.agoda.com">Agoda YCS</a></li>
       </ul>
     </div>
 
     <div>
-      <div class="ql-cat">Mail / Calendar</div>
+      <div class="ql-cat">ollo system</div>
       <ul>
-        <li><a href="https://mail.google.com/mail/u/0/#drafts" target="_blank">Gmail Drafts (4 waiting)</a></li>
-        <li><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">Inbox (mailmanchina)</a></li>
-        <li><a href="https://calendar.google.com" target="_blank">Calendar</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews folder</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk -- Daily Continuity folder</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
+        <li><a href="https://pog-staff-app-2.vercel.app/">DCC on Vercel (this page)</a></li>
       </ul>
     </div>
 
     <div>
-      <div class="ql-cat">Ventures / Legal</div>
+      <div class="ql-cat">Legal / Property / Ventures</div>
       <ul>
-        <li><a href="https://drive.google.com/drive/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB" target="_blank">04 Solomon Spirits</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1" target="_blank">PG Performance Reviews</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal -- Jobsz &amp; Lawless</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1bNjSb6Ee1fc3C9-zQkRESCJRetPRMmvf">02 Property &amp; Trust</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">04 Solomon Spirits (Distillery)</a></li>
       </ul>
     </div>
 
@@ -168,8 +253,8 @@
 </div>
 
 <footer>
-  <div>DCC v3 · Friday 29 May 2026 · Midday · auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
-  <div class="sig">ollo · fix file &amp; sort</div>
+  <div>DCC v3 &middot; Friday 29 May 2026 &middot; Midday &middot; auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
+  <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
 </div>
