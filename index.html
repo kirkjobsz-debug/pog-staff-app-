@@ -32,6 +32,8 @@
   .meta { color: var(--muted); font-size: 13px; text-align: right; }
   .meta .gen { color: var(--accent-2); font-weight: 600; }
   .refresh { display: inline-block; margin-top: 6px; padding: 6px 12px; background: var(--accent); color: #0f1115; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; }
+  .refresh.live { background: var(--good); margin-left: 6px; }
+  .refresh-note { color: var(--muted); font-size: 11px; margin-top: 4px; font-style: italic; }
 
   .status-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
   .pill { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 6px 12px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; }
@@ -138,7 +140,8 @@
   <div class="meta">
     <div><span class="gen">Midday gen</span> · Friday 29 May 2026 · 12:00 AEST</div>
     <div>Auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
-    <a href="./?r=1" class="refresh" onclick="location.reload(true); return false;">&#8635; Refresh now</a>
+    <a href="./?r=1" class="refresh" onclick="location.reload(true); return false;">&#8635; Reload page</a>
+    <div class="refresh-note">Reload = re-fetch this snapshot. For LIVE state open ollo DCC Live in Cowork.</div>
   </div>
 </header>
 
