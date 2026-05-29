@@ -67,6 +67,14 @@
 
   .wisdoms { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
   .wisdoms h2 { margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--good); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  .wisdom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .wisdom-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .wisdom-grid { grid-template-columns: 1fr; } }
+  .wcard { background: var(--panel-2); border-radius: 8px; padding: 10px 12px; border-left: 3px solid var(--good); }
+  .wcard .src { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .wcard .body { font-size: 13px; }
+  .wcard.word { border-left-color: var(--accent); }
+  .wcard.word .term { color: var(--accent); font-weight: 700; font-size: 15px; }
 
   .quicklinks { background: var(--panel); border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
   .ql-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
@@ -183,6 +191,33 @@
     </ul>
   </div>
 
+</div>
+
+<div class="wisdoms">
+  <h2>Three Wisdoms + Word of the day — Midday</h2>
+  <div class="wisdom-grid">
+
+    <div class="wcard">
+      <div class="src">Mental health — Gabor Maté</div>
+      <div class="body">"The attempt to escape from pain is what creates more pain. The way out is not running, but turning toward what you have been avoiding."</div>
+    </div>
+
+    <div class="wcard">
+      <div class="src">Philosophy — Alan Watts</div>
+      <div class="body">"This is the real secret of life — to be completely engaged with what you are doing in the here and now. And instead of calling it work, realise it is play."</div>
+    </div>
+
+    <div class="wcard">
+      <div class="src">AI / Cowork tip</div>
+      <div class="body">When a scheduled task fails silently, it almost always means a path. Hard-code paths under your owned folder, not under a session ID. The Vercel push works now because the PAT and the HTML both live in ~/ollo/.</div>
+    </div>
+
+    <div class="wcard word">
+      <div class="src">Word of the day</div>
+      <div class="body"><span class="term">Stalwart</span> /ˈstɔːl.wət/ &mdash; Loyal, reliable, and hard-working. <em>"The stalwart hand at midday is the one that has not flinched since dawn."</em></div>
+    </div>
+
+  </div>
 </div>
 
 <div class="wisdoms" style="border-left: 4px solid #f0a3ff;">
