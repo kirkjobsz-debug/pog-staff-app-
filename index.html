@@ -49,6 +49,16 @@
   .checkin p { margin: 0; font-size: 14px; }
   .checkin strong { color: var(--warn); }
 
+  .approvals { background: #2a0a0a; border: 3px solid var(--urgent); border-radius: 12px; padding: 16px 18px; margin-bottom: 18px; box-shadow: 0 0 24px rgba(255,107,107,0.15); }
+  .approvals h2 { margin: 0 0 12px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--urgent); display: flex; align-items: center; gap: 8px; }
+  .approvals h2 .blink { display: inline-block; width: 12px; height: 12px; background: var(--urgent); border-radius: 50%; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0.3; } }
+  .approvals ul { margin: 0; padding-left: 0; list-style: none; }
+  .approvals li { margin-bottom: 10px; font-size: 15px; padding: 8px 12px; background: rgba(0,0,0,0.3); border-left: 3px solid var(--warn); border-radius: 4px; }
+  .approvals li .q { color: var(--warn); font-weight: 700; }
+  .approvals li .ctx { color: var(--muted); font-size: 13px; display: block; margin-top: 3px; }
+  .approvals .footnote { color: var(--muted); font-size: 12px; margin-top: 10px; font-style: italic; }
+
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
   @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
   .col { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
@@ -86,6 +96,11 @@
   .ql-grid a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--border); }
   .ql-grid a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
+  .paste-mini { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid #f0a3ff; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+  .paste-mini h3 { margin: 0 0 6px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #f0a3ff; }
+  .paste-mini p { margin: 0 0 6px 0; font-size: 11px; color: var(--muted); }
+  .paste-mini .snippet { background: var(--bg); border: 1px dashed var(--accent); padding: 6px 10px; border-radius: 4px; font-family: ui-monospace, Menlo, monospace; font-size: 10px; line-height: 1.4; color: var(--ink); user-select: all; max-height: 60px; overflow: auto; }
+
   footer { border-top: 1px solid var(--border); padding-top: 10px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; }
   footer .sig { color: var(--accent); font-weight: 600; }
 </style>
@@ -118,9 +133,32 @@
   Pullman Melbourne Albert Park check-in TODAY 2:00pm · Booking QKLSDDCQ · departure Sun 31 May 11:00am
 </div>
 
+<div class="approvals">
+  <h2><span class="blink"></span>Awaiting your YES / NO</h2>
+  <ul>
+    <li>
+      <span class="q">SEND the 4 Gmail drafts now?</span>
+      <span class="ctx">Amila ack · Rukman Financial Matters · Rukman Trade Licence · Taara/SRP chase. <a href="https://mail.google.com/mail/u/0/#drafts" style="color: var(--accent-2)">Open Drafts</a> · switch From to ollo · send each.</span>
+    </li>
+    <li>
+      <span class="q">SEND Friday financials chase to Erandi now (vs wait for 5pm scheduled check)?</span>
+      <span class="ctx">Deadline tonight 9:30pm Mel (5pm Galle). Erandi has not uploaded WE-2026-05-29 yet. Reply YES in Cowork for ollo to draft and send.</span>
+    </li>
+    <li>
+      <span class="q">APPROVE Prasadi + infoPG handover share procedure?</span>
+      <span class="ctx">Intake folders created. Waiting on you to share IN to mailmanchina from info@PG (Phase 1 step-by-step in chat).</span>
+    </li>
+    <li>
+      <span class="q">DELETE the 15 redundant scheduled tasks via Cowork UI?</span>
+      <span class="ctx">All already disabled, won't fire. Just need cleanup. List in chat history.</span>
+    </li>
+  </ul>
+  <div class="footnote">ollo never auto-sends. This panel only shows what is waiting on your decision right now. It refreshes at every gen.</div>
+</div>
+
 <div class="checkin">
   <h3>Midday check-in</h3>
-  <p>Half-day gone. <strong>4 drafts sitting in Gmail Drafts</strong> (Amila ack, Rukman trade licence, Rukman financial matters, Taara SRP chase). Switch From to ollo and send each one. Pullman check-in at 2pm. Friday financials check fires at 5pm.</p>
+  <p>Half-day gone. <strong>4 drafts sitting in Gmail Drafts</strong>. Pullman check-in at 2pm. Friday financials check fires at 5pm Mel (9:30pm = 5pm Galle deadline).</p>
 </div>
 
 <div class="grid">
@@ -128,23 +166,21 @@
   <div class="col">
     <h2>Today — still open</h2>
     <ul>
-      <li><strong>Send 4 drafts</strong> in Gmail Drafts (Amila / Rukman fin / Rukman trade / Taara) <span class="tag draft">DRAFT</span></li>
+      <li><strong>Send 4 drafts</strong> in Gmail (Amila / Rukman fin / Rukman trade / Taara) <span class="tag draft">DRAFT</span></li>
       <li><strong>Pullman check-in 2pm</strong> · pack DCC iPad + chargers</li>
       <li><strong>Call Jemoin</strong> (new finance lady) · confirm she got the email · per Apple Notes "Do it" <span class="tag flag">DO IT</span></li>
       <li><strong>NTB loan archive</strong> · pull repayment schedule from email · share with Jemoin <span class="tag">finance</span></li>
-      <li><strong>Approve Prasadi + infoPG handover folders</strong> · sharing waiting on your sign-off <span class="tag flag">confirm</span></li>
-      <li><strong>Friday Financials Check</strong> auto-runs 5:00pm · Erandi chase logic if not uploaded <span class="tag">scheduled</span></li>
+      <li><strong>Friday Financials Check</strong> auto-runs 5:00pm Mel · Erandi chase logic <span class="tag">scheduled</span></li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="urgent">Urgent</h2>
     <ul>
-      <li><strong>Rukman Trade Licence:</strong> 25 May reply unanswered — 4 days STALE. Draft staged on PHI/CEA next steps <span class="tag send">SEND</span></li>
+      <li><strong>Rukman Trade Licence:</strong> 25 May reply unanswered (4 days STALE). Draft staged on PHI/CEA next steps <span class="tag send">SEND</span></li>
       <li><strong>Rukman Financial Matters:</strong> excise vs liquor decision pending. Draft staged with 60-day P&amp;L request <span class="tag send">SEND</span></li>
-      <li><strong>Taara/SRP:</strong> 6 days silent since "we'll review and get back". Chase staged with prioritised top-4 ask <span class="tag send">SEND</span></li>
-      <li><strong>Erandi infoPG handover:</strong> ollo asked her to drop files; zero from info@PG in Drive yet. Chase if not actioned by Mon</li>
-      <li><strong>15 redundant scheduled tasks</strong> still need UI delete from your end</li>
+      <li><strong>Taara/SRP:</strong> 6 days silent. Chase staged with prioritised top-4 ask <span class="tag send">SEND</span></li>
+      <li><strong>Weekly Financials WE-29-May:</strong> Erandi has not uploaded. Deadline tonight 5pm Galle (9:30pm Mel)</li>
     </ul>
   </div>
 
@@ -152,11 +188,11 @@
     <h2 class="morning">Morning + Night rituals</h2>
     <ul>
       <li><strong>AM:</strong> Check Apple Notes "Do it"</li>
-      <li><strong>AM:</strong> Scan Gmail Drafts before opening Inbox</li>
-      <li><strong>AM:</strong> Glance Three Wisdoms (full block in AM gen)</li>
-      <li><strong>AM + PM: Paste continuity prompt</strong> into every open claude.ai chat. Block below &#8595;</li>
-      <li><strong>End of day:</strong> say <strong style="color: #f0a3ff">"ollo out"</strong> anywhere (Cowork, iMessage) to log day</li>
-      <li><strong>Switch FROM to ollo</strong> before sending PG mail · alias only attaches at send time</li>
+      <li><strong>AM:</strong> Scan Gmail Drafts before Inbox</li>
+      <li><strong>AM:</strong> Read Three Wisdoms (below)</li>
+      <li><strong>iPhone / Watch shortcut</strong> writes to "Do it" Apple Note · DCC reads it 4x daily · all flows in automatically</li>
+      <li><strong>End of day:</strong> say <strong style="color: #f0a3ff">"ollo out"</strong> anywhere</li>
+      <li><strong>Switch FROM to ollo</strong> before sending PG mail</li>
     </ul>
   </div>
 
@@ -166,27 +202,27 @@
       <li><strong>Sat 30 May:</strong> Pullman Albert Park · clear weekend</li>
       <li><strong>Sun 31 May:</strong> Pullman departure 11am · Getdown Services @ Corner Hotel (Khandi · Imagine · Yarra)</li>
       <li><strong>Mon 1 Jun:</strong> Lora birthday party</li>
-      <li><strong>Tue 2 Jun:</strong> Taara/SRP deliverables ETA deadline (per today's chase)</li>
-      <li><strong>End next week:</strong> Rukman draft 2026 annual budget — even rough</li>
-      <li><strong>Pending spin-off:</strong> Geoffrey Dobbs lease termination · separate Cowork thread</li>
+      <li><strong>Tue 2 Jun:</strong> Taara/SRP deliverables ETA deadline</li>
+      <li><strong>End next week:</strong> Rukman draft 2026 annual budget</li>
+      <li><strong>Pending spin-off:</strong> Geoffrey Dobbs lease termination thread</li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="wisdom">Midday wisdom — short</h2>
     <ul>
-      <li><strong>Tactical:</strong> 4 drafts in Drafts is 4 conversations frozen. Each Send unfreezes a thread.</li>
-      <li><strong>ADHD note:</strong> dopamine sits in the Send button. Get it now while the energy is here.</li>
-      <li style="color: var(--muted); font-size: 13px;">Full Three Wisdoms block returns in AM and PM gens.</li>
+      <li><strong>Tactical:</strong> 4 drafts in Drafts is 4 frozen conversations. Each Send unfreezes one.</li>
+      <li><strong>ADHD note:</strong> dopamine sits in the Send button. Get it while the energy is here.</li>
+      <li style="color: var(--muted); font-size: 13px;">Full Wisdoms block below.</li>
     </ul>
   </div>
 
   <div class="col">
     <h2 class="capture">Kirk's reminders &amp; ideas (Apple Notes "Do it")</h2>
     <ul>
-      <li><strong>Loan repayments:</strong> get onto Jemoin AND Rukman follow-up · call Jemoin, confirm email received <span class="tag flag">today</span></li>
-      <li><strong>NTB bank loan:</strong> archived repayment schedule · pull from email · understand · share with Jemoin if useful</li>
-      <li><strong>Accountant inheritance note:</strong> capture for Jemoin onboarding pack</li>
+      <li><strong>Loan repayments:</strong> Jemoin + Rukman follow-up · call Jemoin, confirm email received <span class="tag flag">today</span></li>
+      <li><strong>NTB bank loan:</strong> archived repayment schedule · pull from email</li>
+      <li><strong>Accountant inheritance note:</strong> capture for Jemoin onboarding</li>
       <li><a href="notes://showNote?name=Do%20it" style="color: var(--accent-2)">&#43; Add idea to "Do it" note</a></li>
     </ul>
   </div>
@@ -204,12 +240,12 @@
 
     <div class="wcard">
       <div class="src">Philosophy — Alan Watts</div>
-      <div class="body">"This is the real secret of life — to be completely engaged with what you are doing in the here and now. And instead of calling it work, realise it is play."</div>
+      <div class="body">"This is the real secret of life: to be completely engaged with what you are doing in the here and now. Instead of calling it work, realise it is play."</div>
     </div>
 
     <div class="wcard">
       <div class="src">AI / Cowork tip</div>
-      <div class="body">When a scheduled task fails silently, it almost always means a path. Hard-code paths under your owned folder, not under a session ID. The Vercel push works now because the PAT and the HTML both live in ~/ollo/.</div>
+      <div class="body">A reliable dashboard beats a clever one. Front and centre, every confirmation that needs your eye. Bury the rituals. Let the urgent breathe at the top.</div>
     </div>
 
     <div class="wcard word">
@@ -220,22 +256,6 @@
   </div>
 </div>
 
-<div class="wisdoms" style="border-left: 4px solid #f0a3ff;">
-  <h2 style="color: #f0a3ff;">Daily claude.ai paste procedure (AM + PM)</h2>
-  <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--muted);">Anthropic blocks scraping of claude.ai chats. So once in the morning and once before sleep, open every active claude.ai chat and paste this prompt at the end. It self-summarises and pushes to your Drive log. Then say "ollo out" to log completion.</p>
-  <div style="background: var(--bg); border: 1px dashed var(--accent); padding: 10px 12px; border-radius: 6px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.5; user-select: all;">
-Create a new Google Doc in my Drive folder "Kirk - Daily Continuity" (id 1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA).<br><br>
-Auto-derive a short 2-3 word topic from THIS conversation. Do NOT ask me -- pick a topic yourself.<br><br>
-Title the doc: chat-log [TOPIC] [today's date as YYYY-MM-DD]<br><br>
-Body should contain:<br>
-- One-paragraph summary of this conversation so far<br>
-- Key decisions made<br>
-- Action items I said I would do<br><br>
-Do not read other files. Create the doc with that content. Confirm when done with the doc link.
-  </div>
-  <p style="margin: 10px 0 0 0; font-size: 12px; color: var(--muted);">&#8593; Tap to select. Paste into each chat. When done for the day, say <strong style="color: #f0a3ff;">"ollo out"</strong> and ollo logs your day.</p>
-</div>
-
 <div class="quicklinks">
   <div class="ql-title">Quick Links</div>
   <div class="ql-grid">
@@ -244,7 +264,7 @@ Do not read other files. Create the doc with that content. Confirm when done wit
       <div class="ql-cat">Daily Ops</div>
       <ul>
         <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts (4 waiting)</a></li>
-        <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail Inbox &middot; mailmanchina</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail Inbox</a></li>
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
         <li><a href="notes://showNote?name=Do%20it">Apple Notes -- Do it</a></li>
@@ -254,24 +274,23 @@ Do not read other files. Create the doc with that content. Confirm when done wit
     <div>
       <div class="ql-cat">Prince of Galle</div>
       <ul>
-        <li><a href="https://drive.google.com/drive/u/0/folders/1cxJJI5lEovYdtUy8H1Bm2-4NPjIoA9sy">03 Prince of Galle (master)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1cxJJI5lEovYdtUy8H1Bm2-4NPjIoA9sy">03 Prince of Galle</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g">Sri Lanka Accounting</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">Weekly Financials 2026</a></li>
         <li><a href="https://drive.google.com/drive/folders/1CiVhkjRo4CVIFTt8SvrYNYrOQCZ2hYNC">Prasadi Handover Intake</a></li>
         <li><a href="https://drive.google.com/drive/folders/1UpJ7W36M7EJKzjdvlUSs1viz5yY7TD8v">infoPG Handover Intake</a></li>
         <li><a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">Erandi - Owner Need Docs</a></li>
         <li><a href="https://admin.booking.com">Booking.com partner</a></li>
-        <li><a href="https://ycs.agoda.com">Agoda YCS</a></li>
       </ul>
     </div>
 
     <div>
       <div class="ql-cat">ollo system</div>
       <ul>
-        <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews folder</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk -- Daily Continuity folder</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA">Kirk -- Daily Continuity</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
-        <li><a href="https://pog-staff-app-2.vercel.app/">DCC on Vercel (this page)</a></li>
+        <li><a href="https://pog-staff-app-2.vercel.app/">DCC on Vercel</a></li>
       </ul>
     </div>
 
@@ -280,11 +299,17 @@ Do not read other files. Create the doc with that content. Confirm when done wit
       <ul>
         <li><a href="https://drive.google.com/drive/u/0/folders/17C4cvYBuEG8a5_A6857LD7TS5Qd85_-4">01 Legal -- Jobsz &amp; Lawless</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1bNjSb6Ee1fc3C9-zQkRESCJRetPRMmvf">02 Property &amp; Trust</a></li>
-        <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">04 Solomon Spirits (Distillery)</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1JPkVASAmb0KfEMkdfl5Yh0a19OzG8wBB">04 Solomon Spirits</a></li>
       </ul>
     </div>
 
   </div>
+</div>
+
+<div class="paste-mini">
+  <h3>Paste procedure for claude.ai chats (AM + PM)</h3>
+  <p>Open each active claude.ai chat AM and PM. Paste below. Tap snippet to select. Then say "ollo out" to close the day.</p>
+  <div class="snippet">Create a new Google Doc in my Drive folder "Kirk - Daily Continuity" (id 1GwOzzgOTRPXqaMwloYHGOfmbi26xbvHA). Auto-derive a short 2-3 word topic from THIS conversation. Title: chat-log [TOPIC] [today's date YYYY-MM-DD]. Body: 1-paragraph summary, key decisions, action items. Confirm with the doc link.</div>
 </div>
 
 <footer>
