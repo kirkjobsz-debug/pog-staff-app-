@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: PM at 2026-05-30T08:08:09.000728Z -->
+<!-- DCC gen: AM at 2026-05-31T02:37:25.135722Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="PM-2026-05-30T08:08:09.000728Z">
+<meta name="dcc-gen" content="AM-2026-05-31T02:37:25.135722Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -25,6 +25,8 @@
   .header-right { text-align: right; font-size: 12px; color: var(--muted); }
   .gen-label { color: var(--accent-2); font-weight: 700; }
   .refresh-btn { display: inline-block; margin-top: 6px; padding: 5px 12px; background: var(--accent); color: #0f1115; border-radius: 5px; font-weight: 700; font-size: 11px; text-decoration: none; cursor: pointer; border: none; }
+  .snapshot-banner { background: var(--panel-2); border: 1px dashed var(--accent-2); border-radius: 7px; padding: 7px 12px; margin-bottom: 12px; font-size: 12px; color: var(--muted); }
+  .snapshot-banner strong { color: var(--accent-2); }
   .status-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 10px 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
   .status-pill { display: flex; align-items: center; gap: 5px; font-size: 12px; padding: 3px 8px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--border); white-space: nowrap; }
   .status-pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
@@ -96,28 +98,33 @@
 <header>
   <div class="header-left">
     <h1>Daily Command Centre <span class="name">&mdash; Kirk</span></h1>
-    <div class="tagline">All ventures. One view. Weekend edition. Melbourne evening, Galle mid-afternoon.</div>
+    <div class="tagline">All ventures. One view. Sunday morning Melbourne, early afternoon Galle. Move day.</div>
   </div>
   <div class="header-right">
-    <div><span class="gen-label">PM gen</span> &middot; Saturday 30 May 2026 &middot; 18:00 AEST</div>
-    <div style="margin-top:3px;">Next gen: 21:00 AEST</div>
+    <div><span class="gen-label">AM gen</span> &middot; Sunday 31 May 2026 &middot; 06:00 AEST</div>
+    <div style="margin-top:3px;">Next gen: 12:00 AEST</div>
     <a href="./?r=1" class="refresh-btn" onclick="location.reload(true); return false;">&#8635; Refresh</a>
   </div>
 </header>
 
+<!-- SNAPSHOT BANNER -->
+<div class="snapshot-banner">
+  <strong>Snapshot from 06:00 AEST today.</strong> For live state use the Cowork artifact ollo-dcc-live. Vercel page refreshes at 12:00 / 18:00 / 21:00.
+</div>
+
 <!-- STATUS STRIP -->
 <div class="status-strip">
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">PG Finance</span><span class="pill-val">WE-29 P&amp;L &minus;LKR 392K &middot; Tue run LKR 141K</span></div>
-  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">8 days silent &middot; escalate to Aaron</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">PG Finance</span><span class="pill-val">WE-29 P&amp;L &minus;LKR 392K &middot; Tue run LKR 141K to approve</span></div>
+  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">9 days silent &middot; escalate to Aaron</span></div>
   <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Gordon House</span><span class="pill-val">ballot pending</span></div>
   <div class="status-pill"><span class="dot dot-green"></span><span class="pill-label">Solomon</span><span class="pill-val">stable</span></div>
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Bookings</span><span class="pill-val">2 guest msgs waiting &middot; Neisha in</span></div>
-  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">say "ollo out" tonight</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Bookings</span><span class="pill-val">Archit awaiting pay link &middot; arrivals today</span></div>
+  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">AM gen pushed &middot; say "ollo out" tonight</span></div>
 </div>
 
 <!-- TRAVEL BANNER -->
 <div class="travel-banner">
-  <strong>Tonight:</strong> Pullman Melbourne Albert Park &middot; Booking QKLSDDCQ &middot; 65 Queens Road, Albert Park &middot; +61 3 9529 4300. <strong>Tomorrow is a move day:</strong> checkout Sun 31 May 11:00am &rarr; St Kilda (Breezy Studio, 50 Fitzroy St). Pack tonight.
+  <strong>Move day today.</strong> Pullman Melbourne Albert Park checkout 11:00am (Booking QKLSDDCQ, 65 Queens Road, Albert Park). Then St Kilda: Breezy Studio, 50 Fitzroy St (your home base to 30 Sep). Tonight: Getdown Services at Corner Hotel (Khandi, Imagine, Yarra).
 </div>
 
 <!-- APPROVALS -->
@@ -125,24 +132,28 @@
   <h2><span class="blink"></span>Awaiting your YES / NO &mdash; tap each to act</h2>
   <ul>
     <li>
-      <span class="q">Gmail Drafts are empty right now (0 staged)</span>
-      <span class="ctx">The 3 PG drafts flagged this morning are no longer sitting in Drafts. If you still want any of them sent, say the word and ollo will re-stage. <a href="https://mail.google.com/mail/u/0/#drafts">Check Drafts</a></span>
+      <span class="q">Approve the Tuesday 2 June payment run &mdash; LKR 141,040.91</span>
+      <span class="ctx">Standard recurring. Dhanayaka fruits 8,770 &middot; Shashika quail eggs / bread 2,705 &middot; Mailman Lanka debit card top-up 100,000 &middot; Munzir / Sea Fair 29,565.91. The 100K top-up sits inside that total. <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">Open WE-29 folder</a></span>
     </li>
     <li>
-      <span class="q">Reply to Chandima (bookkeeper) &mdash; she answered warmly today</span>
-      <span class="ctx">accntaxation@gmail.com replied 30 May to ollo's intro, cc gm@ and office@. Good momentum. YES = ollo drafts a follow-up to set up a call. <a href="https://mail.google.com/mail/u/0/#search/from%3Aaccntaxation%40gmail.com">Open thread</a></span>
+      <span class="q">Send the Erandi receipt draft (1 staged in Drafts)</span>
+      <span class="ctx">ollo to Erandi, cc gm@: acknowledges the WE-29 pack and gently notes approvals should come by email, not Drive upload alone. YES = switch FROM to ollo and send. <a href="https://mail.google.com/mail/u/0/#drafts">Open Drafts</a></span>
     </li>
     <li>
-      <span class="q">Answer the open Booking.com guest messages (2 flagged waiting)</span>
-      <span class="ctx">Neisha Joseph (penthouse upgrade price, arrived TODAY) &middot; Christina Freeman (ID follow-up) &middot; Archit Chauhan (how to pay, 17 Jun). <a href="https://admin.booking.com">Open Booking.com</a></span>
+      <span class="q">Reply to Archit Chauhan &mdash; he is waiting on a payment link</span>
+      <span class="ctx">Guest messaged 30 May: "I am waiting for payment link, I will make the payment." Stay 17 Jun. Send the link or a how-to-pay reply to close it. <a href="https://admin.booking.com">Open Booking.com</a></span>
     </li>
     <li>
-      <span class="q">Taara / SRP &mdash; 8 days silent. Escalate to Aaron?</span>
-      <span class="ctx">Last reply 22 May "will get back to you soon". YES = ollo drafts a direct note to aaron@srpitl.com. Some accounting docs did land in Drive today (see capture digest).</span>
+      <span class="q">Taara / SRP &mdash; 9 days silent. Escalate to Aaron?</span>
+      <span class="ctx">Last substantive reply 22 May. YES = ollo drafts a direct note to aaron@srpitl.com on the balance sheet, tax tracker, ITR and Articles of Association. <a href="https://mail.google.com/mail/u/0/#search/srpitl.com">Open SRP thread</a></span>
     </li>
     <li>
-      <span class="q">Call Jemoin (new finance lady) &mdash; confirm she got the email</span>
-      <span class="ctx">From Apple Notes "Do it". Then pull the NTB loan repayment schedule from email and share it with her. Chase Rukman to follow up too.</span>
+      <span class="q">Schedule the Chandima bookkeeper call</span>
+      <span class="ctx">She replied warmly (accntaxation@gmail.com), you answered 30 May. Next step is a time. YES = ollo drafts a short note offering two slots this week. <a href="https://mail.google.com/mail/u/0/#search/from%3Aaccntaxation%40gmail.com">Open thread</a></span>
+    </li>
+    <li>
+      <span class="q">Push Erandi to email approvals, not Drive upload only?</span>
+      <span class="ctx">Two weeks running the pack landed in Drive with no email. The receipt draft above already nudges this. YES = make it a standing rule and ollo will chase any silent upload.</span>
     </li>
   </ul>
   <div class="footnote">ollo never auto-sends. This panel refreshes every gen.</div>
@@ -152,58 +163,59 @@
 <div class="grid">
 
   <div class="col">
-    <div class="col-head today">Today &mdash; what happened &amp; still open</div>
+    <div class="col-head today">Today &mdash; still open</div>
     <ul>
-      <li><strong>Bookkeeper moved:</strong> Chandima replied warmly to ollo's intro today (cc gm@, office@). The search is alive. Reply to lock a call. <span class="tag tag-green">progress</span></li>
-      <li><strong>Neisha Joseph arrived today</strong> and her penthouse upgrade quote is still unanswered. Close it before tonight. <span class="tag tag-yellow">guest</span></li>
-      <li><strong>Gmail Drafts cleared to zero:</strong> the 3 PG drafts from this morning are no longer staged. Confirm that was intended. <span class="tag tag-purple">drafts</span></li>
-      <li><strong>Accounting docs landed in Drive:</strong> SRP activity statements + Articles of Association now in the Sri Lanka Accounting folder. <span class="tag tag-grey">drive</span></li>
-      <li><strong>Amika Omoto (Aug):</strong> booked then cancelled within hours. Net zero, no action. <span class="tag tag-grey">closed</span></li>
+      <li><strong>Move day:</strong> Pullman checkout is 11:00am. Bags out, then St Kilda. <span class="tag tag-blue">move</span></li>
+      <li><strong>Approve the Tuesday payment run</strong> (LKR 141,040.91) before Monday so Erandi can action it. <span class="tag tag-yellow">approve</span></li>
+      <li><strong>Archit guest:</strong> still waiting on a payment link. One reply closes it. <span class="tag tag-red">reply</span></li>
+      <li><strong>Arrivals today:</strong> Booking.com flagged reservations arriving today or tomorrow at PG. Quick glance so nothing slips. <span class="tag tag-grey">bookings</span></li>
+      <li><strong>Chandima:</strong> she has replied, you have replied. Lock a call time this week. <span class="tag tag-green">progress</span></li>
     </ul>
   </div>
 
   <div class="col">
-    <div class="col-head urgent">Urgent &mdash; not yet sent today</div>
+    <div class="col-head urgent">Urgent</div>
     <ul>
-      <li><strong>Guest replies outstanding:</strong> Neisha (upgrade price), Christina (ID follow-up), Archit (how to pay). None answered yet. Quick wins before the day closes. <span class="tag tag-red">reply</span></li>
-      <li><strong>Taara / SRP &mdash; 8 days silent:</strong> last reply 22 May. Decide tonight or first thing AM whether to go direct to Aaron (aaron@srpitl.com). <span class="tag tag-red">escalate</span></li>
-      <li><strong>Tuesday payment run:</strong> LKR 141,041 for 02 Jun (incl. LKR 100K debit-card transfer). Approve before Monday. <span class="tag tag-yellow">approve</span></li>
+      <li><strong>Tuesday payment run:</strong> LKR 141,040.91 for 02 Jun (incl. LKR 100K debit-card top-up). Approve before Monday. <span class="tag tag-yellow">approve</span></li>
+      <li><strong>Taara / SRP &mdash; 9 days silent:</strong> last reply 22 May. Decide today whether to go direct to Aaron (aaron@srpitl.com). <span class="tag tag-red">escalate</span></li>
+      <li><strong>Archit payment link:</strong> guest is ready to pay and waiting on you. <span class="tag tag-red">guest</span></li>
     </ul>
   </div>
 
   <div class="col">
-    <div class="col-head rituals">Night ritual</div>
+    <div class="col-head rituals">Morning ritual</div>
     <ul>
-      <li><strong>PM:</strong> Say "ollo out" tonight &mdash; logs the day, updates Drive</li>
-      <li><strong>PM:</strong> Glance at Apple Notes "Do it" before bed</li>
-      <li><strong>Pack tonight</strong> &mdash; Pullman checkout is 11:00am tomorrow</li>
+      <li><strong>AM:</strong> glance at Apple Notes "Do it" before the day starts</li>
+      <li><strong>Approve</strong> the Tuesday run so Erandi is unblocked</li>
       <li><strong>Switch FROM to ollo</strong> before sending any PG mail</li>
+      <li><strong>Pack and checkout</strong> Pullman by 11:00am</li>
       <li><strong>iPhone / Watch shortcut</strong> writes to the "Do it" note &middot; DCC reads it 4x daily</li>
+      <li><strong>PM:</strong> say "ollo out" tonight to log the day</li>
     </ul>
     <div class="ollo-out-box">
-      <strong>Say "ollo out" tonight</strong><br>
-      One message in any Cowork chat. ollo logs the day and updates Drive.
+      <strong>One tap to capture</strong><br>
+      Back Tap or Watch complication drops a line into "Do it". ollo reads it every gen.
     </div>
   </div>
 
   <div class="col">
     <div class="col-head week">Tomorrow / this week</div>
     <ul>
-      <li><strong>Sun 31 May:</strong> Pullman checkout 11:00am &rarr; St Kilda (Breezy Studio, 50 Fitzroy St). Getdown Services at Corner Hotel (Khandi, Imagine, Yarra). <span class="tag tag-blue">move day</span></li>
       <li><strong>Mon 1 Jun:</strong> Lora birthday party.</li>
       <li><strong>Tue 2 Jun:</strong> Taara/SRP deliverables ETA &middot; Khandi blood test with Pieter Mack &middot; PG Tuesday payment run (LKR 141K).</li>
-      <li><strong>This week:</strong> Schedule the Chandima bookkeeper call now she has replied. Rukman to draft 2026 annual budget.</li>
+      <li><strong>This week:</strong> schedule the Chandima bookkeeper call &middot; Rukman to draft the 2026 annual budget.</li>
       <li><strong>Spin-off pending:</strong> Geoffrey Dobbs lease termination &mdash; draft deed ready, review with Adamaly, decide clause 5 renovation option.</li>
+      <li><strong>St Kilda:</strong> Breezy Studio booked through 30 Sep.</li>
     </ul>
   </div>
 
   <div class="col">
     <div class="col-head ideas">Ideas &amp; Quick Add</div>
     <ul>
-      <li><strong>From "Do it":</strong> get onto the loan repayments, call Jemoin, chase Rukman to follow up.</li>
-      <li><strong>From "Do it":</strong> NTB bank loan repayment schedule is archived &mdash; pull it from email to understand the loan.</li>
+      <li><strong>From "Do it":</strong> get onto the loan repayments, call Jemoin (new finance lady), confirm she got the email, chase Rukman to follow up.</li>
+      <li><strong>From "Do it":</strong> the NTB bank loan repayment schedule is archived &mdash; pull it from email to understand the loan.</li>
       <li><strong>From "Do it":</strong> build an accountant handover note so the new finance person has the full history.</li>
-      <li><strong>Bookings idea:</strong> a saved "early check-in" and "how to pay" reply would clear Archit and future guests in one tap.</li>
+      <li><strong>Process idea:</strong> a saved "how to pay" reply would clear Archit and future guests in one tap.</li>
     </ul>
     <a class="ideas-add-link" href="notes://showNote?name=Do%20it">+ Add idea &rarr; opens "Do it" in Notes</a>
   </div>
@@ -211,10 +223,11 @@
   <div class="col">
     <div class="col-head capture">ollo Capture digest</div>
     <ul>
-      <li><strong>Bookkeeper pipeline:</strong> Chandima (accntaxation@gmail.com) replied positively today to ollo's intro. <span class="tag tag-green">warm</span></li>
-      <li><strong>Bookings overnight:</strong> Neisha Joseph in today (30 May), Archit Chauhan 17 Jun, Amika Omoto Aug booking cancelled same day. <span class="tag tag-green">pipeline</span></li>
-      <li><strong>Bank statements in:</strong> Standard Chartered x2 and NDB credit card. Dialog mobile bill LKR 12,763.59 due 14 Jun. <span class="tag tag-grey">admin</span></li>
-      <li><strong>Drive:</strong> SRP activity statements (all balance 0.00) + Articles of Association added to Sri Lanka Accounting folder. <span class="tag tag-grey">filed</span></li>
+      <li><strong>Finance scan (Sat 30 May, 6pm Galle):</strong> 0 approval emails in inbox. Erandi is uploading to Drive only, not emailing. Process flag. <span class="tag tag-yellow">flag</span></li>
+      <li><strong>Tuesday payments:</strong> LKR 141,040.91 awaiting approval. Breakdown in the panel above. <span class="tag tag-grey">finance</span></li>
+      <li><strong>Monthly (FYI):</strong> staff salary May net LKR 576,991.50, meal allowance LKR 48,750. <span class="tag tag-grey">payroll</span></li>
+      <li><strong>Weekly P&amp;L (25-29 May):</strong> net loss LKR 392,298 (rev 340,914 vs exp 733,212). <span class="tag tag-red">loss</span></li>
+      <li><strong>Bookkeeper pipeline:</strong> Chandima warm, your reply sent 30 May. <span class="tag tag-green">warm</span></li>
     </ul>
   </div>
 
@@ -224,41 +237,41 @@
 <details class="finsum" open>
   <summary>&#128176; Financials snapshot &mdash; WE-2026-05-29</summary>
   <div class="body">
-    <div class="row"><span class="lbl">Latest week submitted</span><span class="val g">WE-2026-05-29 &#10003; 10 files in folder</span></div>
+    <div class="row"><span class="lbl">Latest week in folder</span><span class="val g">WE-2026-05-29 &#10003;</span></div>
     <div class="row"><span class="lbl">Room revenue</span><span class="val g">LKR 313,282</span></div>
     <div class="row"><span class="lbl">Restaurant revenue</span><span class="val g">LKR 27,632</span></div>
     <div class="row"><span class="lbl">Total revenue</span><span class="val g">LKR 340,914</span></div>
-    <div class="row"><span class="lbl">Operating expenses (salary LKR 625,742 + petty LKR 61,600 + weekly LKR 45,870)</span><span class="val y">LKR 733,212</span></div>
+    <div class="row"><span class="lbl">Operating expenses (salary LKR 625,742 the main driver)</span><span class="val y">LKR 733,212</span></div>
     <div class="row"><span class="lbl">Net weekly profit</span><span class="val r">&minus;LKR 392,298 (loss)</span></div>
-    <div class="row"><span class="lbl">Debit card closing balance</span><span class="val y">LKR 10,425 (two ATM pulls: 25K + 50K)</span></div>
-    <div class="row"><span class="lbl">Next Tuesday payment run (02 Jun)</span><span class="val y">LKR 141,041</span></div>
-    <div class="row"><span class="lbl">SRP / Taara deliverables</span><span class="val r">8 days no reply (balance sheet, tax tracker, ITR, AoA)</span></div>
+    <div class="row"><span class="lbl">Debit card closing balance</span><span class="val y">LKR 10,425</span></div>
+    <div class="row"><span class="lbl">Next Tuesday payment run (02 Jun)</span><span class="val y">LKR 141,040.91</span></div>
+    <div class="row"><span class="lbl">SRP / Taara deliverables</span><span class="val r">9 days no reply (balance sheet, tax tracker, ITR, AoA)</span></div>
     <div class="actions">
       <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">&rarr; WE-29-May folder</a>
-      <a href="https://drive.google.com/drive/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">&rarr; Weekly Financials 2026</a>
+      <a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">&rarr; Weekly Financials 2026</a>
     </div>
   </div>
 </details>
 
 <!-- THREE WISDOMS -->
 <div class="wisdoms">
-  <div class="wisdoms-head">Three Wisdoms + Word of the day &mdash; PM</div>
+  <div class="wisdoms-head">Three Wisdoms + Word of the day &mdash; AM</div>
   <div class="wisdom-grid">
     <div class="wcard">
       <div class="src">Mental health &mdash; Gabor Mat&eacute;</div>
-      <div class="body">"Safety is not the absence of threat, it is the presence of connection." The week had a loss and a silence in it. Tonight you are with family before a move. That connection is the real ledger.</div>
+      <div class="body">"Children don't get traumatized because they are hurt. They get traumatized because they are alone with the hurt."<br>&mdash; Gabor Mat&eacute;, physician and author</div>
     </div>
     <div class="wcard">
       <div class="src">Philosophy &mdash; Alan Watts</div>
-      <div class="body">"The only way to make sense out of change is to plunge into it, and move with it." Tomorrow you pack and shift to St Kilda. Do not brace against the move. Join it.</div>
+      <div class="body">"No valid plans for the future can be made by those who have no capacity for living now."<br>&mdash; Alan Watts, philosopher</div>
     </div>
     <div class="wcard">
       <div class="src">AI / Cowork tip</div>
-      <div class="body">Close the day with two words. Say "ollo out" in any Cowork chat and the day is logged to Drive before you sleep. No laptop, no forms. The day files itself.</div>
+      <div class="body">Capture on the move. A line tapped into the "Do it" note from your iPhone Back Tap or Watch is read by every DCC gen, four times a day. Nothing you note gets lost.</div>
     </div>
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">Gloaming</span>/GLOH.ming/ &mdash; The twilight just after sunset. <em>"The gloaming is for setting things down, not picking them up. The drafts and the chases will keep until morning."</em></div>
+      <div class="body"><span class="term">Liminal</span>/LIM.in.uhl/ &mdash; relating to an in-between or transitional state. <em>"Today is liminal: one place packed up behind you, the next not yet unpacked."</em></div>
     </div>
   </div>
 </div>
@@ -270,7 +283,7 @@
     <div>
       <div class="ql-cat">Daily Ops</div>
       <ul>
-        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts (empty)</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts (1 staged)</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail Inbox</a></li>
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
@@ -320,7 +333,7 @@
 </div>
 
 <footer>
-  <div>DCC v3 &middot; Saturday 30 May 2026 &middot; PM &middot; auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
+  <div>DCC v3 &middot; Sunday 31 May 2026 &middot; AM &middot; auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
