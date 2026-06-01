@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Manual at 2026-06-01T08:30:17Z -->
+<!-- DCC gen: Midday at 2026-06-01T10:07:35.827964Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Manual-2026-06-01T08:30:17Z">
+<meta name="dcc-gen" content="Midday-2026-06-01T10:07:35.827964Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -25,39 +25,8 @@
   .header-right { text-align: right; font-size: 12px; color: var(--muted); }
   .gen-label { color: var(--accent-2); font-weight: 700; }
   .refresh-btn { display: inline-block; margin-top: 6px; padding: 5px 12px; background: var(--accent); color: #0f1115; border-radius: 5px; font-weight: 700; font-size: 11px; text-decoration: none; cursor: pointer; border: none; }
-
-  /* A &mdash; LOUD SNAPSHOT BANNER */
-  .snap-big { background: linear-gradient(135deg, #2a1a0e, #1a0f08); border: 2px solid var(--warn); border-left: 6px solid var(--warn); border-radius: 9px; padding: 11px 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .snap-big .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--warn); font-weight: 800; }
-  .snap-big .meta { font-size: 13px; color: var(--ink); font-weight: 600; }
-  .snap-big .age { color: var(--warn); font-weight: 800; font-size: 14px; }
-  .snap-big .right { font-size: 12px; color: var(--muted); text-align: right; }
-  .snap-big .right strong { color: var(--accent-2); }
-
-  /* Y &mdash; ASK OLLO COMMAND BAR */
-  .ollo-bar { background: linear-gradient(135deg, #1f1428, #14101a); border: 2px solid var(--accent); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
-  .ollo-bar-head { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 800; margin-bottom: 4px; }
-  .ollo-bar-sub { font-size: 11px; color: var(--muted); margin-bottom: 9px; }
-  .ollo-bar-sub strong { color: var(--ink); }
-  .ollo-btns { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
-  .ollo-btn { background: var(--panel-2); border: 1px solid var(--accent); color: var(--ink); padding: 6px 11px; border-radius: 16px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
-  .ollo-btn:hover { background: var(--accent); color: #0f1115; }
-  .ollo-btn.copied { background: var(--good); color: #0f1115; border-color: var(--good); }
-  .ollo-input-row { display: flex; gap: 6px; }
-  .ollo-input { flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--ink); padding: 7px 10px; border-radius: 6px; font-size: 12px; font-family: inherit; }
-  .ollo-input:focus { outline: none; border-color: var(--accent); }
-  .ollo-send-btn { background: var(--accent); color: #0f1115; border: none; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
-
-  /* X &mdash; per-line copy buttons */
-  .row-copy { display: inline-block; margin-left: 8px; padding: 1px 7px; background: transparent; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent); font-size: 10px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; }
-  .row-copy:hover { background: var(--accent); color: #0f1115; }
-  .row-copy.copied { background: var(--good); border-color: var(--good); color: #0f1115; }
-
-  /* Toast */
-  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--good); color: #0f1115; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; z-index: 999; opacity: 0; transition: opacity 0.2s; pointer-events: none; box-shadow: 0 8px 22px rgba(0,0,0,0.45); }
-  .toast.show { opacity: 1; }
-  .toast .step { display: block; font-size: 11px; font-weight: 500; margin-top: 2px; color: #0f1115; opacity: 0.85; }
-
+  .snapshot-banner { background: var(--panel-2); border: 1px dashed var(--accent-2); border-radius: 7px; padding: 7px 12px; margin-bottom: 12px; font-size: 12px; color: var(--muted); }
+  .snapshot-banner strong { color: var(--accent-2); }
   .status-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 10px 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
   .status-pill { display: flex; align-items: center; gap: 5px; font-size: 12px; padding: 3px 8px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--border); white-space: nowrap; }
   .status-pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
@@ -76,6 +45,8 @@
   .approvals .ctx { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
   .approvals a { color: var(--accent-2); }
   .approvals .footnote { margin-top: 8px; font-size: 11px; color: var(--muted); font-style: italic; }
+  .midday-checkin { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent-2); border-radius: 8px; padding: 9px 14px; margin-bottom: 12px; font-size: 13px; color: var(--ink); }
+  .midday-checkin strong { color: var(--accent-2); }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
   @media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
@@ -129,151 +100,95 @@
 <header>
   <div class="header-left">
     <h1>Daily Command Centre <span class="name">&mdash; Kirk</span></h1>
-    <div class="tagline">All ventures. One view. Snapshot &mdash; refreshed hourly.</div>
+    <div class="tagline">All ventures. One view. Midday Melbourne, evening Galle. What is still open from this morning.</div>
   </div>
   <div class="header-right">
-    <div><span class="gen-label" id="genLabel">Manual gen</span> &middot; <span id="genWhen">Monday 1 June 2026 &middot; 18:06 AEST</span></div>
-    <div style="margin-top:3px;">Next gen: <span id="nextGen">top of next hour</span></div>
+    <div><span class="gen-label">Midday gen</span> &middot; Monday 01 June 2026 &middot; 12:00 AEST</div>
+    <div style="margin-top:3px;">Next gen: 18:00 AEST</div>
     <a href="./?r=1" class="refresh-btn" onclick="location.reload(true); return false;">&#8635; Refresh</a>
   </div>
 </header>
 
-<!-- A &mdash; LOUD SNAPSHOT BANNER -->
-<div class="snap-big">
-  <div>
-    <div class="label">&#9888; Snapshot &mdash; not live</div>
-    <div class="meta">Frozen at <span id="snapFrozenAt">18:06 AEST, 1 Jun</span> &middot; <span class="age" id="snapAge">&minus;</span></div>
-  </div>
-  <div class="right">
-    Drafts / inbox / approvals shown are <strong>as-of gen time</strong>.<br>
-    For LIVE state open the <strong>ollo-dcc-live</strong> artifact in Cowork.
-  </div>
-</div>
-
-<!-- Y &mdash; ASK OLLO COMMAND BAR -->
-<div class="ollo-bar">
-  <div class="ollo-bar-head">&#128172; Ask ollo &mdash; tap a button, then paste into Cowork</div>
-  <div class="ollo-bar-sub">Each tap copies a ready prompt to your clipboard. Switch to <strong>Cowork app</strong>, paste, press Enter.</div>
-  <div class="ollo-btns">
-    <button class="ollo-btn" data-prompt="ollo: show me every staged draft in mailmanchina@gmail.com Drafts folder. List sender / subject / one-line summary. Do not send anything yet.">&#128231; Show all drafts</button>
-    <button class="ollo-btn" data-prompt="ollo: scan mailmanchina@gmail.com inbox for the last 24 hours. Flag anything from Erandi, Rukman, Taara, Chandima, Aaron, or anything finance / SRP / guest related. One-line per item.">&#128269; Scan PG inbox 24h</button>
-    <button class="ollo-btn" data-prompt="ollo: rebuild the DCC now with current state (drafts count, calendar, finance, approvals) and push to Vercel. Report OK &lt;sha&gt; when done.">&#128260; Update DCC now</button>
-    <button class="ollo-btn" data-prompt="ollo: add this idea to my Do it Apple Note &mdash; [TYPE YOUR IDEA HERE]">&#10133; Add idea</button>
-    <button class="ollo-btn" data-prompt="ollo: show PG finance state right now &mdash; latest WE folder, P&amp;L, debit card balance, Tuesday payment run status, anything outstanding.">&#128176; Check PG finance</button>
-    <button class="ollo-btn" data-prompt="ollo: heartbeat &mdash; what are you working on right now and what is blocking you?">&#10084;&#65039; ollo heartbeat</button>
-    <button class="ollo-btn" data-prompt="ollo out">&#127769; ollo out (close day)</button>
-  </div>
-  <div class="ollo-input-row">
-    <input class="ollo-input" id="olloFreeInput" type="text" placeholder='Type your own ollo prompt then press Enter or Copy&hellip;'>
-    <button class="ollo-send-btn" onclick="copyFreeInput()">Copy</button>
-  </div>
+<!-- SNAPSHOT BANNER -->
+<div class="snapshot-banner">
+  <strong>Snapshot from 12:00 AEST today.</strong> For live state use the Cowork artifact ollo-dcc-live. Vercel page refreshes at 18:00 this evening, then 21:00 tonight.
 </div>
 
 <!-- STATUS STRIP -->
 <div class="status-strip">
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">PG Finance</span><span class="pill-val">WE-29 P&amp;L &minus;LKR 392K &middot; Tue run LKR 141K still to approve</span></div>
-  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">9 days silent &middot; escalate to Aaron</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">PG Finance</span><span class="pill-val">WE-29 P&amp;L &minus;LKR 392K &middot; Tue run LKR 141K to confirm</span></div>
+  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">10 days silent &middot; escalate to Aaron</span></div>
   <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Gordon House</span><span class="pill-val">ballot pending</span></div>
   <div class="status-pill"><span class="dot dot-green"></span><span class="pill-label">Solomon</span><span class="pill-val">stable</span></div>
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Bookings</span><span class="pill-val">Archit awaiting pay link &middot; St Kilda check-in done</span></div>
-  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">Manual nudge pushed &middot; hourly gens live</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Bookings</span><span class="pill-val">3 guest messages waiting on Booking.com</span></div>
+  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">Midday gen pushed</span></div>
 </div>
 
 <!-- TRAVEL BANNER -->
 <div class="travel-banner">
-  <strong>Move done.</strong> Pullman Albert Park checkout cleared at 11:00am, invoice received. You are now at Breezy Studio, 50 Fitzroy St, St Kilda (home base to 30 Sep). Tonight: Getdown Services at Corner Hotel (Khandi, Imagine, Yarra).
+  <strong>Tonight: InterContinental Melbourne The Rialto</strong>, 495 Collins Street (booked via HotelTonight this morning, receipt forwarded to Lora). Pullman Albert Park final invoice landed this morning; in-room dining refund is with F&amp;B manager Jenny Nguyen.
 </div>
 
-<!-- APPROVALS &mdash; with per-line copy-as-prompt buttons -->
+<!-- APPROVALS -->
 <div class="approvals">
-  <h2><span class="blink"></span>Awaiting your YES / NO &mdash; tap &rarr;ollo to act</h2>
+  <h2><span class="blink"></span>Awaiting your YES / NO &mdash; still open after the morning</h2>
   <ul>
     <li>
-      <span class="q">Send the two staged Erandi drafts (2 sitting in Drafts, unsent)
-        <button class="row-copy" data-prompt="ollo: open the two Erandi drafts staged in mailmanchina@gmail.com Drafts. Show me each one. If they read clean and FROM is set to ollo, send them both. Confirm with sent timestamps.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">1) WE-29 received note that also asks her to email approvals, not Drive-upload alone. 2) Reply acknowledging she finished the filing catalog today and listing the rows she could not place. <a href="https://mail.google.com/mail/u/0/#drafts">Open Drafts</a></span>
+      <span class="q">Confirm the Tuesday 2 June payment run &mdash; LKR 141,040.91</span>
+      <span class="ctx">You replied to Erandi this morning and deferred the monthly laundry bill to next week. The core run still needs your final YES so Erandi can action it Tuesday Galle morning. Dhanayaka fruits 8,770 &middot; Shashika quail eggs / bread 2,705 &middot; Mailman Lanka debit card top-up 100,000 &middot; Munzir / Sea Fair 29,565.91. <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">Open WE-29 folder</a></span>
     </li>
     <li>
-      <span class="q">Approve the Monday 1 June 2026 payment run &mdash; LKR 141,040.91
-        <button class="row-copy" data-prompt="ollo: open the WE-29 folder, show me the Tuesday 02 Jun 2026 payment run for LKR 141,040.91 (Dhanayaka fruits 8,770, Shashika quail eggs / bread 2,705, Mailman Lanka debit card top-up 100,000, Munzir / Sea Fair 29,565.91). Confirm the line items match. I will say YES or NO to approve.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">Approve tonight so Erandi can action it Monday Galle morning. <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">Open WE-29 folder</a></span>
+      <span class="q">Taara / SRP &mdash; 10 days silent. Escalate to Aaron?</span>
+      <span class="ctx">Last reply 22 May was "we will get back to you soon". Nothing since. YES = ollo drafts a direct note to aaron@srpitl.com on the balance sheet, tax tracker, ITR and Articles of Association, and folds in Erandi's "not found" rows. <a href="https://mail.google.com/mail/u/0/#search/srpitl.com">Open SRP thread</a></span>
     </li>
     <li>
-      <span class="q">Taara / SRP &mdash; 9 days silent. Escalate to Aaron tonight?
-        <button class="row-copy" data-prompt="ollo: draft a direct note to aaron@srpitl.com on the balance sheet, tax tracker, ITR and Articles of Association. Reference the 22 May last substantive reply from Taara and the 9-day silence. Stage in Drafts, do not send. Use ollo signature. No em-dashes in the body.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">Last substantive reply 22 May. <a href="https://mail.google.com/mail/u/0/#search/srpitl.com">Open SRP thread</a></span>
+      <span class="q">Booking.com &mdash; 3 guest messages waiting for a reply</span>
+      <span class="ctx">Partner inbox flagged 3 unanswered guest messages this morning (notice to book@PG). Clear them so nothing ages. <a href="https://admin.booking.com">Open Booking.com</a></span>
     </li>
     <li>
-      <span class="q">Reply to Archit Chauhan &mdash; still waiting on a payment link
-        <button class="row-copy" data-prompt="ollo: draft a reply to Archit Chauhan on Booking.com for stay 17 Jun. He messaged 30 May asking for a payment link. Give him the link and short instructions. Stage in Drafts (or in Booking.com extranet message) and show me before sending.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">Guest messaged 30 May: "I am waiting for payment link, I will make the payment." Stay 17 Jun. <a href="https://admin.booking.com">Open Booking.com</a></span>
-    </li>
-    <li>
-      <span class="q">Lock the Chandima bookkeeper call time
-        <button class="row-copy" data-prompt="ollo: draft a short follow-up to Chandima (accntaxation@gmail.com) confirming the call. Offer two specific slots this week (Tue or Thu, evening Galle time = morning Mel). Stage in Drafts under KirkJobsz@PG. No em-dashes in body.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">She replied warmly, you replied 30 May from KirkJobsz@PG. Only the time is left. <a href="https://mail.google.com/mail/u/0/#search/from%3Aaccntaxation%40gmail.com">Open thread</a></span>
-    </li>
-    <li>
-      <span class="q">Chase the Erandi "not found" rows with SRP?
-        <button class="row-copy" data-prompt="ollo: fold the Erandi not-found rows (1.5, 2.2, 2.5-2.7, 3.4-3.5, 4.8/4.10-4.12, 5.2/5.4, 6.2-6.3, 7.3, 8.2) into the Aaron / SRP escalation draft. Show me the merged draft before sending.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">Real filing gaps. Fold into the Aaron escalation above.</span>
+      <span class="q">Loan repayments &mdash; call Jemoin, the new finance lady</span>
+      <span class="ctx">From your "Do it" note: get onto the loan repayments, call Jemoin and confirm she received the email, and get Rukman to follow up. The NTB loan repayment schedule is archived in email and worth pulling to understand the loan. YES = ollo drafts the intro email and a one-line brief for the call.</span>
     </li>
   </ul>
-  <div class="footnote">ollo never auto-sends. Each &rarr;ollo button copies a prompt; paste into Cowork to act.</div>
+  <div class="footnote">ollo never auto-sends. This panel refreshes every gen.</div>
+</div>
+
+<!-- MIDDAY CHECK-IN -->
+<div class="midday-checkin">
+  <strong>Midday check-in.</strong> Two morning jobs are done: both Erandi replies went out (Drafts now empty) and the filing catalog is acknowledged. Four things are still open: confirm the Tuesday run, decide on the SRP escalation, clear the 3 Booking.com guest messages, and make the Jemoin loan call. Tonight you are at the InterContinental Rialto.
 </div>
 
 <!-- 6-CELL GRID -->
 <div class="grid">
 
   <div class="col">
-    <div class="col-head today">Today &mdash; tap &rarr;ollo to act on a line</div>
+    <div class="col-head today">Today &mdash; still open</div>
     <ul>
-      <li><strong>Move done:</strong> Pullman checkout 11:00am cleared, invoice received. Now settled at Breezy Studio, St Kilda. <span class="tag tag-green">done</span></li>
-      <li><strong>Erandi finished the filing catalog</strong> and replied today with the rows she could not place. Salary slips landed in Drive. <span class="tag tag-green">progress</span></li>
-      <li><strong>Two replies to Erandi sit unsent</strong> in Drafts. Send tonight.
-        <button class="row-copy" data-prompt="ollo: open the two Erandi drafts in mailmanchina@gmail.com Drafts. Show me both, then send if clean.">&rarr; ollo</button>
-        <span class="tag tag-yellow">send</span></li>
-      <li><strong>Tuesday payment run</strong> (LKR 141,040.91) still not approved.
-        <button class="row-copy" data-prompt="ollo: show me the Tuesday 02 Jun payment run line items. I will YES / NO approval.">&rarr; ollo</button>
-        <span class="tag tag-yellow">approve</span></li>
-      <li><strong>Archit guest:</strong> still waiting on a payment link.
-        <button class="row-copy" data-prompt="ollo: draft Archit's payment-link reply via Booking.com extranet. Show me before sending.">&rarr; ollo</button>
-        <span class="tag tag-red">reply</span></li>
+      <li><strong>Morning sends done:</strong> both Erandi replies went out (WE-29 / laundry deferred + filing-complete acknowledgement). Drafts empty. <span class="tag tag-green">done</span></li>
+      <li><strong>Tuesday run:</strong> LKR 141,040.91 still needs your final confirm. <span class="tag tag-yellow">confirm</span></li>
+      <li><strong>SRP / Taara:</strong> 10 days silent. Decide on the Aaron escalation. <span class="tag tag-red">decide</span></li>
+      <li><strong>Booking.com:</strong> 3 guest messages waiting. <span class="tag tag-yellow">reply</span></li>
+      <li><strong>Loan / Jemoin:</strong> call the new finance lady, confirm email received, Rukman to follow up. <span class="tag tag-yellow">call</span></li>
     </ul>
   </div>
 
   <div class="col">
-    <div class="col-head urgent">Urgent &mdash; send-today, not yet sent</div>
+    <div class="col-head urgent">Urgent &mdash; this afternoon</div>
     <ul>
-      <li><strong>2 Erandi drafts unsent.</strong>
-        <button class="row-copy" data-prompt="ollo: open the two Erandi drafts staged in mailmanchina@gmail.com Drafts. Confirm FROM = ollo and send.">&rarr; ollo</button>
-        <span class="tag tag-yellow">send</span></li>
-      <li><strong>Tuesday payment run:</strong> LKR 141,040.91 for 02 Jun (incl. LKR 100K debit-card top-up).
-        <button class="row-copy" data-prompt="ollo: walk me through the 02 Jun payment run for approval. Itemise it.">&rarr; ollo</button>
-        <span class="tag tag-yellow">approve</span></li>
-      <li><strong>Taara / SRP &mdash; 9 days silent:</strong> decide tonight on Aaron escalation.
-        <button class="row-copy" data-prompt="ollo: draft the direct escalation to aaron@srpitl.com on balance sheet, tax tracker, ITR, AoA. Stage in Drafts. No em-dashes.">&rarr; ollo</button>
-        <span class="tag tag-red">escalate</span></li>
+      <li><strong>Confirm Tuesday run:</strong> LKR 141,040.91 for 02 Jun (incl. LKR 100K debit-card top-up) so Erandi is unblocked Tuesday Galle morning. <span class="tag tag-yellow">confirm</span></li>
+      <li><strong>SRP escalation:</strong> 10 days no reply. Go direct to Aaron (aaron@srpitl.com)? <span class="tag tag-red">escalate</span></li>
+      <li><strong>Booking.com guests:</strong> 3 messages unanswered since this morning. <span class="tag tag-red">reply</span></li>
     </ul>
   </div>
 
   <div class="col">
-    <div class="col-head rituals">Night ritual</div>
+    <div class="col-head rituals">Midday ritual</div>
     <ul>
-      <li><strong>PM:</strong> glance at Apple Notes "Do it" and clear what you can</li>
-      <li><strong>Send</strong> the two staged Erandi drafts (FROM = ollo)</li>
-      <li><strong>Approve</strong> the Tuesday run so Erandi is unblocked Monday</li>
+      <li><strong>Midday:</strong> glance at Apple Notes "Do it" and clear what you can</li>
+      <li><strong>Confirm</strong> the Tuesday run so Galle is unblocked tomorrow</li>
       <li><strong>Switch FROM to ollo</strong> before sending any PG mail</li>
       <li><strong>iPhone / Watch shortcut</strong> writes to the "Do it" note &middot; DCC reads it 4x daily</li>
-      <li><strong>Say "ollo out"</strong> tonight to log the day to Continuity
-        <button class="row-copy" data-prompt="ollo out">&rarr; ollo</button>
-      </li>
+      <li><strong>Say "ollo out"</strong> tonight to log the day to Continuity</li>
     </ul>
     <div class="ollo-out-box">
       <strong>One tap to capture</strong><br>
@@ -284,41 +199,38 @@
   <div class="col">
     <div class="col-head week">Tomorrow / this week</div>
     <ul>
-      <li><strong>Mon 1 Jun:</strong> Lora birthday party.</li>
-      <li><strong>Tue 2 Jun:</strong> PG Tuesday payment run (LKR 141K) &middot; Taara/SRP deliverables ETA &middot; Khandi blood test with Pieter Mack &middot; EJ Ainger auction.</li>
-      <li><strong>Wed 3 Jun:</strong> EJ Ainger auction (second invite in).</li>
+      <li><strong>Tue 2 Jun:</strong> PG Tuesday payment run (LKR 141K) &middot; Khandi blood test with Pieter Mack &middot; E J Ainger live auction 10:00&ndash;14:00.</li>
+      <li><strong>Wed 3 Jun:</strong> Imagine consultation 13:00 at 15 Waterloo Place, Richmond (Halaxy) &middot; Imagine with Betty.</li>
       <li><strong>This week:</strong> lock the Chandima bookkeeper call &middot; Rukman to draft the 2026 annual budget &middot; chase Erandi's "not found" rows with SRP.</li>
-      <li><strong>St Kilda:</strong> Breezy Studio booked through 30 Sep.</li>
+      <li><strong>Stays:</strong> InterContinental Rialto tonight &middot; Breezy Studio, St Kilda booked through 30 Sep.</li>
     </ul>
   </div>
 
   <div class="col">
-    <div class="col-head ideas">Ideas &amp; Quick Add</div>
+    <div class="col-head ideas">Wisdom &mdash; quick</div>
     <ul>
-      <li><strong>From "Do it":</strong> get onto the loan repayments, call Jemoin (new finance lady), confirm she got the email, chase Rukman to follow up.</li>
+      <li>"Safety is not the absence of threat, it is the presence of connection." &mdash; Gabor Mat&eacute;</li>
+      <li>"Muddy water is best cleared by leaving it alone." &mdash; Alan Watts</li>
+      <li><strong>Midday nudge:</strong> pick the one open item that unblocks someone else first. Today that is confirming the Tuesday run for Erandi.</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <div class="col-head capture">Ideas &amp; Quick Add</div>
+    <ul>
+      <li><strong>From "Do it":</strong> get onto the loan repayments, call Jemoin (new finance lady), confirm she received the email, get Rukman to follow up.</li>
       <li><strong>From "Do it":</strong> the NTB bank loan repayment schedule is archived &mdash; pull it from email to understand the loan.</li>
       <li><strong>From "Do it":</strong> build an accountant handover note so the new finance person has the full history.</li>
-      <li><strong>Process idea:</strong> a saved "how to pay" reply would clear Archit and future guests in one tap.</li>
+      <li><strong>Process idea:</strong> a saved "how to pay" reply would clear Booking.com guests in one tap.</li>
     </ul>
     <a class="ideas-add-link" href="notes://showNote?name=Do%20it">+ Add idea &rarr; opens "Do it" in Notes</a>
-  </div>
-
-  <div class="col">
-    <div class="col-head capture">ollo Capture digest &mdash; PM</div>
-    <ul>
-      <li><strong>Erandi filing catalog COMPLETE today:</strong> rows filed, "not found" list returned (real gaps to chase). Process win. <span class="tag tag-green">win</span></li>
-      <li><strong>Drive:</strong> salary slips (Dec 2025, Jan 2026 and back-months) uploaded today. <span class="tag tag-grey">filing</span></li>
-      <li><strong>Accor / Pullman:</strong> in-room dining refund request lodged, F&amp;B manager Jenny Nguyen handling. Long-term stay enquiry for Lora raised. <span class="tag tag-grey">travel</span></li>
-      <li><strong>Airbnb:</strong> a Breezy Studio issue was escalated to a specialist today. Watch for the reply. <span class="tag tag-yellow">watch</span></li>
-      <li><strong>Tuesday payments:</strong> LKR 141,040.91 still awaiting approval. <span class="tag tag-yellow">finance</span></li>
-    </ul>
   </div>
 
 </div>
 
 <!-- FINANCIALS SNAPSHOT -->
-<details class="finsum" open>
-  <summary>&#128176; Financials snapshot &mdash; WE-2026-05-29</summary>
+<details class="finsum">
+  <summary>&#128176; Financials snapshot &mdash; WE-2026-05-29 (latest week in folder)</summary>
   <div class="body">
     <div class="row"><span class="lbl">Latest week in folder</span><span class="val g">WE-2026-05-29 &#10003;</span></div>
     <div class="row"><span class="lbl">Room revenue</span><span class="val g">LKR 313,282</span></div>
@@ -327,8 +239,8 @@
     <div class="row"><span class="lbl">Operating expenses (salary LKR 625,742 the main driver)</span><span class="val y">LKR 733,212</span></div>
     <div class="row"><span class="lbl">Net weekly profit</span><span class="val r">&minus;LKR 392,298 (loss)</span></div>
     <div class="row"><span class="lbl">Debit card closing balance</span><span class="val y">LKR 10,425</span></div>
-    <div class="row"><span class="lbl">Next Tuesday payment run (02 Jun)</span><span class="val y">LKR 141,040.91 &mdash; unapproved</span></div>
-    <div class="row"><span class="lbl">SRP / Taara deliverables</span><span class="val r">9 days no reply (balance sheet, tax tracker, ITR, AoA)</span></div>
+    <div class="row"><span class="lbl">Tuesday payment run (02 Jun)</span><span class="val y">LKR 141,040.91 &mdash; awaiting your confirm (laundry deferred)</span></div>
+    <div class="row"><span class="lbl">SRP / Taara deliverables</span><span class="val r">10 days no reply (balance sheet, tax tracker, ITR, AoA)</span></div>
     <div class="actions">
       <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">&rarr; WE-29-May folder</a>
       <a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">&rarr; Weekly Financials 2026</a>
@@ -338,23 +250,23 @@
 
 <!-- THREE WISDOMS -->
 <div class="wisdoms">
-  <div class="wisdoms-head">Three Wisdoms + Word of the day &mdash; PM</div>
+  <div class="wisdoms-head">Three Wisdoms + Word of the day &mdash; Midday</div>
   <div class="wisdom-grid">
     <div class="wcard">
       <div class="src">Mental health &mdash; Gabor Mat&eacute;</div>
-      <div class="body">"When we have been prevented from learning how to say no, our bodies may end up saying it for us."<br>&mdash; Gabor Mat&eacute;, physician and author</div>
+      <div class="body">"Safety is not the absence of threat, it is the presence of connection."<br>&mdash; Gabor Mat&eacute;, physician and author</div>
     </div>
     <div class="wcard">
       <div class="src">Philosophy &mdash; Alan Watts</div>
-      <div class="body">"The only way to make sense out of change is to plunge into it, move with it, and join the dance."<br>&mdash; Alan Watts, philosopher</div>
+      <div class="body">"Muddy water is best cleared by leaving it alone."<br>&mdash; Alan Watts, philosopher</div>
     </div>
     <div class="wcard">
       <div class="src">AI / Cowork tip</div>
-      <div class="body">Close the day out loud. Say "ollo out" tonight and ollo writes the day's decisions to your Daily Continuity folder, so tomorrow's AM gen starts where today ended. Nothing carried in your head overnight.</div>
+      <div class="body">At midday, clear the one item that unblocks another person before you touch your own list. ollo re-reads "Do it" and your inbox at 12:00, 18:00 and 21:00, so anything you capture now is already in the next gen.</div>
     </div>
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">Quotidian</span>/kwoh-TID-ee-uhn/ &mdash; ordinary, everyday, recurring daily. <em>"The quotidian rhythm of hourly snapshots means nothing slips between one day and the next."</em></div>
+      <div class="body"><span class="term">Liminal</span>/LIM-in-uhl/ &mdash; relating to a transitional, in-between state. <em>"Midday is the liminal hour: the morning is logged, the evening not yet begun."</em></div>
     </div>
   </div>
 </div>
@@ -366,11 +278,11 @@
     <div>
       <div class="ql-cat">Daily Ops</div>
       <ul>
-        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts (2 staged)</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts (0 staged)</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail Inbox</a></li>
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
-        <li><a href="https://admin.booking.com">Booking.com partner</a></li>
+        <li><a href="https://admin.booking.com">Booking.com partner (3 waiting)</a></li>
         <li><a href="notes://showNote?name=Do%20it">Apple Notes &mdash; Do it</a></li>
       </ul>
     </div>
@@ -391,7 +303,6 @@
         <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
         <li><a href="https://pog-staff-app-2.vercel.app/">DCC live app (Vercel)</a></li>
-        <li><a href="./manual.html">&rarr; How to use the DCC (manual)</a></li>
       </ul>
     </div>
     <div>
@@ -417,100 +328,13 @@
 </div>
 
 <footer>
-  <div>DCC v3 &middot; Hourly snapshot, 7:00&ndash;22:00 AEST &middot; quiet hours 22:00&ndash;06:00</div>
+  <div>DCC v3 &middot; Monday 01 June 2026 &middot; Midday &middot; auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast">
-  Copied prompt to clipboard
-  <span class="step">Now switch to Cowork app and paste (Cmd+V)</span>
-</div>
-
 <script>
-// --- A: live "X minutes ago" age counter ---
-function parseGenTime() {
-  const meta = document.querySelector("meta[name='dcc-gen']")?.content || "";
-  // expected: "<label>-2026-06-01T08:06:08Z"
-  const m = meta.match(/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)/);
-  return m ? new Date(m[1]) : null;
-}
-function fmtMelb(d) {
-  try {
-    return d.toLocaleString("en-AU", { timeZone: "Australia/Melbourne", weekday: "long", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", hour12: false }) + " AEST";
-  } catch(e) { return d.toISOString(); }
-}
-function updateAge() {
-  const t = parseGenTime();
-  if (!t) return;
-  const now = new Date();
-  const diff = Math.floor((now - t) / 1000);
-  let txt;
-  if (diff < 60) txt = diff + " sec ago";
-  else if (diff < 3600) txt = Math.floor(diff/60) + " min ago";
-  else if (diff < 86400) {
-    const h = Math.floor(diff/3600), m = Math.floor((diff%3600)/60);
-    txt = h + "h " + m + "m ago";
-  } else txt = Math.floor(diff/86400) + " days ago";
-  const ageEl = document.getElementById("snapAge");
-  if (ageEl) ageEl.textContent = txt;
-  const frozen = document.getElementById("snapFrozenAt");
-  if (frozen) frozen.textContent = fmtMelb(t);
-  // Highlight if stale (>90 min)
-  if (diff > 5400) {
-    document.querySelector(".snap-big").style.borderColor = "#ff6b6b";
-    document.querySelector(".snap-big .label").style.color = "#ff6b6b";
-    document.querySelector(".snap-big .label").textContent = "⚠ SNAPSHOT IS STALE — push DCC now";
-  }
-}
-updateAge();
-setInterval(updateAge, 30000);
-
-// --- X / Y: copy-as-prompt with toast ---
-function showToast(msg, sub) {
-  const t = document.getElementById("toast");
-  if (!t) return;
-  t.innerHTML = msg + (sub ? '<span class="step">' + sub + '</span>' : '');
-  t.classList.add("show");
-  clearTimeout(window._toastT);
-  window._toastT = setTimeout(()=>t.classList.remove("show"), 2400);
-}
-function copyText(text, btn) {
-  navigator.clipboard.writeText(text).then(()=>{
-    if (btn) {
-      const orig = btn.textContent;
-      btn.classList.add("copied");
-      btn.textContent = "✓ Copied";
-      setTimeout(()=>{ btn.classList.remove("copied"); btn.textContent = orig; }, 1600);
-    }
-    showToast("✓ Copied prompt", "Switch to Cowork app and paste (Cmd+V)");
-  }).catch(()=>{
-    showToast("Copy failed — long-press the button to copy manually");
-  });
-}
-document.querySelectorAll("[data-prompt]").forEach(btn => {
-  btn.addEventListener("click", e => {
-    e.preventDefault();
-    copyText(btn.getAttribute("data-prompt"), btn);
-  });
-});
-function copyFreeInput() {
-  const inp = document.getElementById("olloFreeInput");
-  if (!inp || !inp.value.trim()) {
-    showToast("Type something first");
-    return;
-  }
-  let v = inp.value.trim();
-  if (!v.toLowerCase().startsWith("ollo:") && !v.toLowerCase().startsWith("ollo ")) v = "ollo: " + v;
-  copyText(v);
-}
-document.getElementById("olloFreeInput")?.addEventListener("keydown", e => {
-  if (e.key === "Enter") { e.preventDefault(); copyFreeInput(); }
-});
-
-// --- Service worker ---
 if ("serviceWorker" in navigator) {
   const v = document.querySelector("meta[name='dcc-gen']")?.content || Date.now();
   navigator.serviceWorker.register("/sw.js?v=" + encodeURIComponent(v))
