@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-store">
+<title>DCC Manual &mdash; how to drive your day</title>
+<style>
+  :root {
+    --bg: #0f1115; --panel: #181b22; --panel-2: #1f232c; --ink: #f2f2f4;
+    --muted: #aab0bb; --accent: #b878d6; --accent-2: #6ec1e4;
+    --good: #7ed957; --warn: #ffc857; --urgent: #ff6b6b; --border: #2a2f3a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; line-height: 1.55; }
+  body { padding: 20px; font-size: 17px; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  h1 { font-size: 32px; color: var(--accent); margin-bottom: 6px; letter-spacing: 0.3px; }
+  .sub { color: var(--muted); font-size: 16px; margin-bottom: 24px; }
+  .top-cta { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+  .top-cta a { background: var(--panel-2); border: 1px solid var(--accent); color: var(--ink); padding: 9px 14px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; }
+  .top-cta a:hover { background: var(--accent); color: #0f1115; }
+
+  section { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; margin-bottom: 20px; }
+  section h2 { font-size: 24px; color: var(--accent-2); margin-bottom: 6px; display: flex; align-items: center; gap: 12px; }
+  section h2 .num { display: inline-flex; width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #0f1115; font-weight: 800; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  section .why { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+
+  .steps { display: grid; gap: 14px; }
+  .step { background: var(--panel-2); border-left: 5px solid var(--accent-2); border-radius: 10px; padding: 14px 18px; display: grid; grid-template-columns: 60px 1fr; gap: 14px; align-items: start; }
+  .step .ico { font-size: 36px; text-align: center; line-height: 1; }
+  .step .body h3 { font-size: 17px; margin-bottom: 4px; color: var(--ink); }
+  .step .body p { font-size: 15px; color: var(--ink); }
+  .step .body p.note { color: var(--muted); font-size: 13px; margin-top: 4px; font-style: italic; }
+  .step .body .kbd { display: inline-block; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px; font-family: ui-monospace, Menlo, monospace; font-size: 13px; color: var(--accent); }
+
+  .flow { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin: 14px 0; overflow-x: auto; }
+  .flow .lane { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .flow .box { background: var(--panel-2); border: 2px solid var(--accent); border-radius: 10px; padding: 10px 14px; min-width: 120px; text-align: center; font-weight: 600; font-size: 14px; }
+  .flow .box .small { display: block; font-weight: 400; font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .flow .box.good { border-color: var(--good); }
+  .flow .box.warn { border-color: var(--warn); }
+  .flow .box.purple { border-color: var(--accent); }
+  .flow .arrow { color: var(--accent); font-size: 24px; font-weight: 700; }
+
+  .callout { background: linear-gradient(135deg, #1a1408, #14100a); border: 2px solid var(--warn); border-radius: 10px; padding: 14px 18px; margin: 14px 0; }
+  .callout .head { color: var(--warn); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .callout p { font-size: 15px; }
+
+  .ok-bad { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+  @media (max-width: 700px) { .ok-bad { grid-template-columns: 1fr; } .step { grid-template-columns: 50px 1fr; } .flow .lane { flex-direction: column; align-items: flex-start; } .flow .arrow { transform: rotate(90deg); } }
+  .ok-bad .card { padding: 12px 14px; border-radius: 8px; font-size: 14px; }
+  .ok-bad .ok { background: rgba(126, 217, 87, 0.08); border: 1px solid var(--good); }
+  .ok-bad .bad { background: rgba(255, 107, 107, 0.08); border: 1px solid var(--urgent); }
+  .ok-bad .label { font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; margin-bottom: 6px; }
+  .ok-bad .ok .label { color: var(--good); }
+  .ok-bad .bad .label { color: var(--urgent); }
+
+  .tile-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+  @media (max-width: 700px) { .tile-row { grid-template-columns: 1fr; } }
+  .tile { background: var(--panel-2); border-radius: 10px; padding: 14px; text-align: center; border: 1px solid var(--border); }
+  .tile .big { font-size: 36px; margin-bottom: 6px; }
+  .tile .ttl { font-weight: 700; font-size: 14px; margin-bottom: 4px; color: var(--accent); }
+  .tile .desc { font-size: 13px; color: var(--muted); }
+
+  .check-list { list-style: none; padding: 0; }
+  .check-list li { padding: 8px 0 8px 32px; position: relative; font-size: 15px; border-bottom: 1px dotted var(--border); }
+  .check-list li:before { content: "\2713"; position: absolute; left: 4px; top: 7px; color: var(--good); font-weight: 800; font-size: 18px; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+  th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--accent-2); font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; }
+  td.cmd { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--accent); }
+
+  footer { margin-top: 30px; padding: 20px; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+  footer .sig { color: var(--accent); font-weight: 700; }
+
+  .anchor-nav { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; }
+  .anchor-nav .head { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 700; }
+  .anchor-nav ol { list-style: none; padding: 0; counter-reset: nav; }
+  .anchor-nav li { counter-increment: nav; padding: 4px 0; }
+  .anchor-nav li:before { content: counter(nav) ". "; color: var(--muted); }
+  .anchor-nav a { color: var(--ink); text-decoration: none; font-size: 15px; }
+  .anchor-nav a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>DCC Manual &mdash; how to drive your day</h1>
+<div class="sub">A simple guide. Big buttons. No jargon. Made for ADHD &amp; dyslexia &mdash; read what you need, skip the rest.</div>
+
+<div class="top-cta">
+  <a href="./">&larr; Back to DCC</a>
+  <a href="https://pog-staff-app-2.vercel.app/">Open the live DCC</a>
+</div>
+
+<div class="anchor-nav">
+  <div class="head">What's inside</div>
+  <ol>
+    <li><a href="#what">What the DCC is (in one breath)</a></li>
+    <li><a href="#morning">Morning &mdash; how to start your day</a></li>
+    <li><a href="#during">During the day &mdash; using the buttons</a></li>
+    <li><a href="#night">Night &mdash; closing the day</a></li>
+    <li><a href="#wiring">How the buttons actually work</a></li>
+    <li><a href="#snapshot">Why it sometimes shows old info</a></li>
+    <li><a href="#fix">If something looks wrong</a></li>
+    <li><a href="#glossary">Words to know (1 line each)</a></li>
+  </ol>
+</div>
+
+<!-- 1. WHAT -->
+<section id="what">
+  <h2><span class="num">1</span>What the DCC is</h2>
+  <div class="why">Acronym: <strong>DCC = Daily Command Centre</strong>. One screen that shows everything you need to know about today. Think of it like the dashboard in a car &mdash; not the engine, just the gauges.</div>
+
+  <div class="tile-row">
+    <div class="tile">
+      <div class="big">&#128205;</div>
+      <div class="ttl">Where it lives</div>
+      <div class="desc">pog-staff-app-2.vercel.app &mdash; on your phone, your laptop, your watch toolbar</div>
+    </div>
+    <div class="tile">
+      <div class="big">&#128338;</div>
+      <div class="ttl">When it refreshes</div>
+      <div class="desc">Every hour from 7am to 10pm Melbourne. Quiet overnight.</div>
+    </div>
+    <div class="tile">
+      <div class="big">&#128172;</div>
+      <div class="ttl">How you act on it</div>
+      <div class="desc">Tap a &rarr;ollo button. That copies a ready instruction. You paste it into Cowork. ollo does the work.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. MORNING -->
+<section id="morning">
+  <h2><span class="num">2</span>Morning &mdash; start of day</h2>
+  <div class="why">Five small things. Two minutes total. Done.</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="ico">&#9749;</div>
+      <div class="body">
+        <h3>Open the DCC</h3>
+        <p>On your phone or laptop, open <strong>pog-staff-app-2.vercel.app</strong>. It's pinned to your iPhone home screen and your Mac toolbar.</p>
+        <p class="note">If it looks like yesterday, tap the <span class="kbd">&#8635; Refresh</span> button (top-right).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="ico">&#128064;</div>
+      <div class="body">
+        <h3>Read the SNAPSHOT line at the top</h3>
+        <p>The amber strip tells you how fresh the page is. If it says "5 min ago" you're good. If it says "STALE" or you see red, tap <strong>Update DCC now</strong> in the purple Ask ollo bar.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="ico">&#128680;</div>
+      <div class="body">
+        <h3>Look at the red Approvals box</h3>
+        <p>Each line is something waiting on a YES or NO from you. Tap the small <span class="kbd">&rarr; ollo</span> button next to a line to ask ollo to act on it.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="ico">&#128221;</div>
+      <div class="body">
+        <h3>Glance at TODAY</h3>
+        <p>The purple "Today" cell shows what happened yesterday and what is still open. Quick scan, no need to read every word.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="ico">&#9989;</div>
+      <div class="body">
+        <h3>Pick ONE urgent thing</h3>
+        <p>Look at the red "Urgent" cell. Pick the top one. Tap the &rarr;ollo button. Switch to Cowork. Paste. Let ollo do the rest.</p>
+        <p class="note">ADHD trick: never start with the whole list. Pick one. Win it. Then pick the next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. DURING -->
+<section id="during">
+  <h2><span class="num">3</span>During the day</h2>
+  <div class="why">The DCC is a snapshot. Cowork is the live driver. The buttons connect them.</div>
+
+  <h3 style="color: var(--accent); margin: 18px 0 8px;">The Ask ollo bar (purple, top of page)</h3>
+  <p>Seven quick buttons. Tap one and a ready prompt goes to your clipboard. Examples:</p>
+
+  <table>
+    <thead><tr><th>Button</th><th>What ollo will do when you paste it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Show all drafts</strong></td><td>Lists every email sitting in PG Drafts so you can decide what to send.</td></tr>
+      <tr><td><strong>Scan PG inbox 24h</strong></td><td>Skims the last 24 hours of mailmanchina@gmail.com and flags anything from key people.</td></tr>
+      <tr><td><strong>Update DCC now</strong></td><td>Rebuilds the DCC with the latest state and pushes it to Vercel.</td></tr>
+      <tr><td><strong>Add idea</strong></td><td>Drops a line into your "Do it" Apple Note. Type your idea where it says [TYPE&hellip;].</td></tr>
+      <tr><td><strong>Check PG finance</strong></td><td>Shows latest P&amp;L, debit card balance, Tuesday payment run status.</td></tr>
+      <tr><td><strong>ollo heartbeat</strong></td><td>Asks ollo to tell you what it's working on right now and what is stuck.</td></tr>
+      <tr><td><strong>ollo out</strong></td><td>Closes the day. ollo logs today's decisions to your Continuity folder.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color: var(--accent); margin: 22px 0 8px;">Per-line &rarr;ollo buttons</h3>
+  <p>Every actionable line in <strong>Approvals</strong>, <strong>Today</strong>, and <strong>Urgent</strong> has a small &rarr;ollo button. Tap it and a context-specific prompt copies to clipboard. The line for "Send the 2 Erandi drafts" copies a prompt that already names the drafts. You don't have to type anything.</p>
+
+  <h3 style="color: var(--accent); margin: 22px 0 8px;">The free-text Ask ollo box</h3>
+  <p>If none of the buttons fit, type your own instruction in the white-ish box and hit Enter or Copy. The page auto-prefixes "ollo:" so ollo knows it's a command.</p>
+
+  <div class="callout">
+    <div class="head">&#9888; One step is still manual</div>
+    <p>The DCC can't talk to Cowork directly &mdash; that's an Apple security limit, not a bug. So the flow is always: <strong>1) Tap button &rarr; 2) Switch to Cowork app &rarr; 3) Paste with Cmd+V &rarr; 4) Press Enter</strong>. Four steps. Five seconds.</p>
+  </div>
+</section>
+
+<!-- 4. NIGHT -->
+<section id="night">
+  <h2><span class="num">4</span>Night &mdash; close the day</h2>
+  <div class="why">Tells ollo the day is done so tomorrow's gen starts in the right place.</div>
+
+  <ul class="check-list">
+    <li>Glance at the "Do it" Apple Note &mdash; clear anything that's now done</li>
+    <li>Send any drafts you decided on (FROM = ollo)</li>
+    <li>Approve / reject the Tuesday payment run if it's still open</li>
+    <li>Tap <strong>ollo out (close day)</strong> in the Ask ollo bar &mdash; paste &mdash; Enter</li>
+  </ul>
+
+  <p style="margin-top: 14px; color: var(--muted); font-size: 14px;">"ollo out" writes a 1-page summary of the day to your <strong>Daily Continuity</strong> Drive folder. Tomorrow's 7am gen reads that file first.</p>
+</section>
+
+<!-- 5. WIRING -->
+<section id="wiring">
+  <h2><span class="num">5</span>How the buttons actually work</h2>
+  <div class="why">The full picture, in 6 boxes. Read it once and you'll never wonder again.</div>
+
+  <div class="flow">
+    <div class="lane">
+      <div class="box purple">1. You tap<br>&rarr;ollo button<span class="small">on the DCC web page</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="box">2. Prompt copies<br>to clipboard<span class="small">a small toast says "Copied"</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="box">3. You switch<br>to Cowork app<span class="small">Cmd+Tab or dock icon</span></div>
+    </div>
+    <div class="lane" style="margin-top: 12px;">
+      <div class="box">4. You paste<br>&amp; press Enter<span class="small">Cmd+V then Return</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="box warn">5. ollo runs<br>the instruction<span class="small">reads drafts, checks calendar, etc</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="box good">6. ollo reports<br>back in chat<span class="small">you say YES / NO to send</span></div>
+    </div>
+  </div>
+
+  <div class="ok-bad">
+    <div class="card ok">
+      <div class="label">&#10003; Works</div>
+      Every button uses the same plumbing: <strong>copy &rarr; paste &rarr; ollo</strong>. Same five seconds every time. Same outcome.
+    </div>
+    <div class="card bad">
+      <div class="label">&times; Does not work</div>
+      The DCC web page <strong>cannot send the prompt straight to Cowork</strong> by itself. Browsers can't open Cowork like a link. So the clipboard step is real, not laziness.
+    </div>
+  </div>
+</section>
+
+<!-- 6. SNAPSHOT -->
+<section id="snapshot">
+  <h2><span class="num">6</span>Why it sometimes shows old info</h2>
+  <div class="why">The DCC is a <strong>snapshot</strong>, not a live mirror.</div>
+
+  <p>The page is built and pushed every hour 7am&ndash;10pm Melbourne. Between pushes nothing on the page changes &mdash; even if you sent a draft 2 minutes ago. That's why the Approvals box can show "2 drafts to send" when Drafts is actually empty.</p>
+
+  <p style="margin-top: 10px;">The amber bar at the top tells you the age. Under 60 minutes is normal. Over 90 minutes the bar goes red &mdash; that means a gen failed somewhere and you should tap <strong>Update DCC now</strong>.</p>
+
+  <div class="callout">
+    <div class="head">For truly live state &mdash; use Cowork</div>
+    <p>If you want to know what's <strong>actually</strong> in Drafts <strong>right now</strong>, ask ollo. Tap "Show all drafts" in the Ask ollo bar. That reads Gmail live. The DCC web page never will.</p>
+  </div>
+</section>
+
+<!-- 7. FIX -->
+<section id="fix">
+  <h2><span class="num">7</span>If something looks wrong</h2>
+  <div class="why">Three things that have actually happened, and what to do.</div>
+
+  <table>
+    <thead><tr><th>What you see</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>The page still shows yesterday's day</td>
+        <td>Tap <span class="kbd">&#8635; Refresh</span> top-right. If still wrong, tap <strong>Update DCC now</strong> in the Ask ollo bar.</td>
+      </tr>
+      <tr>
+        <td>The amber bar is red &mdash; "SNAPSHOT STALE"</td>
+        <td>A gen failed. Open Cowork and paste: <span class="kbd">ollo: check ~/ollo/dcc-push-errors.log and tell me what failed</span></td>
+      </tr>
+      <tr>
+        <td>Approvals shows things you already did</td>
+        <td>That's a stale snapshot, not a bug. Tap <strong>Update DCC now</strong> and wait 60 sec for the new push.</td>
+      </tr>
+      <tr>
+        <td>A &rarr;ollo button copied nothing</td>
+        <td>iPhone Safari sometimes blocks clipboard. Long-press the button instead and pick "Copy". If still nothing, take a screenshot &mdash; tell ollo and we'll fix it.</td>
+      </tr>
+      <tr>
+        <td>Cowork doesn't recognise what you pasted</td>
+        <td>Make sure the prompt starts with the word <strong>ollo:</strong>. The buttons add it automatically; the free-text box adds it too.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 8. GLOSSARY -->
+<section id="glossary">
+  <h2><span class="num">8</span>Words to know &mdash; one line each</h2>
+  <table>
+    <tbody>
+      <tr><td><strong>DCC</strong></td><td>Daily Command Centre &mdash; the web page you're reading about.</td></tr>
+      <tr><td><strong>ollo</strong></td><td>The assistant. Lives inside Cowork. Does the work.</td></tr>
+      <tr><td><strong>Cowork</strong></td><td>The desktop app where ollo runs. You paste prompts into it.</td></tr>
+      <tr><td><strong>PG</strong></td><td>Prince of Galle &mdash; your hotel in Sri Lanka.</td></tr>
+      <tr><td><strong>Snapshot</strong></td><td>A frozen photo of the truth at a moment in time. The DCC is one of these.</td></tr>
+      <tr><td><strong>Gen</strong></td><td>A scheduled rebuild of the DCC. Runs every hour 7am&ndash;10pm Mel.</td></tr>
+      <tr><td><strong>Vercel</strong></td><td>The website host. It auto-publishes the DCC whenever the file is updated.</td></tr>
+      <tr><td><strong>Drafts</strong></td><td>Emails written but not sent. Always check Drafts before sending.</td></tr>
+      <tr><td><strong>SRP</strong></td><td>The Sri Lankan accountants (Taara's firm).</td></tr>
+      <tr><td><strong>WE-29</strong></td><td>"Week ending 29 May" &mdash; the most recent finance pack.</td></tr>
+      <tr><td><strong>P&amp;L</strong></td><td>Profit and Loss. The weekly money summary.</td></tr>
+      <tr><td><strong>LKR</strong></td><td>Sri Lankan Rupee. The hotel's currency.</td></tr>
+      <tr><td><strong>AEST</strong></td><td>Australian Eastern Standard Time. Melbourne. Your time zone.</td></tr>
+      <tr><td><strong>FROM = ollo</strong></td><td>Before sending PG mail, switch the FROM address to <strong>ollo@princeofgalle.com</strong>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  DCC manual &middot; v1 &middot; updated 1 June 2026 &middot; <span class="sig">ollo for Kirk Jobsz</span>
+</footer>
+
+</div>
+</body>
+</html>
