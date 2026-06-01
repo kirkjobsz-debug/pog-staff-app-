@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Manual at 2026-06-01T08:06:08Z -->
+<!-- DCC gen: Manual at 2026-06-01T08:30:17Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Manual-2026-06-01T08:06:08Z">
+<meta name="dcc-gen" content="Manual-2026-06-01T08:30:17Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -25,8 +25,39 @@
   .header-right { text-align: right; font-size: 12px; color: var(--muted); }
   .gen-label { color: var(--accent-2); font-weight: 700; }
   .refresh-btn { display: inline-block; margin-top: 6px; padding: 5px 12px; background: var(--accent); color: #0f1115; border-radius: 5px; font-weight: 700; font-size: 11px; text-decoration: none; cursor: pointer; border: none; }
-  .snapshot-banner { background: var(--panel-2); border: 1px dashed var(--accent-2); border-radius: 7px; padding: 7px 12px; margin-bottom: 12px; font-size: 12px; color: var(--muted); }
-  .snapshot-banner strong { color: var(--accent-2); }
+
+  /* A &mdash; LOUD SNAPSHOT BANNER */
+  .snap-big { background: linear-gradient(135deg, #2a1a0e, #1a0f08); border: 2px solid var(--warn); border-left: 6px solid var(--warn); border-radius: 9px; padding: 11px 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .snap-big .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--warn); font-weight: 800; }
+  .snap-big .meta { font-size: 13px; color: var(--ink); font-weight: 600; }
+  .snap-big .age { color: var(--warn); font-weight: 800; font-size: 14px; }
+  .snap-big .right { font-size: 12px; color: var(--muted); text-align: right; }
+  .snap-big .right strong { color: var(--accent-2); }
+
+  /* Y &mdash; ASK OLLO COMMAND BAR */
+  .ollo-bar { background: linear-gradient(135deg, #1f1428, #14101a); border: 2px solid var(--accent); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+  .ollo-bar-head { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 800; margin-bottom: 4px; }
+  .ollo-bar-sub { font-size: 11px; color: var(--muted); margin-bottom: 9px; }
+  .ollo-bar-sub strong { color: var(--ink); }
+  .ollo-btns { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
+  .ollo-btn { background: var(--panel-2); border: 1px solid var(--accent); color: var(--ink); padding: 6px 11px; border-radius: 16px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+  .ollo-btn:hover { background: var(--accent); color: #0f1115; }
+  .ollo-btn.copied { background: var(--good); color: #0f1115; border-color: var(--good); }
+  .ollo-input-row { display: flex; gap: 6px; }
+  .ollo-input { flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--ink); padding: 7px 10px; border-radius: 6px; font-size: 12px; font-family: inherit; }
+  .ollo-input:focus { outline: none; border-color: var(--accent); }
+  .ollo-send-btn { background: var(--accent); color: #0f1115; border: none; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+  /* X &mdash; per-line copy buttons */
+  .row-copy { display: inline-block; margin-left: 8px; padding: 1px 7px; background: transparent; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent); font-size: 10px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; }
+  .row-copy:hover { background: var(--accent); color: #0f1115; }
+  .row-copy.copied { background: var(--good); border-color: var(--good); color: #0f1115; }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--good); color: #0f1115; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; z-index: 999; opacity: 0; transition: opacity 0.2s; pointer-events: none; box-shadow: 0 8px 22px rgba(0,0,0,0.45); }
+  .toast.show { opacity: 1; }
+  .toast .step { display: block; font-size: 11px; font-weight: 500; margin-top: 2px; color: #0f1115; opacity: 0.85; }
+
   .status-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 10px 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
   .status-pill { display: flex; align-items: center; gap: 5px; font-size: 12px; padding: 3px 8px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--border); white-space: nowrap; }
   .status-pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
@@ -98,18 +129,44 @@
 <header>
   <div class="header-left">
     <h1>Daily Command Centre <span class="name">&mdash; Kirk</span></h1>
-    <div class="tagline">All ventures. One view. Sunday evening Melbourne, mid-afternoon Galle. Day's close.</div>
+    <div class="tagline">All ventures. One view. Snapshot &mdash; refreshed hourly.</div>
   </div>
   <div class="header-right">
-    <div><span class="gen-label">PM gen</span> &middot; Monday 1 June 2026 &middot; 18:00 AEST</div>
-    <div style="margin-top:3px;">Next gen: 21:00 AEST</div>
+    <div><span class="gen-label" id="genLabel">Manual gen</span> &middot; <span id="genWhen">Monday 1 June 2026 &middot; 18:06 AEST</span></div>
+    <div style="margin-top:3px;">Next gen: <span id="nextGen">top of next hour</span></div>
     <a href="./?r=1" class="refresh-btn" onclick="location.reload(true); return false;">&#8635; Refresh</a>
   </div>
 </header>
 
-<!-- SNAPSHOT BANNER -->
-<div class="snapshot-banner">
-  <strong>Snapshot from 18:00 AEST today.</strong> For live state use the Cowork artifact ollo-dcc-live. Vercel page refreshes at 21:00 tonight, then 06:00 tomorrow.
+<!-- A &mdash; LOUD SNAPSHOT BANNER -->
+<div class="snap-big">
+  <div>
+    <div class="label">&#9888; Snapshot &mdash; not live</div>
+    <div class="meta">Frozen at <span id="snapFrozenAt">18:06 AEST, 1 Jun</span> &middot; <span class="age" id="snapAge">&minus;</span></div>
+  </div>
+  <div class="right">
+    Drafts / inbox / approvals shown are <strong>as-of gen time</strong>.<br>
+    For LIVE state open the <strong>ollo-dcc-live</strong> artifact in Cowork.
+  </div>
+</div>
+
+<!-- Y &mdash; ASK OLLO COMMAND BAR -->
+<div class="ollo-bar">
+  <div class="ollo-bar-head">&#128172; Ask ollo &mdash; tap a button, then paste into Cowork</div>
+  <div class="ollo-bar-sub">Each tap copies a ready prompt to your clipboard. Switch to <strong>Cowork app</strong>, paste, press Enter.</div>
+  <div class="ollo-btns">
+    <button class="ollo-btn" data-prompt="ollo: show me every staged draft in mailmanchina@gmail.com Drafts folder. List sender / subject / one-line summary. Do not send anything yet.">&#128231; Show all drafts</button>
+    <button class="ollo-btn" data-prompt="ollo: scan mailmanchina@gmail.com inbox for the last 24 hours. Flag anything from Erandi, Rukman, Taara, Chandima, Aaron, or anything finance / SRP / guest related. One-line per item.">&#128269; Scan PG inbox 24h</button>
+    <button class="ollo-btn" data-prompt="ollo: rebuild the DCC now with current state (drafts count, calendar, finance, approvals) and push to Vercel. Report OK &lt;sha&gt; when done.">&#128260; Update DCC now</button>
+    <button class="ollo-btn" data-prompt="ollo: add this idea to my Do it Apple Note &mdash; [TYPE YOUR IDEA HERE]">&#10133; Add idea</button>
+    <button class="ollo-btn" data-prompt="ollo: show PG finance state right now &mdash; latest WE folder, P&amp;L, debit card balance, Tuesday payment run status, anything outstanding.">&#128176; Check PG finance</button>
+    <button class="ollo-btn" data-prompt="ollo: heartbeat &mdash; what are you working on right now and what is blocking you?">&#10084;&#65039; ollo heartbeat</button>
+    <button class="ollo-btn" data-prompt="ollo out">&#127769; ollo out (close day)</button>
+  </div>
+  <div class="ollo-input-row">
+    <input class="ollo-input" id="olloFreeInput" type="text" placeholder='Type your own ollo prompt then press Enter or Copy&hellip;'>
+    <button class="ollo-send-btn" onclick="copyFreeInput()">Copy</button>
+  </div>
 </div>
 
 <!-- STATUS STRIP -->
@@ -119,7 +176,7 @@
   <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Gordon House</span><span class="pill-val">ballot pending</span></div>
   <div class="status-pill"><span class="dot dot-green"></span><span class="pill-label">Solomon</span><span class="pill-val">stable</span></div>
   <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Bookings</span><span class="pill-val">Archit awaiting pay link &middot; St Kilda check-in done</span></div>
-  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">PM gen pushed &middot; say "ollo out" tonight</span></div>
+  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">Manual nudge pushed &middot; hourly gens live</span></div>
 </div>
 
 <!-- TRAVEL BANNER -->
@@ -127,58 +184,82 @@
   <strong>Move done.</strong> Pullman Albert Park checkout cleared at 11:00am, invoice received. You are now at Breezy Studio, 50 Fitzroy St, St Kilda (home base to 30 Sep). Tonight: Getdown Services at Corner Hotel (Khandi, Imagine, Yarra).
 </div>
 
-<!-- APPROVALS -->
+<!-- APPROVALS &mdash; with per-line copy-as-prompt buttons -->
 <div class="approvals">
-  <h2><span class="blink"></span>Awaiting your YES / NO &mdash; send-today and decisions still open</h2>
+  <h2><span class="blink"></span>Awaiting your YES / NO &mdash; tap &rarr;ollo to act</h2>
   <ul>
     <li>
-      <span class="q">Send the two staged Erandi drafts (2 sitting in Drafts, unsent)</span>
-      <span class="ctx">1) WE-29 received note that also asks her to email approvals, not Drive-upload alone. 2) Reply acknowledging she finished the filing catalog today and listing the rows she could not place. YES = switch FROM to ollo and send both. <a href="https://mail.google.com/mail/u/0/#drafts">Open Drafts</a></span>
+      <span class="q">Send the two staged Erandi drafts (2 sitting in Drafts, unsent)
+        <button class="row-copy" data-prompt="ollo: open the two Erandi drafts staged in mailmanchina@gmail.com Drafts. Show me each one. If they read clean and FROM is set to ollo, send them both. Confirm with sent timestamps.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">1) WE-29 received note that also asks her to email approvals, not Drive-upload alone. 2) Reply acknowledging she finished the filing catalog today and listing the rows she could not place. <a href="https://mail.google.com/mail/u/0/#drafts">Open Drafts</a></span>
     </li>
     <li>
-      <span class="q">Approve the Monday 1 June 2026 payment run &mdash; LKR 141,040.91</span>
-      <span class="ctx">Still unapproved at day's close. Approve tonight so Erandi can action it Monday Galle morning. Dhanayaka fruits 8,770 &middot; Shashika quail eggs / bread 2,705 &middot; Mailman Lanka debit card top-up 100,000 &middot; Munzir / Sea Fair 29,565.91. <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">Open WE-29 folder</a></span>
+      <span class="q">Approve the Monday 1 June 2026 payment run &mdash; LKR 141,040.91
+        <button class="row-copy" data-prompt="ollo: open the WE-29 folder, show me the Tuesday 02 Jun 2026 payment run for LKR 141,040.91 (Dhanayaka fruits 8,770, Shashika quail eggs / bread 2,705, Mailman Lanka debit card top-up 100,000, Munzir / Sea Fair 29,565.91). Confirm the line items match. I will say YES or NO to approve.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Approve tonight so Erandi can action it Monday Galle morning. <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">Open WE-29 folder</a></span>
     </li>
     <li>
-      <span class="q">Taara / SRP &mdash; 9 days silent. Escalate to Aaron tonight?</span>
-      <span class="ctx">Last substantive reply 22 May. YES = ollo drafts a direct note to aaron@srpitl.com on the balance sheet, tax tracker, ITR and Articles of Association. <a href="https://mail.google.com/mail/u/0/#search/srpitl.com">Open SRP thread</a></span>
+      <span class="q">Taara / SRP &mdash; 9 days silent. Escalate to Aaron tonight?
+        <button class="row-copy" data-prompt="ollo: draft a direct note to aaron@srpitl.com on the balance sheet, tax tracker, ITR and Articles of Association. Reference the 22 May last substantive reply from Taara and the 9-day silence. Stage in Drafts, do not send. Use ollo signature. No em-dashes in the body.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Last substantive reply 22 May. <a href="https://mail.google.com/mail/u/0/#search/srpitl.com">Open SRP thread</a></span>
     </li>
     <li>
-      <span class="q">Reply to Archit Chauhan &mdash; still waiting on a payment link</span>
-      <span class="ctx">Guest messaged 30 May: "I am waiting for payment link, I will make the payment." Stay 17 Jun. One reply closes it. <a href="https://admin.booking.com">Open Booking.com</a></span>
+      <span class="q">Reply to Archit Chauhan &mdash; still waiting on a payment link
+        <button class="row-copy" data-prompt="ollo: draft a reply to Archit Chauhan on Booking.com for stay 17 Jun. He messaged 30 May asking for a payment link. Give him the link and short instructions. Stage in Drafts (or in Booking.com extranet message) and show me before sending.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Guest messaged 30 May: "I am waiting for payment link, I will make the payment." Stay 17 Jun. <a href="https://admin.booking.com">Open Booking.com</a></span>
     </li>
     <li>
-      <span class="q">Lock the Chandima bookkeeper call time</span>
-      <span class="ctx">She replied warmly, you replied 30 May from KirkJobsz@PG. Only the time is left. YES = ollo drafts a short note offering two slots this week. <a href="https://mail.google.com/mail/u/0/#search/from%3Aaccntaxation%40gmail.com">Open thread</a></span>
+      <span class="q">Lock the Chandima bookkeeper call time
+        <button class="row-copy" data-prompt="ollo: draft a short follow-up to Chandima (accntaxation@gmail.com) confirming the call. Offer two specific slots this week (Tue or Thu, evening Galle time = morning Mel). Stage in Drafts under KirkJobsz@PG. No em-dashes in body.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">She replied warmly, you replied 30 May from KirkJobsz@PG. Only the time is left. <a href="https://mail.google.com/mail/u/0/#search/from%3Aaccntaxation%40gmail.com">Open thread</a></span>
     </li>
     <li>
-      <span class="q">Chase the Erandi "not found" rows with SRP?</span>
-      <span class="ctx">Erandi flagged rows she could not place: 1.5, 2.2, 2.5-2.7, 3.4-3.5, 4.8/4.10-4.12, 5.2/5.4, 6.2-6.3, 7.3, 8.2. These are real gaps. YES = ollo folds them into the Aaron escalation above.</span>
+      <span class="q">Chase the Erandi "not found" rows with SRP?
+        <button class="row-copy" data-prompt="ollo: fold the Erandi not-found rows (1.5, 2.2, 2.5-2.7, 3.4-3.5, 4.8/4.10-4.12, 5.2/5.4, 6.2-6.3, 7.3, 8.2) into the Aaron / SRP escalation draft. Show me the merged draft before sending.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Real filing gaps. Fold into the Aaron escalation above.</span>
     </li>
   </ul>
-  <div class="footnote">ollo never auto-sends. This panel refreshes every gen.</div>
+  <div class="footnote">ollo never auto-sends. Each &rarr;ollo button copies a prompt; paste into Cowork to act.</div>
 </div>
 
 <!-- 6-CELL GRID -->
 <div class="grid">
 
   <div class="col">
-    <div class="col-head today">Today &mdash; what happened + still open</div>
+    <div class="col-head today">Today &mdash; tap &rarr;ollo to act on a line</div>
     <ul>
       <li><strong>Move done:</strong> Pullman checkout 11:00am cleared, invoice received. Now settled at Breezy Studio, St Kilda. <span class="tag tag-green">done</span></li>
       <li><strong>Erandi finished the filing catalog</strong> and replied today with the rows she could not place. Salary slips landed in Drive. <span class="tag tag-green">progress</span></li>
-      <li><strong>Two replies to Erandi sit unsent</strong> in Drafts. Send tonight. <span class="tag tag-yellow">send</span></li>
-      <li><strong>Tuesday payment run</strong> (LKR 141,040.91) still not approved. <span class="tag tag-yellow">approve</span></li>
-      <li><strong>Archit guest:</strong> still waiting on a payment link. <span class="tag tag-red">reply</span></li>
+      <li><strong>Two replies to Erandi sit unsent</strong> in Drafts. Send tonight.
+        <button class="row-copy" data-prompt="ollo: open the two Erandi drafts in mailmanchina@gmail.com Drafts. Show me both, then send if clean.">&rarr; ollo</button>
+        <span class="tag tag-yellow">send</span></li>
+      <li><strong>Tuesday payment run</strong> (LKR 141,040.91) still not approved.
+        <button class="row-copy" data-prompt="ollo: show me the Tuesday 02 Jun payment run line items. I will YES / NO approval.">&rarr; ollo</button>
+        <span class="tag tag-yellow">approve</span></li>
+      <li><strong>Archit guest:</strong> still waiting on a payment link.
+        <button class="row-copy" data-prompt="ollo: draft Archit's payment-link reply via Booking.com extranet. Show me before sending.">&rarr; ollo</button>
+        <span class="tag tag-red">reply</span></li>
     </ul>
   </div>
 
   <div class="col">
     <div class="col-head urgent">Urgent &mdash; send-today, not yet sent</div>
     <ul>
-      <li><strong>2 Erandi drafts unsent:</strong> WE-29 received note + filing-complete acknowledgement. Switch FROM to ollo and send. <span class="tag tag-yellow">send</span></li>
-      <li><strong>Tuesday payment run:</strong> LKR 141,040.91 for 02 Jun (incl. LKR 100K debit-card top-up). Approve before Monday morning Galle. <span class="tag tag-yellow">approve</span></li>
-      <li><strong>Taara / SRP &mdash; 9 days silent:</strong> decide tonight whether to go direct to Aaron (aaron@srpitl.com). <span class="tag tag-red">escalate</span></li>
+      <li><strong>2 Erandi drafts unsent.</strong>
+        <button class="row-copy" data-prompt="ollo: open the two Erandi drafts staged in mailmanchina@gmail.com Drafts. Confirm FROM = ollo and send.">&rarr; ollo</button>
+        <span class="tag tag-yellow">send</span></li>
+      <li><strong>Tuesday payment run:</strong> LKR 141,040.91 for 02 Jun (incl. LKR 100K debit-card top-up).
+        <button class="row-copy" data-prompt="ollo: walk me through the 02 Jun payment run for approval. Itemise it.">&rarr; ollo</button>
+        <span class="tag tag-yellow">approve</span></li>
+      <li><strong>Taara / SRP &mdash; 9 days silent:</strong> decide tonight on Aaron escalation.
+        <button class="row-copy" data-prompt="ollo: draft the direct escalation to aaron@srpitl.com on balance sheet, tax tracker, ITR, AoA. Stage in Drafts. No em-dashes.">&rarr; ollo</button>
+        <span class="tag tag-red">escalate</span></li>
     </ul>
   </div>
 
@@ -190,7 +271,9 @@
       <li><strong>Approve</strong> the Tuesday run so Erandi is unblocked Monday</li>
       <li><strong>Switch FROM to ollo</strong> before sending any PG mail</li>
       <li><strong>iPhone / Watch shortcut</strong> writes to the "Do it" note &middot; DCC reads it 4x daily</li>
-      <li><strong>Say "ollo out"</strong> tonight to log the day to Continuity</li>
+      <li><strong>Say "ollo out"</strong> tonight to log the day to Continuity
+        <button class="row-copy" data-prompt="ollo out">&rarr; ollo</button>
+      </li>
     </ul>
     <div class="ollo-out-box">
       <strong>One tap to capture</strong><br>
@@ -271,7 +354,7 @@
     </div>
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">Quotidian</span>/kwoh-TID-ee-uhn/ &mdash; ordinary, everyday, recurring daily. <em>"The quotidian rhythm of four gens a day means nothing slips between one day and the next."</em></div>
+      <div class="body"><span class="term">Quotidian</span>/kwoh-TID-ee-uhn/ &mdash; ordinary, everyday, recurring daily. <em>"The quotidian rhythm of hourly snapshots means nothing slips between one day and the next."</em></div>
     </div>
   </div>
 </div>
@@ -308,6 +391,7 @@
         <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
         <li><a href="https://pog-staff-app-2.vercel.app/">DCC live app (Vercel)</a></li>
+        <li><a href="./manual.html">&rarr; How to use the DCC (manual)</a></li>
       </ul>
     </div>
     <div>
@@ -333,13 +417,100 @@
 </div>
 
 <footer>
-  <div>DCC v3 &middot; Monday 1 June 2026 &middot; PM &middot; auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
+  <div>DCC v3 &middot; Hourly snapshot, 7:00&ndash;22:00 AEST &middot; quiet hours 22:00&ndash;06:00</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
 </div>
 
+<!-- TOAST -->
+<div class="toast" id="toast">
+  Copied prompt to clipboard
+  <span class="step">Now switch to Cowork app and paste (Cmd+V)</span>
+</div>
+
 <script>
+// --- A: live "X minutes ago" age counter ---
+function parseGenTime() {
+  const meta = document.querySelector("meta[name='dcc-gen']")?.content || "";
+  // expected: "<label>-2026-06-01T08:06:08Z"
+  const m = meta.match(/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)/);
+  return m ? new Date(m[1]) : null;
+}
+function fmtMelb(d) {
+  try {
+    return d.toLocaleString("en-AU", { timeZone: "Australia/Melbourne", weekday: "long", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", hour12: false }) + " AEST";
+  } catch(e) { return d.toISOString(); }
+}
+function updateAge() {
+  const t = parseGenTime();
+  if (!t) return;
+  const now = new Date();
+  const diff = Math.floor((now - t) / 1000);
+  let txt;
+  if (diff < 60) txt = diff + " sec ago";
+  else if (diff < 3600) txt = Math.floor(diff/60) + " min ago";
+  else if (diff < 86400) {
+    const h = Math.floor(diff/3600), m = Math.floor((diff%3600)/60);
+    txt = h + "h " + m + "m ago";
+  } else txt = Math.floor(diff/86400) + " days ago";
+  const ageEl = document.getElementById("snapAge");
+  if (ageEl) ageEl.textContent = txt;
+  const frozen = document.getElementById("snapFrozenAt");
+  if (frozen) frozen.textContent = fmtMelb(t);
+  // Highlight if stale (>90 min)
+  if (diff > 5400) {
+    document.querySelector(".snap-big").style.borderColor = "#ff6b6b";
+    document.querySelector(".snap-big .label").style.color = "#ff6b6b";
+    document.querySelector(".snap-big .label").textContent = "⚠ SNAPSHOT IS STALE — push DCC now";
+  }
+}
+updateAge();
+setInterval(updateAge, 30000);
+
+// --- X / Y: copy-as-prompt with toast ---
+function showToast(msg, sub) {
+  const t = document.getElementById("toast");
+  if (!t) return;
+  t.innerHTML = msg + (sub ? '<span class="step">' + sub + '</span>' : '');
+  t.classList.add("show");
+  clearTimeout(window._toastT);
+  window._toastT = setTimeout(()=>t.classList.remove("show"), 2400);
+}
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(()=>{
+    if (btn) {
+      const orig = btn.textContent;
+      btn.classList.add("copied");
+      btn.textContent = "✓ Copied";
+      setTimeout(()=>{ btn.classList.remove("copied"); btn.textContent = orig; }, 1600);
+    }
+    showToast("✓ Copied prompt", "Switch to Cowork app and paste (Cmd+V)");
+  }).catch(()=>{
+    showToast("Copy failed — long-press the button to copy manually");
+  });
+}
+document.querySelectorAll("[data-prompt]").forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    copyText(btn.getAttribute("data-prompt"), btn);
+  });
+});
+function copyFreeInput() {
+  const inp = document.getElementById("olloFreeInput");
+  if (!inp || !inp.value.trim()) {
+    showToast("Type something first");
+    return;
+  }
+  let v = inp.value.trim();
+  if (!v.toLowerCase().startsWith("ollo:") && !v.toLowerCase().startsWith("ollo ")) v = "ollo: " + v;
+  copyText(v);
+}
+document.getElementById("olloFreeInput")?.addEventListener("keydown", e => {
+  if (e.key === "Enter") { e.preventDefault(); copyFreeInput(); }
+});
+
+// --- Service worker ---
 if ("serviceWorker" in navigator) {
   const v = document.querySelector("meta[name='dcc-gen']")?.content || Date.now();
   navigator.serviceWorker.register("/sw.js?v=" + encodeURIComponent(v))
