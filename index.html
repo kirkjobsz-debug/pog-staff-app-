@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Midday at 2026-06-01T10:07:35.827964Z -->
+<!-- DCC gen: AM at 2026-06-01T10:09:05.519332Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Midday-2026-06-01T10:07:35.827964Z">
+<meta name="dcc-gen" content="AM-2026-06-01T10:09:05.519332Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -25,8 +25,30 @@
   .header-right { text-align: right; font-size: 12px; color: var(--muted); }
   .gen-label { color: var(--accent-2); font-weight: 700; }
   .refresh-btn { display: inline-block; margin-top: 6px; padding: 5px 12px; background: var(--accent); color: #0f1115; border-radius: 5px; font-weight: 700; font-size: 11px; text-decoration: none; cursor: pointer; border: none; }
-  .snapshot-banner { background: var(--panel-2); border: 1px dashed var(--accent-2); border-radius: 7px; padding: 7px 12px; margin-bottom: 12px; font-size: 12px; color: var(--muted); }
-  .snapshot-banner strong { color: var(--accent-2); }
+  .snap-big { background: linear-gradient(135deg, #2a1a0e, #1a0f08); border: 2px solid var(--warn); border-left: 6px solid var(--warn); border-radius: 9px; padding: 11px 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .snap-big .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--warn); font-weight: 800; }
+  .snap-big .meta { font-size: 13px; color: var(--ink); font-weight: 600; }
+  .snap-big .age { color: var(--warn); font-weight: 800; font-size: 14px; }
+  .snap-big .right { font-size: 12px; color: var(--muted); text-align: right; }
+  .snap-big .right strong { color: var(--accent-2); }
+  .ollo-bar { background: linear-gradient(135deg, #1f1428, #14101a); border: 2px solid var(--accent); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+  .ollo-bar-head { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 800; margin-bottom: 4px; }
+  .ollo-bar-sub { font-size: 11px; color: var(--muted); margin-bottom: 9px; }
+  .ollo-bar-sub strong { color: var(--ink); }
+  .ollo-btns { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
+  .ollo-btn { background: var(--panel-2); border: 1px solid var(--accent); color: var(--ink); padding: 6px 11px; border-radius: 16px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+  .ollo-btn:hover { background: var(--accent); color: #0f1115; }
+  .ollo-btn.copied { background: var(--good); color: #0f1115; border-color: var(--good); }
+  .ollo-input-row { display: flex; gap: 6px; }
+  .ollo-input { flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--ink); padding: 7px 10px; border-radius: 6px; font-size: 12px; font-family: inherit; }
+  .ollo-input:focus { outline: none; border-color: var(--accent); }
+  .ollo-send-btn { background: var(--accent); color: #0f1115; border: none; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .row-copy { display: inline-block; margin-left: 8px; padding: 1px 7px; background: transparent; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent); font-size: 10px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: middle; }
+  .row-copy:hover { background: var(--accent); color: #0f1115; }
+  .row-copy.copied { background: var(--good); border-color: var(--good); color: #0f1115; }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--good); color: #0f1115; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; z-index: 999; opacity: 0; transition: opacity 0.2s; pointer-events: none; box-shadow: 0 8px 22px rgba(0,0,0,0.45); }
+  .toast.show { opacity: 1; }
+  .toast .step { display: block; font-size: 11px; font-weight: 500; margin-top: 2px; color: #0f1115; opacity: 0.85; }
   .status-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 10px 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
   .status-pill { display: flex; align-items: center; gap: 5px; font-size: 12px; padding: 3px 8px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--border); white-space: nowrap; }
   .status-pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
@@ -45,8 +67,6 @@
   .approvals .ctx { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
   .approvals a { color: var(--accent-2); }
   .approvals .footnote { margin-top: 8px; font-size: 11px; color: var(--muted); font-style: italic; }
-  .midday-checkin { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent-2); border-radius: 8px; padding: 9px 14px; margin-bottom: 12px; font-size: 13px; color: var(--ink); }
-  .midday-checkin strong { color: var(--accent-2); }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
   @media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
@@ -100,95 +120,143 @@
 <header>
   <div class="header-left">
     <h1>Daily Command Centre <span class="name">&mdash; Kirk</span></h1>
-    <div class="tagline">All ventures. One view. Midday Melbourne, evening Galle. What is still open from this morning.</div>
+    <div class="tagline">All ventures. One view. Snapshot, refreshed across the day.</div>
   </div>
   <div class="header-right">
-    <div><span class="gen-label">Midday gen</span> &middot; Monday 01 June 2026 &middot; 12:00 AEST</div>
-    <div style="margin-top:3px;">Next gen: 18:00 AEST</div>
+    <div><span class="gen-label" id="genLabel">AM gen (ran off-schedule)</span> &middot; <span id="genWhen">Monday 1 June 2026 &middot; 20:01 AEST</span></div>
+    <div style="margin-top:3px;">AM task fired this evening, not 06:00. Data below is live as of 20:01.</div>
     <a href="./?r=1" class="refresh-btn" onclick="location.reload(true); return false;">&#8635; Refresh</a>
   </div>
 </header>
 
-<!-- SNAPSHOT BANNER -->
-<div class="snapshot-banner">
-  <strong>Snapshot from 12:00 AEST today.</strong> For live state use the Cowork artifact ollo-dcc-live. Vercel page refreshes at 18:00 this evening, then 21:00 tonight.
+<div class="snap-big">
+  <div>
+    <div class="label">&#9888; Snapshot, not live</div>
+    <div class="meta">Frozen at <span id="snapFrozenAt">20:01 AEST, 1 Jun</span> &middot; <span class="age" id="snapAge">&minus;</span></div>
+  </div>
+  <div class="right">
+    AM-gen task ran at 20:01 AEST, not 06:00. For live state open the <strong>ollo-dcc-live</strong> artifact in Cowork.<br>
+    Vercel page refreshes at 12:00 / 18:00 / 21:00.
+  </div>
 </div>
 
-<!-- STATUS STRIP -->
+<div class="ollo-bar">
+  <div class="ollo-bar-head">&#128172; Ask ollo &mdash; tap a button, then paste into Cowork</div>
+  <div class="ollo-bar-sub">Each tap copies a ready prompt to your clipboard. Switch to <strong>Cowork app</strong>, paste, press Enter.</div>
+  <div class="ollo-btns">
+    <button class="ollo-btn" data-prompt="ollo: show me every staged draft in mailmanchina@gmail.com Drafts folder. List sender / subject / one-line summary. Do not send anything yet.">&#128231; Show all drafts</button>
+    <button class="ollo-btn" data-prompt="ollo: scan mailmanchina@gmail.com inbox for the last 24 hours. Flag anything from Erandi, Rukman, Taara, Chandima, Aaron, or anything finance / SRP / guest related. One-line per item.">&#128269; Scan PG inbox 24h</button>
+    <button class="ollo-btn" data-prompt="ollo: rebuild the DCC now with current state (drafts count, calendar, finance, approvals) and push to Vercel. Report OK &lt;sha&gt; when done.">&#128260; Update DCC now</button>
+    <button class="ollo-btn" data-prompt="ollo: add this idea to my Do it Apple Note &mdash; [TYPE YOUR IDEA HERE]">&#10133; Add idea</button>
+    <button class="ollo-btn" data-prompt="ollo: show PG finance state right now &mdash; latest WE folder, P&amp;L, debit card balance, Tuesday payment run status, anything outstanding.">&#128176; Check PG finance</button>
+    <button class="ollo-btn" data-prompt="ollo: heartbeat &mdash; what are you working on right now and what is blocking you?">&#10084;&#65039; ollo heartbeat</button>
+    <button class="ollo-btn" data-prompt="ollo out">&#127769; ollo out (close day)</button>
+  </div>
+  <div class="ollo-input-row">
+    <input class="ollo-input" id="olloFreeInput" type="text" placeholder='Type your own ollo prompt then press Enter or Copy&hellip;'>
+    <button class="ollo-send-btn" onclick="copyFreeInput()">Copy</button>
+  </div>
+</div>
+
 <div class="status-strip">
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">PG Finance</span><span class="pill-val">WE-29 P&amp;L &minus;LKR 392K &middot; Tue run LKR 141K to confirm</span></div>
-  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">10 days silent &middot; escalate to Aaron</span></div>
-  <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Gordon House</span><span class="pill-val">ballot pending</span></div>
-  <div class="status-pill"><span class="dot dot-green"></span><span class="pill-label">Solomon</span><span class="pill-val">stable</span></div>
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Bookings</span><span class="pill-val">3 guest messages waiting on Booking.com</span></div>
-  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">Midday gen pushed</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">PG Finance</span><span class="pill-val">WE-29 P&amp;L &minus;LKR 392K &middot; Tue run LKR 141K awaiting Erandi's 3 confirms</span></div>
+  <div class="status-pill"><span class="dot dot-green"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">Delivering &middot; 29 May pack + 1 Jun advisory in &middot; shareholder register still due</span></div>
+  <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Gordon House</span><span class="pill-val">no change</span></div>
+  <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Solomon</span><span class="pill-val">parked</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Bookings</span><span class="pill-val">3 Booking.com guest messages waiting (book@PG)</span></div>
+  <div class="status-pill"><span class="dot dot-purple"></span><span class="pill-label">Continuity</span><span class="pill-val">ollo out logged 19:56 &middot; off-schedule AM gen pushed</span></div>
 </div>
 
-<!-- TRAVEL BANNER -->
 <div class="travel-banner">
-  <strong>Tonight: InterContinental Melbourne The Rialto</strong>, 495 Collins Street (booked via HotelTonight this morning, receipt forwarded to Lora). Pullman Albert Park final invoice landed this morning; in-room dining refund is with F&amp;B manager Jenny Nguyen.
+  <strong>Tonight:</strong> booked into InterContinental Melbourne The Rialto, 495 Collins St (HotelTonight, 1 to 3 Jun, receipt forwarded to Lora). Breezy Studio, 50 Fitzroy St St Kilda remains home base through 30 Sep.
 </div>
 
-<!-- APPROVALS -->
 <div class="approvals">
-  <h2><span class="blink"></span>Awaiting your YES / NO &mdash; still open after the morning</h2>
+  <h2><span class="blink"></span>Awaiting your YES / NO &mdash; tap &rarr;ollo to act</h2>
   <ul>
     <li>
-      <span class="q">Confirm the Tuesday 2 June payment run &mdash; LKR 141,040.91</span>
-      <span class="ctx">You replied to Erandi this morning and deferred the monthly laundry bill to next week. The core run still needs your final YES so Erandi can action it Tuesday Galle morning. Dhanayaka fruits 8,770 &middot; Shashika quail eggs / bread 2,705 &middot; Mailman Lanka debit card top-up 100,000 &middot; Munzir / Sea Fair 29,565.91. <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">Open WE-29 folder</a></span>
+      <span class="q">Send the Taara warm follow-up draft (staged in Drafts, unsent)
+        <button class="row-copy" data-prompt="ollo: open the draft to taara@srpitl.com in mailmanchina@gmail.com Drafts (Re: Prince of Galle Google Drive Access). Show it to me. If it reads clean and FROM is ollo, send it. No em-dashes in the body. Confirm with a sent timestamp.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Acknowledges the 29 May package and the 1 Jun tax advisory, and chases the shareholder register Taara promised for Monday morning. <a href="https://mail.google.com/mail/u/0/#drafts">Open Drafts</a></span>
     </li>
     <li>
-      <span class="q">Taara / SRP &mdash; 10 days silent. Escalate to Aaron?</span>
-      <span class="ctx">Last reply 22 May was "we will get back to you soon". Nothing since. YES = ollo drafts a direct note to aaron@srpitl.com on the balance sheet, tax tracker, ITR and Articles of Association, and folds in Erandi's "not found" rows. <a href="https://mail.google.com/mail/u/0/#search/srpitl.com">Open SRP thread</a></span>
+      <span class="q">Delete the superseded Erandi laundry draft (cleanup)
+        <button class="row-copy" data-prompt="ollo: in mailmanchina@gmail.com Drafts there is an older Erandi draft that says to ADD the laundry bill to this week's run. That decision was reversed. I already sent the 'laundry deferred to Tuesday 9 June' version. Show me the stale draft, then delete it.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">You already sent the laundry-deferred reply at 19:23. The old "add it this week" draft is stale and should be removed so Drafts is clean. <a href="https://mail.google.com/mail/u/0/#drafts">Open Drafts</a></span>
     </li>
     <li>
-      <span class="q">Booking.com &mdash; 3 guest messages waiting for a reply</span>
-      <span class="ctx">Partner inbox flagged 3 unanswered guest messages this morning (notice to book@PG). Clear them so nothing ages. <a href="https://admin.booking.com">Open Booking.com</a></span>
+      <span class="q">Final-approve the Tuesday 2 June payment run, LKR 141,040.91
+        <button class="row-copy" data-prompt="ollo: show me the Tuesday 02 Jun 2026 payment run for LKR 141,040.91 (Dhanayaka fruits 8,770, Shashika quail eggs / bread 2,705, Mailman Lanka debit card top-up 100,000, Munzir Sea Fair 29,566). I will say YES or NO once Erandi confirms the three open items.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Held for Erandi's 3 confirmations: Shashika LKR 2,705 itemisation, Anura OT hours, NDB LKR 50K ATM source. <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">Open WE-29 folder</a></span>
     </li>
     <li>
-      <span class="q">Loan repayments &mdash; call Jemoin, the new finance lady</span>
-      <span class="ctx">From your "Do it" note: get onto the loan repayments, call Jemoin and confirm she received the email, and get Rukman to follow up. The NTB loan repayment schedule is archived in email and worth pulling to understand the loan. YES = ollo drafts the intro email and a one-line brief for the call.</span>
+      <span class="q">Booking.com: 3 guest messages waiting at book@PG
+        <button class="row-copy" data-prompt="ollo: open the Booking.com extranet inbox for Prince of Galle (book@princeofgalle.com). Summarise the 3 waiting guest messages one line each, and draft replies. Show me before anything goes out.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Booking.com flagged 3 unanswered guest messages this morning. May include the Archit payment-link request. <a href="https://admin.booking.com">Open Booking.com</a></span>
+    </li>
+    <li>
+      <span class="q">Auspost PO Box renewal, final reminder overdue
+        <button class="row-copy" data-prompt="ollo: find the Auspost PO Box renewal reminder in mailmanchina@gmail.com and show me the invoice and amount. I will decide pay or let it lapse.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Final reminder is sitting unactioned. Decide pay or let lapse. <a href="https://mail.google.com/mail/u/0/#search/auspost+PO+Box">Open reminder</a></span>
+    </li>
+    <li>
+      <span class="q">info@PG password rotation after the Prasadi handover
+        <button class="row-copy" data-prompt="ollo: remind me of the steps to rotate the info@princeofgalle.com password after the Prasadi handover, and what services that login touches.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">Logged at day's close as still required. Security hygiene, not urgent, but do not let it drift.</span>
     </li>
   </ul>
-  <div class="footnote">ollo never auto-sends. This panel refreshes every gen.</div>
+  <div class="footnote">ollo never auto-sends. Each &rarr;ollo button copies a prompt; paste into Cowork to act. This panel refreshes every gen.</div>
 </div>
 
-<!-- MIDDAY CHECK-IN -->
-<div class="midday-checkin">
-  <strong>Midday check-in.</strong> Two morning jobs are done: both Erandi replies went out (Drafts now empty) and the filing catalog is acknowledged. Four things are still open: confirm the Tuesday run, decide on the SRP escalation, clear the 3 Booking.com guest messages, and make the Jemoin loan call. Tonight you are at the InterContinental Rialto.
-</div>
-
-<!-- 6-CELL GRID -->
 <div class="grid">
 
   <div class="col">
-    <div class="col-head today">Today &mdash; still open</div>
+    <div class="col-head today">Today &mdash; tap &rarr;ollo to act on a line</div>
     <ul>
-      <li><strong>Morning sends done:</strong> both Erandi replies went out (WE-29 / laundry deferred + filing-complete acknowledgement). Drafts empty. <span class="tag tag-green">done</span></li>
-      <li><strong>Tuesday run:</strong> LKR 141,040.91 still needs your final confirm. <span class="tag tag-yellow">confirm</span></li>
-      <li><strong>SRP / Taara:</strong> 10 days silent. Decide on the Aaron escalation. <span class="tag tag-red">decide</span></li>
-      <li><strong>Booking.com:</strong> 3 guest messages waiting. <span class="tag tag-yellow">reply</span></li>
-      <li><strong>Loan / Jemoin:</strong> call the new finance lady, confirm email received, Rukman to follow up. <span class="tag tag-yellow">call</span></li>
+      <li><strong>Sent today:</strong> filing-catalog acknowledgement to Erandi, and the clean itemised Tuesday payment list with laundry deferred. <span class="tag tag-green">done</span></li>
+      <li><strong>Taara reply landed</strong> this morning with a full tax advisory (TDL, VAT, APIT, WHT, return calendar). Saved for the team. <span class="tag tag-green">in</span></li>
+      <li><strong>Taara warm follow-up sits unsent</strong> in Drafts. Send it.
+        <button class="row-copy" data-prompt="ollo: open the Taara draft in mailmanchina@gmail.com Drafts, show it, send if clean. No em-dashes.">&rarr; ollo</button>
+        <span class="tag tag-yellow">send</span></li>
+      <li><strong>Tuesday run</strong> (LKR 141,040.91) waiting on Erandi's 3 confirms before final go.
+        <button class="row-copy" data-prompt="ollo: list the Tuesday 02 Jun payment run line items and the 3 open confirmations from Erandi.">&rarr; ollo</button>
+        <span class="tag tag-yellow">hold</span></li>
+      <li><strong>Booking.com:</strong> 3 guest messages waiting at book@PG.
+        <button class="row-copy" data-prompt="ollo: summarise the 3 waiting Booking.com guest messages and draft replies. Show me first.">&rarr; ollo</button>
+        <span class="tag tag-red">reply</span></li>
     </ul>
   </div>
 
   <div class="col">
-    <div class="col-head urgent">Urgent &mdash; this afternoon</div>
+    <div class="col-head urgent">Urgent &mdash; needs you</div>
     <ul>
-      <li><strong>Confirm Tuesday run:</strong> LKR 141,040.91 for 02 Jun (incl. LKR 100K debit-card top-up) so Erandi is unblocked Tuesday Galle morning. <span class="tag tag-yellow">confirm</span></li>
-      <li><strong>SRP escalation:</strong> 10 days no reply. Go direct to Aaron (aaron@srpitl.com)? <span class="tag tag-red">escalate</span></li>
-      <li><strong>Booking.com guests:</strong> 3 messages unanswered since this morning. <span class="tag tag-red">reply</span></li>
+      <li><strong>Send the Taara follow-up.</strong> Only thing left in Drafts that should go out.
+        <button class="row-copy" data-prompt="ollo: open and send the Taara warm follow-up draft if clean. Confirm FROM = ollo, no em-dashes.">&rarr; ollo</button>
+        <span class="tag tag-yellow">send</span></li>
+      <li><strong>Delete the stale Erandi laundry draft</strong> so Drafts is clean.
+        <button class="row-copy" data-prompt="ollo: show then delete the superseded Erandi laundry 'add it this week' draft in mailmanchina Drafts.">&rarr; ollo</button>
+        <span class="tag tag-purple">cleanup</span></li>
+      <li><strong>Booking.com guest replies</strong> (3 waiting). Possible Archit payment link inside.
+        <button class="row-copy" data-prompt="ollo: open Booking.com extranet, summarise 3 waiting guest messages, draft replies, show me.">&rarr; ollo</button>
+        <span class="tag tag-red">reply</span></li>
     </ul>
   </div>
 
   <div class="col">
-    <div class="col-head rituals">Midday ritual</div>
+    <div class="col-head rituals">Night ritual</div>
     <ul>
-      <li><strong>Midday:</strong> glance at Apple Notes "Do it" and clear what you can</li>
-      <li><strong>Confirm</strong> the Tuesday run so Galle is unblocked tomorrow</li>
+      <li><strong>Glance</strong> at Apple Notes "Do it" and clear what you can</li>
+      <li><strong>Send</strong> the Taara follow-up (FROM = ollo)</li>
+      <li><strong>Delete</strong> the stale laundry draft</li>
       <li><strong>Switch FROM to ollo</strong> before sending any PG mail</li>
-      <li><strong>iPhone / Watch shortcut</strong> writes to the "Do it" note &middot; DCC reads it 4x daily</li>
-      <li><strong>Say "ollo out"</strong> tonight to log the day to Continuity</li>
+      <li><strong>iPhone / Watch shortcut</strong> writes to the "Do it" note. ollo reads it every gen.</li>
+      <li><strong>"ollo out" already logged 19:56</strong> today. Day is closed; this is an off-schedule refresh.</li>
     </ul>
     <div class="ollo-out-box">
       <strong>One tap to capture</strong><br>
@@ -199,38 +267,40 @@
   <div class="col">
     <div class="col-head week">Tomorrow / this week</div>
     <ul>
-      <li><strong>Tue 2 Jun:</strong> PG Tuesday payment run (LKR 141K) &middot; Khandi blood test with Pieter Mack &middot; E J Ainger live auction 10:00&ndash;14:00.</li>
+      <li><strong>Tue 2 Jun:</strong> PG Tuesday payment run (LKR 141K) &middot; Khandi blood test with Pieter Mack &middot; EJ Ainger live auction 10:00 to 14:00.</li>
       <li><strong>Wed 3 Jun:</strong> Imagine consultation 13:00 at 15 Waterloo Place, Richmond (Halaxy) &middot; Imagine with Betty.</li>
-      <li><strong>This week:</strong> lock the Chandima bookkeeper call &middot; Rukman to draft the 2026 annual budget &middot; chase Erandi's "not found" rows with SRP.</li>
-      <li><strong>Stays:</strong> InterContinental Rialto tonight &middot; Breezy Studio, St Kilda booked through 30 Sep.</li>
+      <li><strong>This week:</strong> Rukman to draft the 2026 annual budget &middot; build the accountant handover note &middot; surface the WE-29 audit follow-ups to Erandi and Taara.</li>
+      <li><strong>Parked:</strong> Geoffrey Dobbs / Admiral's House lease termination (Bruce thread) &middot; Solomon Spirits.</li>
+      <li><strong>St Kilda:</strong> Breezy Studio booked through 30 Sep.</li>
     </ul>
   </div>
 
   <div class="col">
-    <div class="col-head ideas">Wisdom &mdash; quick</div>
+    <div class="col-head ideas">Ideas &amp; Quick Add &mdash; from "Do it"</div>
     <ul>
-      <li>"Safety is not the absence of threat, it is the presence of connection." &mdash; Gabor Mat&eacute;</li>
-      <li>"Muddy water is best cleared by leaving it alone." &mdash; Alan Watts</li>
-      <li><strong>Midday nudge:</strong> pick the one open item that unblocks someone else first. Today that is confirming the Tuesday run for Erandi.</li>
-    </ul>
-  </div>
-
-  <div class="col">
-    <div class="col-head capture">Ideas &amp; Quick Add</div>
-    <ul>
-      <li><strong>From "Do it":</strong> get onto the loan repayments, call Jemoin (new finance lady), confirm she received the email, get Rukman to follow up.</li>
-      <li><strong>From "Do it":</strong> the NTB bank loan repayment schedule is archived &mdash; pull it from email to understand the loan.</li>
-      <li><strong>From "Do it":</strong> build an accountant handover note so the new finance person has the full history.</li>
-      <li><strong>Process idea:</strong> a saved "how to pay" reply would clear Booking.com guests in one tap.</li>
+      <li><strong>Loan repayments:</strong> get onto them. Call Jemoin, the new finance lady, confirm she received the email, and get Rukman to follow up.</li>
+      <li><strong>NTB loan:</strong> the repayment schedule from the bank call is archived. Pull it from email to understand the loan.</li>
+      <li><strong>Handover:</strong> build an accountant handover note so the new finance person has the full history.</li>
+      <li><strong>Note:</strong> "ollo Capture" Apple Note does not exist yet. All captures are coming through "Do it" only.</li>
     </ul>
     <a class="ideas-add-link" href="notes://showNote?name=Do%20it">+ Add idea &rarr; opens "Do it" in Notes</a>
   </div>
 
+  <div class="col">
+    <div class="col-head capture">Watch digest</div>
+    <ul>
+      <li><strong>Erandi filing catalog COMPLETE today:</strong> rows filed, "not found" list returned (real gaps to chase). Process win. <span class="tag tag-green">win</span></li>
+      <li><strong>Drive:</strong> salary slips (Aug, Nov, Dec 2025, Jan 2026 and back-months) uploaded 31 May into the salary folder. <span class="tag tag-grey">filing</span></li>
+      <li><strong>File audit produced</strong> (file-audit-2026-06-01): real P&amp;L gap, the Card Payments line is blank but LKR 61,740 was spent, so the true weekly loss is bigger than reported. <span class="tag tag-red">flag</span></li>
+      <li><strong>SRP invoices:</strong> audit found 9 months of missing invoices to chase with Taara next round. <span class="tag tag-yellow">chase</span></li>
+      <li><strong>Booking.com:</strong> 3 guest messages waiting. <span class="tag tag-yellow">watch</span></li>
+    </ul>
+  </div>
+
 </div>
 
-<!-- FINANCIALS SNAPSHOT -->
-<details class="finsum">
-  <summary>&#128176; Financials snapshot &mdash; WE-2026-05-29 (latest week in folder)</summary>
+<details class="finsum" open>
+  <summary>&#128176; Financials snapshot &mdash; WE-2026-05-29</summary>
   <div class="body">
     <div class="row"><span class="lbl">Latest week in folder</span><span class="val g">WE-2026-05-29 &#10003;</span></div>
     <div class="row"><span class="lbl">Room revenue</span><span class="val g">LKR 313,282</span></div>
@@ -238,9 +308,10 @@
     <div class="row"><span class="lbl">Total revenue</span><span class="val g">LKR 340,914</span></div>
     <div class="row"><span class="lbl">Operating expenses (salary LKR 625,742 the main driver)</span><span class="val y">LKR 733,212</span></div>
     <div class="row"><span class="lbl">Net weekly profit</span><span class="val r">&minus;LKR 392,298 (loss)</span></div>
+    <div class="row"><span class="lbl">Real loss likely bigger</span><span class="val r">Card Payments line blank but LKR 61,740 spent (audit flag)</span></div>
     <div class="row"><span class="lbl">Debit card closing balance</span><span class="val y">LKR 10,425</span></div>
-    <div class="row"><span class="lbl">Tuesday payment run (02 Jun)</span><span class="val y">LKR 141,040.91 &mdash; awaiting your confirm (laundry deferred)</span></div>
-    <div class="row"><span class="lbl">SRP / Taara deliverables</span><span class="val r">10 days no reply (balance sheet, tax tracker, ITR, AoA)</span></div>
+    <div class="row"><span class="lbl">Next Tuesday payment run (02 Jun)</span><span class="val y">LKR 141,040.91 &middot; held for Erandi's 3 confirms</span></div>
+    <div class="row"><span class="lbl">SRP / Taara</span><span class="val g">Delivering. 29 May package + 1 Jun advisory in. Shareholder register still due.</span></div>
     <div class="actions">
       <a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">&rarr; WE-29-May folder</a>
       <a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">&rarr; Weekly Financials 2026</a>
@@ -248,9 +319,8 @@
   </div>
 </details>
 
-<!-- THREE WISDOMS -->
 <div class="wisdoms">
-  <div class="wisdoms-head">Three Wisdoms + Word of the day &mdash; Midday</div>
+  <div class="wisdoms-head">Three Wisdoms + Word of the day</div>
   <div class="wisdom-grid">
     <div class="wcard">
       <div class="src">Mental health &mdash; Gabor Mat&eacute;</div>
@@ -258,31 +328,30 @@
     </div>
     <div class="wcard">
       <div class="src">Philosophy &mdash; Alan Watts</div>
-      <div class="body">"Muddy water is best cleared by leaving it alone."<br>&mdash; Alan Watts, philosopher</div>
+      <div class="body">"No valid plans for the future can be made by those who have no capacity for living now."<br>&mdash; Alan Watts, philosopher</div>
     </div>
     <div class="wcard">
       <div class="src">AI / Cowork tip</div>
-      <div class="body">At midday, clear the one item that unblocks another person before you touch your own list. ollo re-reads "Do it" and your inbox at 12:00, 18:00 and 21:00, so anything you capture now is already in the next gen.</div>
+      <div class="body">Path 2 is live. The DCC body now rebuilds from your real Gmail, Calendar and Drive every four hours, so what you read is what is actually there. The hourly timestamp push runs separately and never fails.</div>
     </div>
     <div class="wcard word">
       <div class="src">Word of the day</div>
-      <div class="body"><span class="term">Liminal</span>/LIM-in-uhl/ &mdash; relating to a transitional, in-between state. <em>"Midday is the liminal hour: the morning is logged, the evening not yet begun."</em></div>
+      <div class="body"><span class="term">Lacuna</span>/luh-KYOO-nuh/ &middot; a gap or missing part, especially in a record. <em>"The nine-month lacuna in the SRP invoice trail is the first gap the new bookkeeper should close."</em></div>
     </div>
   </div>
 </div>
 
-<!-- QUICK LINKS -->
 <div class="quicklinks">
   <div class="ql-head">Quick Links</div>
   <div class="ql-grid">
     <div>
       <div class="ql-cat">Daily Ops</div>
       <ul>
-        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts (0 staged)</a></li>
+        <li><a href="https://mail.google.com/mail/u/0/#drafts">Gmail Drafts</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#inbox">Gmail Inbox</a></li>
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
-        <li><a href="https://admin.booking.com">Booking.com partner (3 waiting)</a></li>
+        <li><a href="https://admin.booking.com">Booking.com partner</a></li>
         <li><a href="notes://showNote?name=Do%20it">Apple Notes &mdash; Do it</a></li>
       </ul>
     </div>
@@ -303,6 +372,7 @@
         <li><a href="https://drive.google.com/drive/folders/1UrW8OKCGH8cuEV5eg4KytaWT0Zx7i2l1">Performance Reviews</a></li>
         <li><a href="https://mail.google.com/mail/u/0/#sent">Gmail Sent</a></li>
         <li><a href="https://pog-staff-app-2.vercel.app/">DCC live app (Vercel)</a></li>
+        <li><a href="./manual.html">&rarr; How to use the DCC (manual)</a></li>
       </ul>
     </div>
     <div>
@@ -317,7 +387,6 @@
   </div>
 </div>
 
-<!-- PASTE PROCEDURE -->
 <div class="paste-block">
   <div class="paste-head">claude.ai browser paste &mdash; only if you opened claude.ai in a tab (not needed for Cowork)</div>
   <div class="paste-note">Open each claude.ai browser tab. Paste the prompt below. It logs the chat to your Drive. <strong>Only for claude.ai tabs, not this Cowork session.</strong></div>
@@ -328,13 +397,94 @@
 </div>
 
 <footer>
-  <div>DCC v3 &middot; Monday 01 June 2026 &middot; Midday &middot; auto-gen 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
+  <div>DCC v3 &middot; Monday 1 June 2026 &middot; AM gen (ran 20:01 AEST off-schedule) &middot; auto-gens 06:00 / 12:00 / 18:00 / 21:00 AEST</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
 </div>
 
+<div class="toast" id="toast">
+  Copied prompt to clipboard
+  <span class="step">Now switch to Cowork app and paste (Cmd+V)</span>
+</div>
+
 <script>
+function parseGenTime() {
+  const meta = document.querySelector("meta[name='dcc-gen']")?.content || "";
+  const m = meta.match(/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)/);
+  return m ? new Date(m[1]) : null;
+}
+function fmtMelb(d) {
+  try {
+    return d.toLocaleString("en-AU", { timeZone: "Australia/Melbourne", weekday: "long", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", hour12: false }) + " AEST";
+  } catch(e) { return d.toISOString(); }
+}
+function updateAge() {
+  const t = parseGenTime();
+  if (!t) return;
+  const now = new Date();
+  const diff = Math.floor((now - t) / 1000);
+  let txt;
+  if (diff < 60) txt = diff + " sec ago";
+  else if (diff < 3600) txt = Math.floor(diff/60) + " min ago";
+  else if (diff < 86400) {
+    const h = Math.floor(diff/3600), m = Math.floor((diff%3600)/60);
+    txt = h + "h " + m + "m ago";
+  } else txt = Math.floor(diff/86400) + " days ago";
+  const ageEl = document.getElementById("snapAge");
+  if (ageEl) ageEl.textContent = txt;
+  const frozen = document.getElementById("snapFrozenAt");
+  if (frozen) frozen.textContent = fmtMelb(t);
+  if (diff > 5400) {
+    document.querySelector(".snap-big").style.borderColor = "#ff6b6b";
+    document.querySelector(".snap-big .label").style.color = "#ff6b6b";
+    document.querySelector(".snap-big .label").textContent = "⚠ SNAPSHOT IS STALE — push DCC now";
+  }
+}
+updateAge();
+setInterval(updateAge, 30000);
+
+function showToast(msg, sub) {
+  const t = document.getElementById("toast");
+  if (!t) return;
+  t.innerHTML = msg + (sub ? '<span class="step">' + sub + '</span>' : '');
+  t.classList.add("show");
+  clearTimeout(window._toastT);
+  window._toastT = setTimeout(()=>t.classList.remove("show"), 2400);
+}
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(()=>{
+    if (btn) {
+      const orig = btn.textContent;
+      btn.classList.add("copied");
+      btn.textContent = "✓ Copied";
+      setTimeout(()=>{ btn.classList.remove("copied"); btn.textContent = orig; }, 1600);
+    }
+    showToast("✓ Copied prompt", "Switch to Cowork app and paste (Cmd+V)");
+  }).catch(()=>{
+    showToast("Copy failed — long-press the button to copy manually");
+  });
+}
+document.querySelectorAll("[data-prompt]").forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    copyText(btn.getAttribute("data-prompt"), btn);
+  });
+});
+function copyFreeInput() {
+  const inp = document.getElementById("olloFreeInput");
+  if (!inp || !inp.value.trim()) {
+    showToast("Type something first");
+    return;
+  }
+  let v = inp.value.trim();
+  if (!v.toLowerCase().startsWith("ollo:") && !v.toLowerCase().startsWith("ollo ")) v = "ollo: " + v;
+  copyText(v);
+}
+document.getElementById("olloFreeInput")?.addEventListener("keydown", e => {
+  if (e.key === "Enter") { e.preventDefault(); copyFreeInput(); }
+});
+
 if ("serviceWorker" in navigator) {
   const v = document.querySelector("meta[name='dcc-gen']")?.content || Date.now();
   navigator.serviceWorker.register("/sw.js?v=" + encodeURIComponent(v))
