@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Night at 2026-06-24T13:59:58Z -->
+<!-- DCC gen: Night at 2026-06-24T14:08:43Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Night-2026-06-24T13:59:58Z">
+<meta name="dcc-gen" content="Night-2026-06-24T14:08:43Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -123,7 +123,7 @@
     <div class="tagline">All ventures. One view. Snapshot, refreshed across the day.</div>
   </div>
   <div class="header-right">
-    <div><span class="gen-label" id="genLabel">Rich rebuild</span> &middot; <span id="genWhen">Wednesday 24 June 2026 &middot; 21:03 AEST / 16:33 Galle</span></div>
+    <div><span class="gen-label" id="genLabel">Rich rebuild</span> &middot; <span id="genWhen">Thursday 25 June 2026 &middot; 21:03 AEST / 16:33 Galle</span></div>
     <div style="margin-top:3px;">Automated 4-hourly rebuild from live Gmail, Calendar, Drive &amp; Notes. Next rich gen ~01:00 AEST. Reads green except Apple Notes (recovered on retry).</div>
     <a href="./?r=1" class="refresh-btn" onclick="location.reload(true); return false;">&#8635; Refresh</a>
   </div>
@@ -402,7 +402,7 @@
 </div>
 
 <footer>
-  <div>DCC v3 &middot; Wednesday 24 June 2026 &middot; Automated rich rebuild 21:04 AEST (4-hourly) &middot; Daily 6am Mel sweep scheduled</div>
+  <div>DCC v3 &middot; Thursday 25 June 2026 &middot; Automated rich rebuild 21:04 AEST (4-hourly) &middot; Daily 6am Mel sweep scheduled</div>
   <div class="sig">ollo &mdash; for Kirk Jobsz &mdash; ollo@princeofgalle.com</div>
 </footer>
 
@@ -577,6 +577,7 @@ renderWisdoms();
 
 
 
+
 <!-- DCC enhancer v4 — STRUCTURAL. Do not remove on rebuild. Adds tick/snooze/comment/delete + live sync to existing items. -->
 <style id="dcc-enh-style">
   .dcc-li{position:relative;}
@@ -622,7 +623,9 @@ renderWisdoms();
   .dcc-toast-btn{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;font:inherit;font-size:12.5px;
     border-radius:7px;padding:5px 13px;cursor:pointer;white-space:nowrap;}
   .dcc-toast-btn:hover{background:rgba(255,255,255,.16);}
-  .dcc-ic.on{color:#ef9f27;}
+  .dcc-ic.on{background:rgba(239,159,39,.22);}
+  .dcc-car{font-size:15px;line-height:1;}
+  .dcc-car svg{display:none;}
   .dcc-park-badge{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:6px;margin-left:6px;background:rgba(186,117,23,.22);}
   .dcc-review-badge{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:6px;margin-left:6px;background:rgba(226,75,74,.25);animation:dccflash 1.1s ease-in-out infinite;}
   @keyframes dccflash{0%,100%{opacity:1;}50%{opacity:.35;}}
@@ -670,7 +673,7 @@ renderWisdoms();
       var bar=document.createElement('span');bar.className='dcc-bar';
       bar.innerHTML='<button class="dcc-ic" data-a="snooze" aria-label="Snooze">'+SVG.clock+'</button>'+
         '<button class="dcc-ic" data-a="comment" aria-label="Comment to ollo">'+SVG.msg+'</button>'+
-        '<button class="dcc-ic" data-a="park" aria-label="Park">'+SVG.car+'</button>'+
+        '<button class="dcc-ic dcc-car" data-a="park" aria-label="Park" title="Park">🚗</button>'+
         '<button class="dcc-ic" data-a="delete" aria-label="Delete">'+SVG.trash+'</button>';
       li.appendChild(bar);
 
