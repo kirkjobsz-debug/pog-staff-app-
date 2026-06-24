@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Night at 2026-06-24T15:13:39Z -->
+<!-- DCC gen: Night at 2026-06-24T16:07:29Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Night-2026-06-24T15:13:39Z">
+<meta name="dcc-gen" content="Night-2026-06-24T16:07:29Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -582,6 +582,7 @@ renderWisdoms();
 
 
 
+
 <!-- DCC enhancer v4 — STRUCTURAL. Do not remove on rebuild. Adds tick/snooze/comment/delete + live sync to existing items. -->
 <style id="dcc-enh-style">
   .dcc-li{position:relative;}
@@ -911,20 +912,41 @@ renderWisdoms();
       function(){ go('restaurant specials steak night parma night near me'); }, {timeout:7000}); }
     else go('restaurant specials steak night parma night near me');
   }
+  function downscale(file, cb){
+    var img=new Image(), url=URL.createObjectURL(file);
+    img.onload=function(){ var max=1100, sc=Math.min(1,max/Math.max(img.width,img.height));
+      var c=document.createElement('canvas'); c.width=Math.round(img.width*sc); c.height=Math.round(img.height*sc);
+      c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+      var d=c.toDataURL('image/jpeg',0.7); URL.revokeObjectURL(url); cb(d.split(',')[1]); };
+    img.src=url;
+  }
   function openEat(){
+    var imgs=[];
     var body='<div class="dcc-eat-row">'+
       '<button id="eat-deals">📍 Deals near me — steak / parma night, specials</button>'+
-      '<div><input id="eat-ing" type="text" placeholder="what is in the fridge? e.g. chicken, rice, broccoli"><button id="eat-find" style="margin-top:8px;width:100%">🍳 Find recipes from these</button></div>'+
-      '<div><label class="lnk" for="eat-photo">📷 Snap the fridge / cupboard / receipt</label>'+
-      '<input id="eat-photo" type="file" accept="image/*" capture="environment" style="display:none">'+
-      '<div id="eat-thumbwrap"></div>'+
-      '<div class="dcc-eat-note">To get 2 meal ideas read straight from the photo, send it to ollo in your PG chat — the page itself cannot read the picture.</div></div>'+
+      '<div><input id="eat-ing" type="text" placeholder="what is in the fridge? e.g. chicken, rice, broccoli"><button id="eat-find" style="margin-top:8px;width:100%">🍳 Find recipes from these (no AI)</button></div>'+
+      '<div>'+
+        '<label class="lnk" for="eat-photo">📷 Snap fridge / cupboard / receipt — add as many as you like</label>'+
+        '<input id="eat-photo" type="file" accept="image/*" capture="environment" style="display:none">'+
+        '<div id="eat-thumbs" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div>'+
+        '<button id="eat-go" style="margin-top:8px;width:100%;display:none">🍽 Get 2 meal ideas from these photos</button>'+
+        '<div id="eat-out" style="margin-top:10px"></div>'+
+      '</div>'+
       '</div>';
     var w=makeWindow({key:'eat', cls:'archive', title:'🍽 What shall I eat?', bodyHTML:body});
     w.querySelector('#eat-deals').onclick=dealsNearMe;
     w.querySelector('#eat-find').onclick=function(){ var v=(w.querySelector('#eat-ing').value||'').trim(); if(!v)return; window.open('https://www.google.com/search?q='+encodeURIComponent('quick easy recipe with '+v),'_blank'); };
-    var pin=w.querySelector('#eat-photo');
-    pin.onchange=function(){ var f=pin.files&&pin.files[0]; if(!f)return; var rd=new FileReader(); rd.onload=function(){ w.querySelector('#eat-thumbwrap').innerHTML='<img class="dcc-eat-thumb" src="'+rd.result+'">'; }; rd.readAsDataURL(f); };
+    var pin=w.querySelector('#eat-photo'), thumbs=w.querySelector('#eat-thumbs'), go=w.querySelector('#eat-go'), out=w.querySelector('#eat-out');
+    pin.onchange=function(){ var f=pin.files&&pin.files[0]; if(!f)return; downscale(f,function(b64){ imgs.push(b64); var im=document.createElement('img'); im.className='dcc-eat-thumb'; im.style.maxWidth='72px'; im.src='data:image/jpeg;base64,'+b64; thumbs.appendChild(im); go.style.display='block'; }); pin.value=''; };
+    go.onclick=function(){
+      if(!imgs.length) return;
+      out.innerHTML='<div class="dcc-eat-note">ollo is looking at your photos…</div>'; go.disabled=true;
+      call('eat',{images:imgs}).then(function(r){ go.disabled=false;
+        if(r&&r.ok){ out.innerHTML='<div style="white-space:pre-wrap;font-size:13px;line-height:1.55">'+esc(r.text)+'</div>'; }
+        else if(r&&r.error==='no AI key set'){ out.innerHTML='<div class="dcc-eat-note">Almost there — add your AI key to the engine once, then this reads the photo straight away.</div>'; }
+        else { out.innerHTML='<div class="dcc-eat-note">Could not get ideas: '+esc((r&&r.error)||'error')+'</div>'; }
+      }).catch(function(){ go.disabled=false; out.innerHTML='<div class="dcc-eat-note">Could not reach ollo. Try again.</div>'; });
+    };
   }
 
   /* ===== undo last action + Cmd/Ctrl+Z ===== */
