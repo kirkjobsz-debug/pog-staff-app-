@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Night at 2026-06-24T14:25:31Z -->
+<!-- DCC gen: Night at 2026-06-24T14:39:28Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Night-2026-06-24T14:25:31Z">
+<meta name="dcc-gen" content="Night-2026-06-24T14:39:28Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -579,6 +579,7 @@ renderWisdoms();
 
 
 
+
 <!-- DCC enhancer v4 — STRUCTURAL. Do not remove on rebuild. Adds tick/snooze/comment/delete + live sync to existing items. -->
 <style id="dcc-enh-style">
   .dcc-li{position:relative;}
@@ -646,6 +647,19 @@ renderWisdoms();
   .dcc-wentry a{color:inherit;text-decoration:underline;opacity:.85;}
   .dcc-wmore{margin-top:10px;border:1px solid rgba(127,127,127,.4);background:transparent;color:inherit;font:inherit;font-size:12.5px;border-radius:7px;padding:6px 13px;cursor:pointer;}
   .dcc-wmore:hover{background:rgba(127,127,127,.16);}
+  .dcc-win{position:fixed;z-index:11000;width:300px;max-width:88vw;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.45);overflow:hidden;}
+  .dcc-win-head{display:flex;align-items:center;gap:8px;padding:8px 11px;cursor:move;font-size:12.5px;font-weight:600;user-select:none;touch-action:none;}
+  .dcc-win-head .t{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .dcc-win-close{cursor:pointer;border:none;background:transparent;font-size:18px;line-height:1;color:inherit;opacity:.65;padding:0 2px;}
+  .dcc-win-close:hover{opacity:1;}
+  .dcc-win-body{padding:10px 13px;max-height:52vh;overflow:auto;font-size:13px;line-height:1.5;}
+  .dcc-win.archive{background:#26261f;color:#f2f1e9;border:1px solid rgba(255,255,255,.16);}
+  .dcc-win.archive a{color:#86b7ff;}
+  .dcc-win.sticky{background:#fde68a;color:#3a2e05;border:1px solid #e0c34a;}
+  .dcc-win.sticky .dcc-win-head{background:rgba(0,0,0,.05);}
+  .dcc-win.sticky textarea{width:100%;border:none;background:transparent;color:inherit;font:inherit;font-size:14px;line-height:1.45;resize:none;min-height:130px;outline:none;}
+  .dcc-addnote{position:fixed;left:14px;bottom:14px;z-index:10999;border:1px solid #e0c34a;background:#fde68a;color:#3a2e05;border-radius:999px;padding:9px 15px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;}
+  .wcard .body{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
 </style>
 <script id="dcc-enhancer">
 (function(){
@@ -746,6 +760,7 @@ renderWisdoms();
       call('update',{id:id,op:'park'});
       carOn(li,false); clearParkBadges(li); placeToday(li);
     }
+    if(!aged && typeof offerUndo==='function') offerUndo('🚗 '+(parked?'un-parked':'parked')+' — undo', function(){ togglePark(li,id); });
     updateBanner();
   }
   function updateBanner(){
@@ -772,10 +787,13 @@ renderWisdoms();
     var txt=cleanText(li); var label=txt.length>40?txt.slice(0,40)+'…':txt;
     li.style.display='none';
     t.querySelector('.m').textContent='Deleted: '+label;
+    var btn=t.querySelector('.dcc-toast-btn'); btn.innerHTML='Undo (<span class="cd">5</span>)';
     var n=5, cd=t.querySelector('.cd'); cd.textContent=n; t.classList.add('show');
     var iv=setInterval(function(){ n--; if(n<=0){ if(_undo.commit)_undo.commit(); } else { cd.textContent=n; } },1000);
-    _undo.cancel=function(){ clearInterval(iv); li.style.display=''; t.classList.remove('show'); _undo={el:t}; };
-    _undo.commit=function(){ clearInterval(iv); t.classList.remove('show'); call('update',{id:id,op:'delete'}); _undo={el:t}; };
+    _undo.cancel=function(){ clearInterval(iv); li.style.display=''; t.classList.remove('show'); _undo={el:t}; _pendingUndo=null; };
+    _undo.commit=function(){ clearInterval(iv); t.classList.remove('show'); call('update',{id:id,op:'delete'}); _undo={el:t}; _pendingUndo=null; };
+    btn.onclick=function(){ if(_undo.cancel)_undo.cancel(); };
+    _pendingUndo=function(){ if(_undo.cancel)_undo.cancel(); };
   }
 
   function applyState(map){
@@ -799,44 +817,83 @@ renderWisdoms();
     return call('state',{}).then(function(r){if(btn)btn.classList.remove('spin');if(r&&r.ok&&r.state)applyState(r.state);}).catch(function(){if(btn)btn.classList.remove('spin');});
   }
 
-  /* ----- wisdom + word of the day: fill cards + clickable archive dropdown ----- */
+  /* ===== draggable, closable floating windows (bubbles + sticky notes) ===== */
+  var _winN=0, _wins={};
+  function makeWindow(opts){
+    if(opts.key && _wins[opts.key]){ _wins[opts.key].style.zIndex=12050; return _wins[opts.key]; }
+    var w=document.createElement('div'); w.className='dcc-win '+(opts.cls||'');
+    var x=opts.x!=null?opts.x:(80+(_winN%6)*26), y=opts.y!=null?opts.y:(90+(_winN%6)*26); _winN++;
+    w.style.left=x+'px'; w.style.top=y+'px';
+    w.innerHTML='<div class="dcc-win-head"><span class="t">'+esc(opts.title||'')+'</span><button class="dcc-win-close" aria-label="Close">×</button></div><div class="dcc-win-body">'+(opts.bodyHTML||'')+'</div>';
+    document.body.appendChild(w);
+    if(opts.key) _wins[opts.key]=w;
+    w.querySelector('.dcc-win-close').onclick=function(){ if(opts.key) delete _wins[opts.key]; w.remove(); if(opts.onClose)opts.onClose(); };
+    dragify(w, w.querySelector('.dcc-win-head'), opts.onMove);
+    return w;
+  }
+  function dragify(w, handle, onMove){
+    var sx,sy,ox,oy,drag=false;
+    handle.addEventListener('pointerdown',function(e){ if(e.target.classList.contains('dcc-win-close'))return; drag=true; w.style.zIndex=12050; sx=e.clientX; sy=e.clientY; ox=parseInt(w.style.left)||0; oy=parseInt(w.style.top)||0; e.preventDefault();
+      function mv(ev){ if(!drag)return; w.style.left=Math.max(0,ox+ev.clientX-sx)+'px'; w.style.top=Math.max(0,oy+ev.clientY-sy)+'px'; }
+      function up(){ drag=false; document.removeEventListener('pointermove',mv); document.removeEventListener('pointerup',up); if(onMove)onMove(parseInt(w.style.left)||0,parseInt(w.style.top)||0); }
+      document.addEventListener('pointermove',mv); document.addEventListener('pointerup',up);
+    });
+  }
+
+  /* ===== sticky notes (saved on this device) ===== */
+  var SKEY='dcc_stickies';
+  function loadStickies(){ try{return JSON.parse(localStorage.getItem(SKEY))||[];}catch(e){return [];} }
+  function saveStickies(a){ try{localStorage.setItem(SKEY,JSON.stringify(a));}catch(e){} }
+  function renderSticky(note){
+    var w=makeWindow({key:'sticky_'+note.id, cls:'sticky', title:'🗒 sticky', x:note.x, y:note.y,
+      bodyHTML:'<textarea placeholder="type a note…">'+esc(note.text||'')+'</textarea>',
+      onClose:function(){ saveStickies(loadStickies().filter(function(n){return n.id!==note.id;})); },
+      onMove:function(x,y){ var a=loadStickies(); a.forEach(function(n){if(n.id===note.id){n.x=x;n.y=y;}}); saveStickies(a); }});
+    var ta=w.querySelector('textarea');
+    ta.addEventListener('input',function(){ var a=loadStickies(); a.forEach(function(n){if(n.id===note.id)n.text=ta.value;}); saveStickies(a); });
+  }
+  function addSticky(){ var note={id:'s'+Date.now(),text:'',x:120,y:150}; var a=loadStickies(); a.push(note); saveStickies(a); renderSticky(note); }
+
+  /* ===== wisdom archive as draggable bubbles ===== */
   var WTITLE={mate:'Gabor Maté',watts:'Alan Watts',perel:'Esther Perel',tip:'AI / Cowork tip',word:'Word of the day'};
   function catKey(s){ if(s.indexOf('tip')>-1||s.indexOf('cowork')>-1)return 'tip'; if(s.indexOf('watts')>-1)return 'watts'; if(s.indexOf('perel')>-1)return 'perel'; if(s.indexOf('word')>-1)return 'word'; if(s.indexOf('mat')>-1)return 'mate'; return null; }
   function wMain(e){ return e.term ? ('<b>'+esc(e.term)+'</b> — '+esc(e.text)) : ('“'+esc(e.text)+'”'+(e.author?' <span style="opacity:.6">— '+esc(e.author)+'</span>':'')); }
   function wRow(e){ var link=e.source?(' · <a href="'+esc(e.source)+'" target="_blank" rel="noopener">'+esc(e.src_label||'read more')+'</a>'):''; return '<div class="dcc-wentry"><span class="d">'+esc(e.date||'')+'</span><br>'+wMain(e)+link+'</div>'; }
-  var _wpanel=null;
-  function wPanel(){ if(_wpanel)return _wpanel; _wpanel=document.createElement('div'); _wpanel.className='dcc-wpanel'; _wpanel.id='dcc-wpanel'; var w=document.querySelector('.wisdoms'); if(w&&w.parentNode) w.parentNode.insertBefore(_wpanel,w.nextSibling); else document.body.appendChild(_wpanel); return _wpanel; }
-  function buildWPanel(p,key,list){
-    var recent=list.slice(0,10), rest=list.slice(10);
-    var html='<h4>'+esc(WTITLE[key]||'Archive')+' · '+list.length+' saved</h4>'+recent.map(wRow).join('');
-    if(rest.length){ html+='<button class="dcc-wmore">See full archive ('+rest.length+' more)</button><div class="dcc-wrest" style="display:none">'+rest.map(wRow).join('')+'</div>'; }
-    p.innerHTML=html;
-    var more=p.querySelector('.dcc-wmore'); if(more) more.onclick=function(){ p.querySelector('.dcc-wrest').style.display='block'; more.style.display='none'; };
-  }
+  function wBody(list){ var recent=list.slice(0,10), rest=list.slice(10); var html=recent.map(wRow).join(''); if(rest.length){ html+='<button class="dcc-wmore">See full archive ('+rest.length+' more)</button><div class="dcc-wrest" style="display:none">'+rest.map(wRow).join('')+'</div>'; } return html; }
   function initWisdom(){
     fetch('wisdom-archive.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(arc){
       document.querySelectorAll('.wcard').forEach(function(card){
         var label=((card.querySelector('.src')||{}).textContent||'').toLowerCase();
         var key=catKey(label); if(!key||!arc[key]||!arc[key].length) return;
-        var list=arc[key].slice().reverse();          // latest first
+        var list=arc[key].slice().reverse();
         var body=card.querySelector('.body'); if(body) body.innerHTML=wMain(list[0]);
-        if(!card.querySelector('.dcc-whint')){ var h=document.createElement('div'); h.className='dcc-whint'; h.textContent='tap to see the archive ▾'; card.appendChild(h); }
+        if(!card.querySelector('.dcc-whint')){ var h=document.createElement('div'); h.className='dcc-whint'; h.textContent='tap to open archive ▾'; card.appendChild(h); }
         card.classList.add('dcc-wcard-link');
         card.addEventListener('click',function(e){
           if(e.target.tagName==='A')return;
-          var p=wPanel();
-          if(p.dataset.key===key && p.classList.contains('show')){ p.classList.remove('show'); return; }
-          buildWPanel(p,key,list); p.dataset.key=key; p.classList.add('show');
-          p.scrollIntoView({behavior:'smooth',block:'nearest'});
+          var w=makeWindow({key:'w_'+key, cls:'archive', title:WTITLE[key]+' · '+list.length+' saved', bodyHTML:wBody(list)});
+          var more=w.querySelector('.dcc-wmore'); if(more) more.onclick=function(){ w.querySelector('.dcc-wrest').style.display='block'; more.style.display='none'; };
         });
       });
     }).catch(function(){});
   }
 
+  /* ===== undo last action + Cmd/Ctrl+Z ===== */
+  var _pendingUndo=null, _undoT=null;
+  function offerUndo(label, undoFn){
+    _pendingUndo=undoFn; var t=ensureToast(); t.querySelector('.m').textContent=label;
+    var btn=t.querySelector('.dcc-toast-btn'); btn.textContent='Undo (Z)';
+    btn.onclick=function(){ if(_pendingUndo){_pendingUndo(); _pendingUndo=null;} t.classList.remove('show'); };
+    t.classList.add('show'); clearTimeout(_undoT); _undoT=setTimeout(function(){ t.classList.remove('show'); _pendingUndo=null; },5000);
+  }
+  document.addEventListener('keydown',function(e){ if((e.metaKey||e.ctrlKey)&&(e.key==='z'||e.key==='Z')&&_pendingUndo){ e.preventDefault(); _pendingUndo(); _pendingUndo=null; var t=document.querySelector('.dcc-toast'); if(t)t.classList.remove('show'); } });
+
   function init(){
     enhance();
     var cib=document.createElement('button');cib.className='dcc-checkin';cib.innerHTML='<span class="d"></span>Check in';
     cib.onclick=function(){checkin(cib);};document.body.appendChild(cib);
+    var addb=document.createElement('button');addb.className='dcc-addnote';addb.textContent='＋ sticky';addb.onclick=addSticky;document.body.appendChild(addb);
+    loadStickies().forEach(renderSticky);
     checkin();
     initWisdom();
   }
