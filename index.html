@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Night at 2026-06-24T11:08:08Z -->
+<!-- DCC gen: Night at 2026-06-24T12:54:47Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Night-2026-06-24T11:08:08Z">
+<meta name="dcc-gen" content="Night-2026-06-24T12:54:47Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -574,5 +574,159 @@ function renderWisdoms() {
 }
 renderWisdoms();
 </script>
+
+<!-- DCC enhancer v4 — STRUCTURAL. Do not remove on rebuild. Adds tick/snooze/comment/delete + live sync to existing items. -->
+<style id="dcc-enh-style">
+  .dcc-li{position:relative;}
+  .dcc-li.dcc-done > *:not(.dcc-bar):not(.dcc-menu):not(.dcc-bubble){text-decoration:line-through;opacity:.55;}
+  .dcc-bar{display:inline-flex;gap:1px;vertical-align:middle;margin-left:8px;opacity:.4;transition:opacity .12s;}
+  .dcc-li:hover .dcc-bar,.dcc-li.dcc-open .dcc-bar{opacity:1;}
+  @media (hover:none){.dcc-bar{opacity:.85;}}
+  .dcc-ic{display:inline-flex;align-items:center;justify-content:center;width:26px;height:24px;border:none;
+    background:transparent;border-radius:6px;cursor:pointer;color:inherit;font:inherit;padding:0;}
+  .dcc-ic:hover{background:rgba(127,127,127,.18);}
+  .dcc-ic svg{width:15px;height:15px;}
+  .dcc-badge{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:6px;margin-left:6px;
+    background:rgba(186,117,23,.20);color:inherit;}
+  .dcc-badge.cmt{background:rgba(55,138,221,.22);}
+  .dcc-tick{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;
+    border:2px solid rgba(127,127,127,.55);background:transparent;cursor:pointer;margin-right:7px;vertical-align:-3px;color:inherit;padding:0;}
+  .dcc-tick.on{background:#1d9e75;border-color:#1d9e75;color:#fff;}
+  .dcc-tick svg{width:11px;height:11px;}
+  .dcc-menu,.dcc-bubble{display:none;margin:6px 0 8px 24px;font-size:13px;}
+  .dcc-menu.show,.dcc-bubble.show{display:block;}
+  .dcc-menu{background:rgba(127,127,127,.10);border:1px solid rgba(127,127,127,.30);border-radius:10px;padding:6px;max-width:230px;}
+  .dcc-menu .g{font-size:10px;text-transform:uppercase;letter-spacing:.05em;opacity:.6;padding:4px 8px 2px;}
+  .dcc-menu button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:none;background:transparent;
+    color:inherit;font:inherit;font-size:13px;padding:6px 8px;border-radius:6px;cursor:pointer;}
+  .dcc-menu button:hover{background:rgba(127,127,127,.18);}
+  .dcc-msg{background:rgba(127,127,127,.12);padding:6px 10px;border-radius:9px;margin-bottom:5px;}
+  .dcc-msg .who{font-size:11px;opacity:.6;margin-bottom:1px;}
+  .dcc-msg.me{background:rgba(55,138,221,.18);}
+  .dcc-bubble textarea{width:100%;max-width:420px;box-sizing:border-box;border:1px solid rgba(127,127,127,.4);
+    background:rgba(127,127,127,.06);color:inherit;border-radius:9px;padding:8px 10px;font:inherit;font-size:13px;min-height:44px;resize:vertical;}
+  .dcc-send{margin-top:6px;border:1px solid #1d9e75;background:rgba(29,158,117,.15);color:inherit;border-radius:7px;
+    padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer;}
+  .dcc-checkin{position:fixed;right:14px;bottom:14px;z-index:9999;border:1px solid rgba(127,127,127,.4);
+    background:rgba(29,158,117,.18);color:inherit;border-radius:999px;padding:9px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;}
+  .dcc-checkin .d{display:inline-block;width:7px;height:7px;border-radius:50%;background:#1d9e75;margin-right:7px;vertical-align:1px;}
+  .dcc-checkin.spin .d{animation:dccp 1s infinite;}
+  @keyframes dccp{50%{opacity:.3;}}
+  .dcc-toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:10000;display:none;
+    align-items:center;gap:14px;background:#23241f;color:#f2f1e9;border:1px solid rgba(255,255,255,.18);
+    border-radius:11px;padding:11px 16px;font-size:13.5px;box-shadow:0 8px 28px rgba(0,0,0,.45);max-width:90vw;}
+  .dcc-toast.show{display:flex;}
+  .dcc-toast .m{opacity:.9;}
+  .dcc-toast-btn{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;font:inherit;font-size:12.5px;
+    border-radius:7px;padding:5px 13px;cursor:pointer;white-space:nowrap;}
+  .dcc-toast-btn:hover{background:rgba(255,255,255,.16);}
+</style>
+<script id="dcc-enhancer">
+(function(){
+  var CFG={ENGINE:'https://script.google.com/macros/s/AKfycbyxdbua0SL3opQA1EpHIynV1O7RXxozOUS6qcwEWI_rpIWuKNn1rgENlR0xLPugniLP/exec',
+           TOKEN:'pog-dcc-cd75945e73b21128c29e9861'};
+  CFG.ENGINE=localStorage.getItem('dcc_engine_url')||CFG.ENGINE;
+  CFG.TOKEN=localStorage.getItem('dcc_token')||CFG.TOKEN;
+
+  var SVG={
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg>',
+    clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    msg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9h8M8 13h5"/><path d="M4 5h16v11H8l-4 4V5z"/></svg>',
+    trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7h14M9 7V5h6v2M6 7l1 13h10l1-13"/></svg>',
+    sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1 1M17 17l1 1M18 6l-1 1M7 17l-1 1"/></svg>',
+    cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 11h16"/></svg>'
+  };
+  function hash(s){var h=5381,i=s.length;while(i)h=(h*33)^s.charCodeAt(--i);return 'd'+(h>>>0).toString(36);}
+  function call(action,payload){
+    return fetch(CFG.ENGINE,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},
+      body:new URLSearchParams({token:CFG.TOKEN,action:action,payload:JSON.stringify(payload||{})})}).then(function(r){return r.json();});
+  }
+  var SNOOZE=[['Later today'],['1 hour',SVG.clock],['3 hours',SVG.clock],['6 hours',SVG.clock],
+              ['Another day'],['Tomorrow',SVG.sun],['This week',SVG.cal],['Next week',SVG.cal]];
+
+  function cleanText(li){var c=li.cloneNode(true);c.querySelectorAll('button,.dcc-bar,.dcc-menu,.dcc-bubble,a.row-copy,.row-copy').forEach(function(n){n.remove();});return (c.textContent||'').replace(/\s+/g,' ').trim();}
+
+  function enhance(){
+    var items=document.querySelectorAll('.col ul > li, .approvals li, ul.appr-list > li');
+    items.forEach(function(li){
+      if(li.dataset.dccId)return;
+      var txt=cleanText(li); if(txt.length<3)return;
+      var id=hash(txt); li.dataset.dccId=id; li.classList.add('dcc-li');
+
+      var tick=document.createElement('button');tick.className='dcc-tick';tick.setAttribute('aria-label','Done');
+      li.insertBefore(tick,li.firstChild);
+
+      var bar=document.createElement('span');bar.className='dcc-bar';
+      bar.innerHTML='<button class="dcc-ic" data-a="snooze" aria-label="Snooze">'+SVG.clock+'</button>'+
+        '<button class="dcc-ic" data-a="comment" aria-label="Comment to ollo">'+SVG.msg+'</button>'+
+        '<button class="dcc-ic" data-a="delete" aria-label="Delete">'+SVG.trash+'</button>';
+      li.appendChild(bar);
+
+      var menu=document.createElement('div');menu.className='dcc-menu';
+      menu.innerHTML=SNOOZE.map(function(o){return o.length===1?'<div class="g">'+o[0]+'</div>':'<button data-s="'+o[0]+'">'+o[1]+o[0]+'</button>';}).join('');
+      li.appendChild(menu);
+
+      var bubble=document.createElement('div');bubble.className='dcc-bubble';
+      bubble.innerHTML='<div class="dcc-thread"></div><textarea placeholder="Reply to ollo… e.g. draft the email, push to Friday, remove this"></textarea><div><button class="dcc-send">Send to ollo</button></div>';
+      li.appendChild(bubble);
+
+      tick.onclick=function(){var on=li.classList.toggle('dcc-done');tick.classList.toggle('on',on);tick.innerHTML=on?SVG.check:'';call('update',{id:id,op:'done'});};
+      bar.querySelector('[data-a="snooze"]').onclick=function(){menu.classList.toggle('show');bubble.classList.remove('show');};
+      bar.querySelector('[data-a="comment"]').onclick=function(){bubble.classList.toggle('show');menu.classList.remove('show');li.classList.toggle('dcc-open');};
+      bar.querySelector('[data-a="delete"]').onclick=function(){softDelete(li,id);};
+      menu.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){setSnooze(li,b.getAttribute('data-s'));menu.classList.remove('show');call('update',{id:id,op:'snooze',value:b.getAttribute('data-s')});};});
+      var ta=bubble.querySelector('textarea');
+      bubble.querySelector('.dcc-send').onclick=function(){var v=ta.value.trim();if(!v)return;addMsg(bubble,'Kirk',v);ta.value='';markCmt(li);call('update',{id:id,op:'comment',value:v});};
+    });
+  }
+  function setSnooze(li,label){var b=li.querySelector('.dcc-snz');if(!b){b=document.createElement('span');b.className='dcc-badge dcc-snz';li.querySelector('.dcc-bar').before(b);}b.textContent='snoozed · '+label;}
+  function addMsg(bubble,who,t){var th=bubble.querySelector('.dcc-thread');var d=document.createElement('div');d.className='dcc-msg'+(who==='Kirk'?' me':'');d.innerHTML='<div class="who">'+who+'</div>'+t.replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c];});th.appendChild(d);}
+  function markCmt(li){var b=li.querySelector('.dcc-cmt');if(!b){b=document.createElement('span');b.className='dcc-badge cmt dcc-cmt';li.querySelector('.dcc-bar').before(b);b.textContent='💬';}}
+  function esc(s){return String(s==null?'':s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c];});}
+  var _undo={};
+  function ensureToast(){
+    if(_undo.el)return _undo.el;
+    var t=document.createElement('div'); t.className='dcc-toast';
+    t.innerHTML='<span class="m"></span><button class="dcc-toast-btn">Undo (<span class="cd">5</span>)</button>';
+    document.body.appendChild(t); _undo.el=t;
+    t.querySelector('.dcc-toast-btn').onclick=function(){ if(_undo.cancel)_undo.cancel(); };
+    return t;
+  }
+  function softDelete(li,id){
+    if(_undo.commit)_undo.commit();            // finalise any prior pending delete
+    var t=ensureToast();
+    var txt=cleanText(li); var label=txt.length>40?txt.slice(0,40)+'…':txt;
+    li.style.display='none';
+    t.querySelector('.m').textContent='Deleted: '+label;
+    var n=5, cd=t.querySelector('.cd'); cd.textContent=n; t.classList.add('show');
+    var iv=setInterval(function(){ n--; if(n<=0){ if(_undo.commit)_undo.commit(); } else { cd.textContent=n; } },1000);
+    _undo.cancel=function(){ clearInterval(iv); li.style.display=''; t.classList.remove('show'); _undo={el:t}; };
+    _undo.commit=function(){ clearInterval(iv); t.classList.remove('show'); call('update',{id:id,op:'delete'}); _undo={el:t}; };
+  }
+
+  function applyState(map){
+    document.querySelectorAll('.dcc-li').forEach(function(li){
+      var st=map[li.dataset.dccId]; if(!st)return;
+      if(st.deleted){li.style.display='none';return;}
+      if(st.done){li.classList.add('dcc-done');var t=li.querySelector('.dcc-tick');t.classList.add('on');t.innerHTML=SVG.check;}
+      if(st.snoozed)setSnooze(li,st.snoozed);
+      if(st.replies&&st.replies.length){var bub=li.querySelector('.dcc-bubble');st.replies.forEach(function(m){addMsg(bub,m.who||'Kirk',m.t||'');});markCmt(li);}
+    });
+  }
+  function checkin(btn){
+    if(btn){btn.classList.add('spin');}
+    return call('state',{}).then(function(r){if(btn)btn.classList.remove('spin');if(r&&r.ok&&r.state)applyState(r.state);}).catch(function(){if(btn)btn.classList.remove('spin');});
+  }
+
+  function init(){
+    enhance();
+    var cib=document.createElement('button');cib.className='dcc-checkin';cib.innerHTML='<span class="d"></span>Check in';
+    cib.onclick=function(){checkin(cib);};document.body.appendChild(cib);
+    checkin();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
 </body>
 </html>
