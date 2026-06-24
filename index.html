@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Night at 2026-06-24T14:08:43Z -->
+<!-- DCC gen: Night at 2026-06-24T14:25:31Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Night-2026-06-24T14:08:43Z">
+<meta name="dcc-gen" content="Night-2026-06-24T14:25:31Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -578,6 +578,7 @@ renderWisdoms();
 
 
 
+
 <!-- DCC enhancer v4 — STRUCTURAL. Do not remove on rebuild. Adds tick/snooze/comment/delete + live sync to existing items. -->
 <style id="dcc-enh-style">
   .dcc-li{position:relative;}
@@ -633,6 +634,18 @@ renderWisdoms();
     background:rgba(186,117,23,.12);font-size:13.5px;display:none;}
   .dcc-banner.show{display:block;}
   .dcc-banner b{font-weight:600;}
+  .dcc-wcard-link{cursor:pointer;}
+  .dcc-wcard-link:hover{outline:1px solid rgba(127,127,127,.35);outline-offset:2px;border-radius:8px;}
+  .dcc-whint{font-size:10.5px;opacity:.5;margin-top:5px;}
+  .dcc-wpanel{margin:12px 0 4px;background:rgba(127,127,127,.10);border:1px solid rgba(127,127,127,.32);border-radius:12px;padding:12px 14px;display:none;}
+  .dcc-wpanel.show{display:block;}
+  .dcc-wpanel h4{margin:0 0 8px;font-size:13px;font-weight:600;opacity:.85;}
+  .dcc-wentry{padding:9px 0;border-top:1px solid rgba(127,127,127,.22);font-size:13px;line-height:1.5;}
+  .dcc-wentry:first-of-type{border-top:none;}
+  .dcc-wentry .d{font-size:11px;opacity:.5;}
+  .dcc-wentry a{color:inherit;text-decoration:underline;opacity:.85;}
+  .dcc-wmore{margin-top:10px;border:1px solid rgba(127,127,127,.4);background:transparent;color:inherit;font:inherit;font-size:12.5px;border-radius:7px;padding:6px 13px;cursor:pointer;}
+  .dcc-wmore:hover{background:rgba(127,127,127,.16);}
 </style>
 <script id="dcc-enhancer">
 (function(){
@@ -786,11 +799,46 @@ renderWisdoms();
     return call('state',{}).then(function(r){if(btn)btn.classList.remove('spin');if(r&&r.ok&&r.state)applyState(r.state);}).catch(function(){if(btn)btn.classList.remove('spin');});
   }
 
+  /* ----- wisdom + word of the day: fill cards + clickable archive dropdown ----- */
+  var WTITLE={mate:'Gabor Maté',watts:'Alan Watts',perel:'Esther Perel',tip:'AI / Cowork tip',word:'Word of the day'};
+  function catKey(s){ if(s.indexOf('tip')>-1||s.indexOf('cowork')>-1)return 'tip'; if(s.indexOf('watts')>-1)return 'watts'; if(s.indexOf('perel')>-1)return 'perel'; if(s.indexOf('word')>-1)return 'word'; if(s.indexOf('mat')>-1)return 'mate'; return null; }
+  function wMain(e){ return e.term ? ('<b>'+esc(e.term)+'</b> — '+esc(e.text)) : ('“'+esc(e.text)+'”'+(e.author?' <span style="opacity:.6">— '+esc(e.author)+'</span>':'')); }
+  function wRow(e){ var link=e.source?(' · <a href="'+esc(e.source)+'" target="_blank" rel="noopener">'+esc(e.src_label||'read more')+'</a>'):''; return '<div class="dcc-wentry"><span class="d">'+esc(e.date||'')+'</span><br>'+wMain(e)+link+'</div>'; }
+  var _wpanel=null;
+  function wPanel(){ if(_wpanel)return _wpanel; _wpanel=document.createElement('div'); _wpanel.className='dcc-wpanel'; _wpanel.id='dcc-wpanel'; var w=document.querySelector('.wisdoms'); if(w&&w.parentNode) w.parentNode.insertBefore(_wpanel,w.nextSibling); else document.body.appendChild(_wpanel); return _wpanel; }
+  function buildWPanel(p,key,list){
+    var recent=list.slice(0,10), rest=list.slice(10);
+    var html='<h4>'+esc(WTITLE[key]||'Archive')+' · '+list.length+' saved</h4>'+recent.map(wRow).join('');
+    if(rest.length){ html+='<button class="dcc-wmore">See full archive ('+rest.length+' more)</button><div class="dcc-wrest" style="display:none">'+rest.map(wRow).join('')+'</div>'; }
+    p.innerHTML=html;
+    var more=p.querySelector('.dcc-wmore'); if(more) more.onclick=function(){ p.querySelector('.dcc-wrest').style.display='block'; more.style.display='none'; };
+  }
+  function initWisdom(){
+    fetch('wisdom-archive.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(arc){
+      document.querySelectorAll('.wcard').forEach(function(card){
+        var label=((card.querySelector('.src')||{}).textContent||'').toLowerCase();
+        var key=catKey(label); if(!key||!arc[key]||!arc[key].length) return;
+        var list=arc[key].slice().reverse();          // latest first
+        var body=card.querySelector('.body'); if(body) body.innerHTML=wMain(list[0]);
+        if(!card.querySelector('.dcc-whint')){ var h=document.createElement('div'); h.className='dcc-whint'; h.textContent='tap to see the archive ▾'; card.appendChild(h); }
+        card.classList.add('dcc-wcard-link');
+        card.addEventListener('click',function(e){
+          if(e.target.tagName==='A')return;
+          var p=wPanel();
+          if(p.dataset.key===key && p.classList.contains('show')){ p.classList.remove('show'); return; }
+          buildWPanel(p,key,list); p.dataset.key=key; p.classList.add('show');
+          p.scrollIntoView({behavior:'smooth',block:'nearest'});
+        });
+      });
+    }).catch(function(){});
+  }
+
   function init(){
     enhance();
     var cib=document.createElement('button');cib.className='dcc-checkin';cib.innerHTML='<span class="d"></span>Check in';
     cib.onclick=function(){checkin(cib);};document.body.appendChild(cib);
     checkin();
+    initWisdom();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
