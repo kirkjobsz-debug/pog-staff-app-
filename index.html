@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Night at 2026-06-24T14:59:56Z -->
+<!-- DCC gen: Night at 2026-06-24T15:13:39Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Night-2026-06-24T14:59:56Z">
+<meta name="dcc-gen" content="Night-2026-06-24T15:13:39Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -581,6 +581,7 @@ renderWisdoms();
 
 
 
+
 <!-- DCC enhancer v4 — STRUCTURAL. Do not remove on rebuild. Adds tick/snooze/comment/delete + live sync to existing items. -->
 <style id="dcc-enh-style">
   .dcc-li{position:relative;}
@@ -661,6 +662,12 @@ renderWisdoms();
   .dcc-win.sticky textarea{width:100%;border:none;background:transparent;color:inherit;font:inherit;font-size:14px;line-height:1.45;resize:none;min-height:130px;outline:none;}
   .dcc-addnote{position:fixed;left:14px;bottom:14px;z-index:10999;border:1px solid #e0c34a;background:#fde68a;color:#3a2e05;border-radius:999px;padding:9px 15px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;}
   .wcard .body{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+  .dcc-eat-row{display:flex;flex-direction:column;gap:11px;}
+  .dcc-eat-row button,.dcc-eat-row .lnk{display:block;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.07);color:inherit;font:inherit;font-size:13px;border-radius:9px;padding:10px 12px;cursor:pointer;text-align:left;}
+  .dcc-eat-row button:hover,.dcc-eat-row .lnk:hover{background:rgba(255,255,255,.14);}
+  .dcc-eat-row input[type=text]{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.07);color:inherit;border-radius:9px;padding:10px 11px;font:inherit;font-size:13px;}
+  .dcc-eat-thumb{max-width:100%;border-radius:8px;margin-top:8px;display:block;}
+  .dcc-eat-note{font-size:11.5px;opacity:.7;margin-top:6px;}
 </style>
 <script id="dcc-enhancer">
 (function(){
@@ -888,6 +895,38 @@ renderWisdoms();
     }).catch(function(){});
   }
 
+  /* ===== what shall I eat? ===== */
+  function makeEatCard(){
+    var grid=document.querySelector('.wisdom-grid')||document.querySelector('.wisdoms');
+    if(!grid || document.getElementById('dcc-eat-card')) return;
+    var c=document.createElement('div'); c.className='wcard dcc-wcard-link'; c.id='dcc-eat-card';
+    c.innerHTML='<div class="src">🍽 What shall I eat?</div><div class="body">Meal ideas from what is in the fridge, plus deals near you.</div><div class="dcc-whint">tap to open ▾</div>';
+    grid.appendChild(c);
+    c.addEventListener('click',openEat);
+  }
+  function dealsNearMe(){
+    function go(q){ window.open('https://www.google.com/maps/search/'+encodeURIComponent(q),'_blank'); }
+    if(navigator.geolocation){ navigator.geolocation.getCurrentPosition(
+      function(p){ window.open('https://www.google.com/maps/search/restaurant+specials+steak+night+parma+night/@'+p.coords.latitude+','+p.coords.longitude+',14z','_blank'); },
+      function(){ go('restaurant specials steak night parma night near me'); }, {timeout:7000}); }
+    else go('restaurant specials steak night parma night near me');
+  }
+  function openEat(){
+    var body='<div class="dcc-eat-row">'+
+      '<button id="eat-deals">📍 Deals near me — steak / parma night, specials</button>'+
+      '<div><input id="eat-ing" type="text" placeholder="what is in the fridge? e.g. chicken, rice, broccoli"><button id="eat-find" style="margin-top:8px;width:100%">🍳 Find recipes from these</button></div>'+
+      '<div><label class="lnk" for="eat-photo">📷 Snap the fridge / cupboard / receipt</label>'+
+      '<input id="eat-photo" type="file" accept="image/*" capture="environment" style="display:none">'+
+      '<div id="eat-thumbwrap"></div>'+
+      '<div class="dcc-eat-note">To get 2 meal ideas read straight from the photo, send it to ollo in your PG chat — the page itself cannot read the picture.</div></div>'+
+      '</div>';
+    var w=makeWindow({key:'eat', cls:'archive', title:'🍽 What shall I eat?', bodyHTML:body});
+    w.querySelector('#eat-deals').onclick=dealsNearMe;
+    w.querySelector('#eat-find').onclick=function(){ var v=(w.querySelector('#eat-ing').value||'').trim(); if(!v)return; window.open('https://www.google.com/search?q='+encodeURIComponent('quick easy recipe with '+v),'_blank'); };
+    var pin=w.querySelector('#eat-photo');
+    pin.onchange=function(){ var f=pin.files&&pin.files[0]; if(!f)return; var rd=new FileReader(); rd.onload=function(){ w.querySelector('#eat-thumbwrap').innerHTML='<img class="dcc-eat-thumb" src="'+rd.result+'">'; }; rd.readAsDataURL(f); };
+  }
+
   /* ===== undo last action + Cmd/Ctrl+Z ===== */
   var _pendingUndo=null, _undoT=null;
   function offerUndo(label, undoFn){
@@ -905,6 +944,7 @@ renderWisdoms();
     var addb=document.createElement('button');addb.className='dcc-addnote';addb.textContent='＋ sticky';addb.onclick=addSticky;document.body.appendChild(addb);
     checkin();
     initWisdom();
+    makeEatCard();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
