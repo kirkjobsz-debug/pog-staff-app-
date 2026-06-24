@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Night at 2026-06-24T14:39:28Z -->
+<!-- DCC gen: Night at 2026-06-24T14:59:56Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Night-2026-06-24T14:39:28Z">
+<meta name="dcc-gen" content="Night-2026-06-24T14:59:56Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -580,6 +580,7 @@ renderWisdoms();
 
 
 
+
 <!-- DCC enhancer v4 — STRUCTURAL. Do not remove on rebuild. Adds tick/snooze/comment/delete + live sync to existing items. -->
 <style id="dcc-enh-style">
   .dcc-li{position:relative;}
@@ -814,7 +815,7 @@ renderWisdoms();
   }
   function checkin(btn){
     if(btn){btn.classList.add('spin');}
-    return call('state',{}).then(function(r){if(btn)btn.classList.remove('spin');if(r&&r.ok&&r.state)applyState(r.state);}).catch(function(){if(btn)btn.classList.remove('spin');});
+    return call('state',{}).then(function(r){if(btn)btn.classList.remove('spin');if(r&&r.ok&&r.state){applyState(r.state);hydrateStickies(r.state);}else{hydrateStickies(null);}}).catch(function(){if(btn)btn.classList.remove('spin');hydrateStickies(null);});
   }
 
   /* ===== draggable, closable floating windows (bubbles + sticky notes) ===== */
@@ -841,18 +842,27 @@ renderWisdoms();
   }
 
   /* ===== sticky notes (saved on this device) ===== */
-  var SKEY='dcc_stickies';
-  function loadStickies(){ try{return JSON.parse(localStorage.getItem(SKEY))||[];}catch(e){return [];} }
-  function saveStickies(a){ try{localStorage.setItem(SKEY,JSON.stringify(a));}catch(e){} }
+  var SKEY='dcc_stickies', _stickies=[], _stickiesRendered=false, _stickySaveT=null;
+  function persistStickies(){
+    try{localStorage.setItem(SKEY,JSON.stringify(_stickies));}catch(e){}
+    clearTimeout(_stickySaveT);
+    _stickySaveT=setTimeout(function(){ call('update',{id:'__stickies__',op:'stickies',value:_stickies}).catch(function(){}); },600);
+  }
   function renderSticky(note){
     var w=makeWindow({key:'sticky_'+note.id, cls:'sticky', title:'🗒 sticky', x:note.x, y:note.y,
       bodyHTML:'<textarea placeholder="type a note…">'+esc(note.text||'')+'</textarea>',
-      onClose:function(){ saveStickies(loadStickies().filter(function(n){return n.id!==note.id;})); },
-      onMove:function(x,y){ var a=loadStickies(); a.forEach(function(n){if(n.id===note.id){n.x=x;n.y=y;}}); saveStickies(a); }});
+      onClose:function(){ _stickies=_stickies.filter(function(n){return n.id!==note.id;}); persistStickies(); },
+      onMove:function(x,y){ _stickies.forEach(function(n){if(n.id===note.id){n.x=x;n.y=y;}}); persistStickies(); }});
     var ta=w.querySelector('textarea');
-    ta.addEventListener('input',function(){ var a=loadStickies(); a.forEach(function(n){if(n.id===note.id)n.text=ta.value;}); saveStickies(a); });
+    ta.addEventListener('input',function(){ _stickies.forEach(function(n){if(n.id===note.id)n.text=ta.value;}); persistStickies(); });
   }
-  function addSticky(){ var note={id:'s'+Date.now(),text:'',x:120,y:150}; var a=loadStickies(); a.push(note); saveStickies(a); renderSticky(note); }
+  function addSticky(){ var note={id:'s'+Date.now(),text:'',x:120,y:150}; _stickies.push(note); persistStickies(); renderSticky(note); }
+  function hydrateStickies(state){
+    if(_stickiesRendered) return;
+    var sd = (state && state['__stickies__'] && state['__stickies__'].list);
+    if(!sd){ try{ sd=JSON.parse(localStorage.getItem(SKEY))||[]; }catch(e){ sd=[]; } }
+    _stickies = sd||[]; _stickies.forEach(renderSticky); _stickiesRendered=true;
+  }
 
   /* ===== wisdom archive as draggable bubbles ===== */
   var WTITLE={mate:'Gabor Maté',watts:'Alan Watts',perel:'Esther Perel',tip:'AI / Cowork tip',word:'Word of the day'};
@@ -893,7 +903,6 @@ renderWisdoms();
     var cib=document.createElement('button');cib.className='dcc-checkin';cib.innerHTML='<span class="d"></span>Check in';
     cib.onclick=function(){checkin(cib);};document.body.appendChild(cib);
     var addb=document.createElement('button');addb.className='dcc-addnote';addb.textContent='＋ sticky';addb.onclick=addSticky;document.body.appendChild(addb);
-    loadStickies().forEach(renderSticky);
     checkin();
     initWisdom();
   }
