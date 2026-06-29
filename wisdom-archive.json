@@ -24,8 +24,8 @@
   {
    "date": "2026-06-29",
    "author": "Gabor Maté",
-   "text": "Trauma is not what happens to you, but what happens inside you as a result of what happens to you.",
-   "source": "https://drgabormate.com/trauma/",
+   "text": "Trauma is not what happens to you but what happens inside you.",
+   "source": "https://www.goodreads.com/work/quotes/90801983-the-myth-of-normal-trauma-illness-and-healing-in-a-toxic-culture",
    "src_label": "The Myth of Normal"
   }
  ],
@@ -91,9 +91,9 @@
   {
    "date": "2026-06-29",
    "author": "Esther Perel",
-   "text": "Desire is like fire, it needs air.",
-   "source": "https://www.facebook.com/esther.perel/videos/desire-is-like-fire-it-needs-air-tbt-to-my-first-ever-ted-talk-on-the-secret-to-/10153959772896711/",
-   "src_label": "TED: The secret to desire"
+   "text": "Too often, as couples settle into the comforts of love, they cease to fan the flame of desire. They forget that fire needs air.",
+   "source": "https://www.goodreads.com/work/quotes/1074496-mating-in-captivity-reconciling-the-erotic-and-the-domestic",
+   "src_label": "Mating in Captivity"
   }
  ],
  "tip": [
@@ -121,7 +121,7 @@
   {
    "date": "2026-06-29",
    "author": "ollo",
-   "text": "Ask for a rough draft first, then tell it what to change. Two quick passes beat hunting for one perfect prompt.",
+   "text": "Ask the assistant to show its plan before it acts. A ten second check beats redoing the whole job.",
    "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
    "src_label": "Prompting guide"
   }
@@ -157,9 +157,9 @@
   },
   {
    "date": "2026-06-29",
-   "term": "Ineffable",
-   "text": "Too great or extreme to be expressed or described in words; indescribable.",
-   "source": "https://www.merriam-webster.com/dictionary/ineffable",
+   "term": "Limerence",
+   "text": "A state of blissful, usually temporary infatuation felt in the early stage of a romantic relationship.",
+   "source": "https://www.merriam-webster.com/dictionary/limerence",
    "src_label": "Merriam-Webster"
   }
  ]
