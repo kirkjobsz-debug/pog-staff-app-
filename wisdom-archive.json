@@ -27,6 +27,13 @@
    "text": "Trauma is not what happens to you but what happens inside you.",
    "source": "https://www.goodreads.com/work/quotes/90801983-the-myth-of-normal-trauma-illness-and-healing-in-a-toxic-culture",
    "src_label": "The Myth of Normal"
+  },
+  {
+   "date": "2026-06-30",
+   "author": "Gabor Maté",
+   "text": "Safety is not the absence of threat, it is the presence of connection.",
+   "source": "https://www.youtube.com/watch?v=1DkRVkQs-sY",
+   "src_label": "Gabor Maté · talk"
   }
  ],
  "watts": [
@@ -64,6 +71,13 @@
    "text": "Muddy water is best cleared by leaving it alone.",
    "source": "https://www.goodreads.com/quotes/51913-muddy-water-is-best-cleared-by-leaving-it-alone",
    "src_label": "The Way of Zen"
+  },
+  {
+   "date": "2026-06-30",
+   "author": "Alan Watts",
+   "text": "You are an aperture through which the universe is looking at and exploring itself.",
+   "source": "https://www.goodreads.com/quotes/20100-you-are-an-aperture-through-which-the-universe-is-looking",
+   "src_label": "Alan Watts · Goodreads"
   }
  ],
  "perel": [
@@ -94,6 +108,13 @@
    "text": "Too often, as couples settle into the comforts of love, they cease to fan the flame of desire. They forget that fire needs air.",
    "source": "https://www.goodreads.com/work/quotes/1074496-mating-in-captivity-reconciling-the-erotic-and-the-domestic",
    "src_label": "Mating in Captivity"
+  },
+  {
+   "date": "2026-06-30",
+   "author": "Esther Perel",
+   "text": "The grand illusion of committed love is that we think our partners are ours. In truth, their separateness is unassailable, and their mystery is forever ungraspable.",
+   "source": "https://www.goodreads.com/work/quotes/1074496-mating-in-captivity-reconciling-the-erotic-and-the-domestic",
+   "src_label": "Mating in Captivity"
   }
  ],
  "tip": [
@@ -122,6 +143,13 @@
    "date": "2026-06-29",
    "author": "ollo",
    "text": "Ask the assistant to show its plan before it acts. A ten second check beats redoing the whole job.",
+   "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
+   "src_label": "Prompting guide"
+  },
+  {
+   "date": "2026-06-30",
+   "author": "ollo",
+   "text": "Give the assistant your fixed rules once, such as your single inbox and naming style, so it stops re-asking the same setup questions every time.",
    "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
    "src_label": "Prompting guide"
   }
@@ -160,6 +188,13 @@
    "term": "Limerence",
    "text": "A state of blissful, usually temporary infatuation felt in the early stage of a romantic relationship.",
    "source": "https://www.merriam-webster.com/dictionary/limerence",
+   "src_label": "Merriam-Webster"
+  },
+  {
+   "date": "2026-06-30",
+   "term": "Susurrus",
+   "text": "A whispering or rustling sound.",
+   "source": "https://www.merriam-webster.com/dictionary/susurrus",
    "src_label": "Merriam-Webster"
   }
  ]
