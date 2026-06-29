@@ -13,6 +13,20 @@
    "text": "The attempt to escape from pain creates more pain.",
    "source": "https://www.goodreads.com/author/quotes/4068613.Gabor_Mat_",
    "src_label": "Gabor Maté · Goodreads"
+  },
+  {
+   "date": "2026-06-25",
+   "author": "Gabor Maté",
+   "text": "It is impossible to understand addiction without asking what relief the addict finds, or hopes to find, in the drug or the addictive behaviour.",
+   "source": "https://www.goodreads.com/work/quotes/604115-in-the-realm-of-hungry-ghosts-close-encounters-with-addiction",
+   "src_label": "In the Realm of Hungry Ghosts"
+  },
+  {
+   "date": "2026-06-29",
+   "author": "Gabor Maté",
+   "text": "Trauma is not what happens to you, but what happens inside you as a result of what happens to you.",
+   "source": "https://drgabormate.com/trauma/",
+   "src_label": "The Myth of Normal"
   }
  ],
  "watts": [
@@ -36,6 +50,20 @@
    "text": "Tomorrow and plans for tomorrow can have no significance at all unless you are in full contact with the reality of the present.",
    "source": "https://www.themarginalian.org/2014/01/06/alan-watts-wisdom-of-insecurity-1/",
    "src_label": "The Marginalian"
+  },
+  {
+   "date": "2026-06-25",
+   "author": "Alan Watts",
+   "text": "The only way to make sense out of change is to plunge into it, move with it, and join the dance.",
+   "source": "https://www.goodreads.com/quotes/200854-the-only-way-to-make-sense-out-of-change-is",
+   "src_label": "The Wisdom of Insecurity"
+  },
+  {
+   "date": "2026-06-29",
+   "author": "Alan Watts",
+   "text": "Muddy water is best cleared by leaving it alone.",
+   "source": "https://www.goodreads.com/quotes/51913-muddy-water-is-best-cleared-by-leaving-it-alone",
+   "src_label": "The Way of Zen"
   }
  ],
  "perel": [
@@ -52,6 +80,20 @@
    "text": "Love is about having; desire is about wanting.",
    "source": "https://www.goodreads.com/work/quotes/1074496-mating-in-captivity-reconciling-the-erotic-and-the-domestic",
    "src_label": "Mating in Captivity"
+  },
+  {
+   "date": "2026-06-25",
+   "author": "Esther Perel",
+   "text": "The quality of your relationships determines the quality of your life.",
+   "source": "https://www.hadassahmagazine.org/2019/04/25/couples-therapist-esther-perel-reframing-relationships/",
+   "src_label": "Hadassah Magazine"
+  },
+  {
+   "date": "2026-06-29",
+   "author": "Esther Perel",
+   "text": "Desire is like fire, it needs air.",
+   "source": "https://www.facebook.com/esther.perel/videos/desire-is-like-fire-it-needs-air-tbt-to-my-first-ever-ted-talk-on-the-secret-to-/10153959772896711/",
+   "src_label": "TED: The secret to desire"
   }
  ],
  "tip": [
@@ -66,6 +108,20 @@
    "date": "2026-06-25",
    "author": "ollo",
    "text": "Paste the raw material and ask for the shape. Editing beats drafting from a blank page.",
+   "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
+   "src_label": "Prompting guide"
+  },
+  {
+   "date": "2026-06-25",
+   "author": "ollo",
+   "text": "Give an example of what good looks like. One sample of the format you want beats three paragraphs of instructions.",
+   "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
+   "src_label": "Prompting guide"
+  },
+  {
+   "date": "2026-06-29",
+   "author": "ollo",
+   "text": "Ask for a rough draft first, then tell it what to change. Two quick passes beat hunting for one perfect prompt.",
    "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
    "src_label": "Prompting guide"
   }
@@ -91,6 +147,20 @@
    "text": "The realisation that each random passerby is living a life as vivid and complex as your own.",
    "source": "https://www.dictionaryofobscuresorrows.com/post/23536922667/sonder",
    "src_label": "Dictionary of Obscure Sorrows"
+  },
+  {
+   "date": "2026-06-25",
+   "term": "Petrichor",
+   "text": "The distinctive, earthy, usually pleasant smell of rain falling on dry ground after a warm, dry spell.",
+   "source": "https://www.merriam-webster.com/dictionary/petrichor",
+   "src_label": "Merriam-Webster"
+  },
+  {
+   "date": "2026-06-29",
+   "term": "Ineffable",
+   "text": "Too great or extreme to be expressed or described in words; indescribable.",
+   "source": "https://www.merriam-webster.com/dictionary/ineffable",
+   "src_label": "Merriam-Webster"
   }
  ]
 }
