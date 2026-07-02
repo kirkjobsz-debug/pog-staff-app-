@@ -34,6 +34,13 @@
    "text": "Safety is not the absence of threat, it is the presence of connection.",
    "source": "https://www.youtube.com/watch?v=1DkRVkQs-sY",
    "src_label": "Gabor Maté · talk"
+  },
+  {
+   "date": "2026-07-02",
+   "author": "Gabor Maté",
+   "text": "We're born with a need for attachment and a need for authenticity. When those two needs clash, attachment wins out every time.",
+   "source": "https://www.goodreads.com/en/book/show/58537332-the-myth-of-normal",
+   "src_label": "The Myth of Normal"
   }
  ],
  "watts": [
@@ -78,6 +85,13 @@
    "text": "You are an aperture through which the universe is looking at and exploring itself.",
    "source": "https://www.goodreads.com/quotes/20100-you-are-an-aperture-through-which-the-universe-is-looking",
    "src_label": "Alan Watts · Goodreads"
+  },
+  {
+   "date": "2026-07-02",
+   "author": "Alan Watts",
+   "text": "The meaning of life is just to be alive. It is so plain and so obvious and so simple. And yet, everybody rushes around in a great panic as if it were necessary to achieve something beyond themselves.",
+   "source": "https://www.goodreads.com/quotes/463182-the-meaning-of-life-is-just-to-be-alive-it",
+   "src_label": "Alan Watts · Goodreads"
   }
  ],
  "perel": [
@@ -115,6 +129,13 @@
    "text": "The grand illusion of committed love is that we think our partners are ours. In truth, their separateness is unassailable, and their mystery is forever ungraspable.",
    "source": "https://www.goodreads.com/work/quotes/1074496-mating-in-captivity-reconciling-the-erotic-and-the-domestic",
    "src_label": "Mating in Captivity"
+  },
+  {
+   "date": "2026-07-02",
+   "author": "Esther Perel",
+   "text": "The exuberance of the beginning is fueled by its undercurrent of uncertainty.",
+   "source": "https://www.goodreads.com/work/quotes/55014433-the-state-of-affairs-rethinking-infidelity",
+   "src_label": "The State of Affairs"
   }
  ],
  "tip": [
@@ -150,6 +171,13 @@
    "date": "2026-06-30",
    "author": "ollo",
    "text": "Give the assistant your fixed rules once, such as your single inbox and naming style, so it stops re-asking the same setup questions every time.",
+   "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
+   "src_label": "Prompting guide"
+  },
+  {
+   "date": "2026-07-02",
+   "author": "ollo",
+   "text": "When a job repeats, ask the assistant to save it as a scheduled task so it runs itself instead of waiting for you.",
    "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
    "src_label": "Prompting guide"
   }
@@ -195,6 +223,13 @@
    "term": "Susurrus",
    "text": "A whispering or rustling sound.",
    "source": "https://www.merriam-webster.com/dictionary/susurrus",
+   "src_label": "Merriam-Webster"
+  },
+  {
+   "date": "2026-07-02",
+   "term": "Eudaimonia",
+   "text": "Well-being, happiness; a life of activity governed by reason.",
+   "source": "https://www.merriam-webster.com/dictionary/eudaimonia",
    "src_label": "Merriam-Webster"
   }
  ]
