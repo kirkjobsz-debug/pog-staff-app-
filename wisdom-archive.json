@@ -41,6 +41,13 @@
    "text": "We're born with a need for attachment and a need for authenticity. When those two needs clash, attachment wins out every time.",
    "source": "https://www.goodreads.com/en/book/show/58537332-the-myth-of-normal",
    "src_label": "The Myth of Normal"
+  },
+  {
+   "date": "2026-07-03",
+   "author": "Gabor Maté",
+   "text": "Every human being has a true, genuine, authentic self. And the trauma is the disconnection from it, and the healing is the reconnection with it.",
+   "source": "https://www.democracynow.org/2022/9/16/myth_normal_gabor_mate_trauma_mental",
+   "src_label": "Democracy Now"
   }
  ],
  "watts": [
@@ -92,6 +99,13 @@
    "text": "The meaning of life is just to be alive. It is so plain and so obvious and so simple. And yet, everybody rushes around in a great panic as if it were necessary to achieve something beyond themselves.",
    "source": "https://www.goodreads.com/quotes/463182-the-meaning-of-life-is-just-to-be-alive-it",
    "src_label": "Alan Watts · Goodreads"
+  },
+  {
+   "date": "2026-07-03",
+   "author": "Alan Watts",
+   "text": "This is the real secret of life -- to be completely engaged with what you are doing in the here and now. And instead of calling it work, realize it is play.",
+   "source": "https://www.goodreads.com/quotes/121658-this-is-the-real-secret-of-life----to-be",
+   "src_label": "Alan Watts · Goodreads"
   }
  ],
  "perel": [
@@ -136,6 +150,13 @@
    "text": "The exuberance of the beginning is fueled by its undercurrent of uncertainty.",
    "source": "https://www.goodreads.com/work/quotes/55014433-the-state-of-affairs-rethinking-infidelity",
    "src_label": "The State of Affairs"
+  },
+  {
+   "date": "2026-07-03",
+   "author": "Esther Perel",
+   "text": "Love likes to shrink the distance that exists between me and you, while desire is energized by it.",
+   "source": "https://www.themarginalian.org/2016/10/13/mating-in-captivity-esther-perel/",
+   "src_label": "The Marginalian"
   }
  ],
  "tip": [
@@ -178,6 +199,13 @@
    "date": "2026-07-02",
    "author": "ollo",
    "text": "When a job repeats, ask the assistant to save it as a scheduled task so it runs itself instead of waiting for you.",
+   "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
+   "src_label": "Prompting guide"
+  },
+  {
+   "date": "2026-07-03",
+   "author": "ollo",
+   "text": "Keep one thread per topic. A focused thread is easier to pick back up than one giant thread holding everything.",
    "source": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
    "src_label": "Prompting guide"
   }
@@ -230,6 +258,13 @@
    "term": "Eudaimonia",
    "text": "Well-being, happiness; a life of activity governed by reason.",
    "source": "https://www.merriam-webster.com/dictionary/eudaimonia",
+   "src_label": "Merriam-Webster"
+  },
+  {
+   "date": "2026-07-03",
+   "term": "Numinous",
+   "text": "Filled with a sense of the presence of divinity; holy, spiritual, and awe-inspiring.",
+   "source": "https://www.merriam-webster.com/dictionary/numinous",
    "src_label": "Merriam-Webster"
   }
  ]
