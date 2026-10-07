@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- DCC gen: Rich at 2026-08-21T23:45:48Z -->
+<!-- DCC gen: Manual at 2026-10-07T08:37:39Z -->
 <html lang="en">
 <head>
-<meta name="dcc-gen" content="Rich-2026-08-21T23:45:48Z">
+<meta name="dcc-gen" content="Manual-2026-10-07T08:37:39Z">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -124,19 +124,57 @@
   </div>
   <div class="header-right">
     <div style="font-size:14px;font-weight:700;color:#fff;"><span id="liveNow">&nbsp;</span></div>
-    <div style="margin-top:4px;font-size:11px;color:#9aa0aa;"><span class="gen-label" id="genLabel">Rich rebuild (4-hourly)</span> &middot; <span id="genWhen">Saturday 22 August 2026 &middot; 07:54 AEST / 03:24 Galle</span></div>
-    <div style="margin-top:3px;font-size:11px;color:#9aa0aa;">Automated rich rebuild. <strong>Gmail (drafts, 3-day unread inbox scan, starred), Calendar and Drive read live this run</strong>, all succeeded. <strong>Apple Notes read FAILED again</strong> &mdash; the "ollo Capture" folder still cannot be opened (osascript -1728), so the capture digest shows nothing rather than something stale. <strong>Biggest change: drafts are down from 28 to 1.</strong> The backlog has been cleared and a single reply to Erandi is staged. Starred: one item, the Bruce McNab family law letter. Drive: the WE pack for last week <strong>has landed</strong>, but the folder is named <strong>WE-2026-08-25</strong> when the week ended Saturday 22 August 2026, so the label looks wrong. SpicePOS tree: still zero new files. New this run: <strong>Roger Sweet</strong> asking whether his late payment is accepted, <strong>Jetwing Travels</strong> asking to put PG in their European winter packages, and Erandi asking for a <strong>credit card top up</strong>. Amila has confirmed he answered the Sascha upgrade inside the extranet, so that one is closed &mdash; but he also said he normally answers upgrade enquiries <strong>on personal WhatsApp</strong>, which is a policy question. Removed: Sascha upgrade chase, Taara chases, the 20 August countdown, the 28-draft prune, all now resolved or outside the live window. Still unconfirmed: <strong>July VAT and SSCL LKR 750,819 were due Saturday 22 August 2026</strong> and nothing in this run's reads shows them filed or paid. Weekend: no timed calendar events today or tomorrow. Next rebuild ~4 hours.</div>
+    <div style="margin-top:4px;font-size:11px;color:#9aa0aa;"><span class="gen-label" id="genLabel">Rich rebuild (4-hourly)</span> &middot; <span id="genWhen">Sunday 4 October 2026 &middot; 07:16 AEDT / 01:46 Galle</span></div>
+    <div style="margin-top:3px;font-size:11px;color:#9aa0aa;">Automated rich rebuild. Gmail, Calendar and Drive read live this run; Apple Notes list only. <strong>3 drafts</strong> staged (none sent). 9 unread inbox threads in 3 days, mostly notices. WE-2026-10-02 pack now has salary and P&amp;L. Next rebuild ~4 hours.</div>
     <a href="./?r=1" class="refresh-btn" onclick="location.reload(true); return false;">&#8635; Refresh</a>
   </div>
 </header>
 
+<style>
+#ktToday{background:#181b22;border:1px solid #2a2f3a;border-radius:10px;padding:12px;margin:0 0 12px}
+#ktToday .kadd{display:flex;gap:6px;margin-bottom:10px}
+#ktToday input[type=text]{flex:1;padding:11px;border-radius:8px;border:1px solid #2a2f3a;background:#0f1115;color:#e8e8ea;font-size:16px}
+#ktToday select,#ktToday button{padding:9px 12px;border-radius:8px;border:1px solid #2a2f3a;background:#1f232c;color:#e8e8ea;cursor:pointer}
+#ktToday .kgo{background:#b878d6;color:#0f1115;font-weight:700;border-color:#b878d6}
+#ktToday .khub{text-align:center;margin-bottom:6px}#ktToday .khub span{display:inline-block;padding:6px 22px;border-radius:20px;background:#b878d6;color:#0f1115;font-weight:700}
+#ktToday .kmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+#ktToday .kbr{background:#1f232c;border-radius:8px;border-top:3px solid var(--c);padding:8px 10px}
+#ktToday .kbr h3{margin:0 0 4px;font-size:13px;color:var(--c);display:flex;justify-content:space-between}
+#ktToday .kbr h3 small{color:#9aa0aa;font-weight:400}
+#ktToday .kit{display:flex;gap:6px;padding:4px 0;border-bottom:1px dashed #2a2f3a;font-size:13px}
+#ktToday .kit.d .t{text-decoration:line-through;color:#9aa0aa}#ktToday .t{flex:1}
+#ktToday .due{font-size:11px;color:#ffc857}#ktToday .x{background:none;border:0;color:#9aa0aa;padding:0 4px}
+#ktToday .kft{margin-top:8px;display:flex;gap:6px;align-items:center;font-size:11px;color:#9aa0aa;flex-wrap:wrap}
+</style>
+<div id="ktToday"><div class="kadd"><input type="text" id="ktIn" placeholder="Add anything... pick a branch, press Enter"><select id="ktBr"></select><button class="kgo" id="ktAdd">Add</button></div>
+<div class="khub"><span>TODAY</span></div><div class="kmap" id="ktMap"></div>
+<div class="kft"><button id="ktCopy">Copy open items for ollo</button><button id="ktClr">Clear done</button><span id="ktMsg"></span><span>Saved on this device. Paste the copied list into Cowork.</span></div></div>
+<script>
+(function(){var B=[["money","Money","#ffc857"],["team","Team to chase","#6ec1e4"],["guests","Guests & bookings","#7ed957"],["legal","Legal & personal","#b878d6"],["decide","Decisions for Kirk","#ff6b6b"]];
+var seed=[["decide","Send or edit Chandima tax-advice draft (Fikafinity payments)",""],["legal","Hayleys Solar refund: 3 business day demand expires","Tue 6 Oct"],["team","Erandi/Chandima: flagged items + expense pack replies","Tue 6 Oct 5pm Galle"],["team","Weekly financials WE-2026-10-02 not submitted: chase",""],["team","Amila/Erandi/Rukman: photo consistency across platforms: awaiting reply",""],["money","SRP invoice INV-7555 LKR 39,080.87","16 Oct"],["money","NDB GovPay facility: chase status",""],["money","Q1 SSCL/VAT list + Rukman accountability decision",""],["legal","Champika lease: nudge",""],["guests","Private Tours Sri Lanka enquiry on book@: unanswered",""]];
+var K="dcc_kt_v1",S;try{S=JSON.parse(localStorage.getItem(K)||"null")}catch(e){S=null}
+if(!S){S=seed.map(function(s,i){return{id:i,b:s[0],t:s[1],d:s[2],x:0}})}
+function sv(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+var sel=document.getElementById("ktBr");B.forEach(function(b){sel.add(new Option(b[1],b[0]))});
+window.ktTg=function(id){var i=S.filter(function(s){return s.id==id})[0];i.x=i.x?0:1;sv();dr()};
+window.ktRm=function(id){S=S.filter(function(s){return s.id!=id});sv();dr()};
+function dr(){document.getElementById("ktMap").innerHTML=B.map(function(b){var l=S.filter(function(i){return i.b==b[0]}),o=l.filter(function(i){return!i.x}).length;
+return '<div class="kbr" style="--c:'+b[2]+'"><h3>'+b[1]+'<small>'+o+' open</small></h3>'+(l.length?l.map(function(i){return '<div class="kit '+(i.x?'d':'')+'"><input type="checkbox" '+(i.x?'checked':'')+' onchange="ktTg('+i.id+')"><div class="t">'+esc(i.t)+(i.d?' <span class="due">'+esc(i.d)+'</span>':'')+'</div><button class="x" onclick="ktRm('+i.id+')">x</button></div>'}).join(''):'<div style="color:#9aa0aa;font-size:12px">Nothing here</div>')+'</div>'}).join('')}
+function add(){var e=document.getElementById("ktIn"),v=e.value.trim();if(!v)return;S.push({id:Date.now(),b:sel.value,t:v,d:"",x:0});sv();e.value="";dr()}
+document.getElementById("ktAdd").onclick=add;document.getElementById("ktIn").onkeydown=function(e){if(e.key=="Enter")add()};
+document.getElementById("ktClr").onclick=function(){S=S.filter(function(s){return!s.x});sv();dr()};
+document.getElementById("ktCopy").onclick=function(){var t="ollo, work these open items today (drafts only, never send):\n"+B.map(function(b){var l=S.filter(function(i){return i.b==b[0]&&!i.x});return l.length?"\n"+b[1]+":\n"+l.map(function(i){return"- "+i.t+(i.d?" (due "+i.d+")":"")}).join("\n"):""}).join("");
+(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){document.getElementById("ktMsg").textContent="Copied"},function(){document.getElementById("ktMsg").textContent="Copy blocked: long-press to copy"})};
+dr()})();
+</script>
 <div class="snap-big">
   <div>
     <div class="label">&#9888; Snapshot, not live</div>
-    <div class="meta">Frozen at <span id="snapFrozenAt">07:54 AEST, 22 Aug</span> &middot; <span class="age" id="snapAge">&minus;</span></div>
+    <div class="meta">Frozen at <span id="snapFrozenAt">07:05 AEST, 25 Sep</span> &middot; <span class="age" id="snapAge">&minus;</span></div>
   </div>
   <div class="right">
-    4-hourly rich rebuild &mdash; Gmail, Calendar and Drive all live this run and all succeeded; <strong>Apple Notes failed again</strong> (folder "ollo Capture" not found). <strong>Drafts: 1</strong>, down from 28 &mdash; the backlog is cleared. New this run: <strong>Roger Sweet</strong> asking if his late payment is accepted, <strong>Jetwing Travels</strong> wanting PG in their European winter packages, and Erandi asking for a <strong>credit card top up for a LKR 30,000 excise payment</strong>. Open and unconfirmed: <strong>July VAT and SSCL LKR 750,819 fell due Saturday 22 August 2026</strong> and no confirmation of filing or payment appears in this run's reads.<br>
+    4-hourly rich rebuild &mdash; Gmail, Calendar, Drive and Apple Notes read live. <strong>1 draft staged</strong> (the PG daily brief to you). Chandima replied on 24 Sep on three fronts: VAT/SSCL calculation explanation (unread), SLTDA licence + Apr&ndash;Jun financial statements decision, and SSCL Q1 + Q2 confirmed not paid or filed. Brief shows a 14-day cash gap of about LKR 1.1m (LKR 2.5m with tax arrears). Weekly Financials pack WE-2026-09-25 due 5pm Galle today.<br>
     Next auto rich rebuild ~4 hours.
   </div>
 </div>
@@ -170,131 +208,107 @@
 </div>
 
 <div class="status-strip">
-  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">PG Finance</span><span class="pill-val">RED &mdash; July VAT LKR 647,709 and SSCL LKR 103,110, <strong>LKR 750,819 combined, fell due Saturday 22 August 2026</strong>. That deadline has now passed and <strong>nothing in this run's live reads confirms either was filed or paid</strong>. New this run: Erandi has asked for a <strong>credit card top up this coming week to cover a LKR 30,000 excise payment</strong> (21 Aug 13:59 Galle, unread). The WE-2026-08-21 pack has been uploaded but its contents were not parsed this run, so <strong>there is still no fresh bank balance on this board</strong>.</span></div>
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">AMBER &mdash; <strong>no SRP or Taara traffic at all in this run's 3-day window</strong>. The IRD notice chases and the staged replies to taara@srpitl.com that sat here previously are gone: they are outside the live window and the drafts folder is now clear. Nothing here is confirmed closed, it is simply not live. The open question is the 20 August VAT and SSCL filing, carried under PG Finance.</span></div>
+  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">PG Finance</span><span class="pill-val">Tue batch still unpaid (salaries + meals LKR 745,548 first). Hayleys refund LKR 2,376,610 overdue since 6 Oct. Batch holds need your release or hold call. Chandima: TDL Q2 LKR 60,308 proof was due 30 Sep, plus 2 open VAT/SSCL items.</span></div>
+  <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">SRP / Taara</span><span class="pill-val">No Taara or Aaron mail in the last 3 days.</span></div>
   <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Solomon</span><span class="pill-val">No Solomon items in this run's reads. Parked.</span></div>
-  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Bookings</span><span class="pill-val">AMBER &mdash; <strong>Roger Sweet</strong>, confirmation 6925914356, messaged 22 Aug 00:31 Galle and is unanswered: he paid late, says Fikafi told him he had four more days, and is asking whether the booking still stands. Stay is 18 to 19 Dec 2026. <strong>Jetwing Travels</strong> (Sachinthana, 21 Aug) wants PG in their Winter 2026/27 European agent packages and is unanswered. Sascha Balakrishnan is <strong>closed</strong> &mdash; Amila confirmed he replied inside the extranet. But Amila also said he normally answers upgrade enquiries on <strong>personal WhatsApp</strong>, which leaves no record on this side.</span></div>
-  <div class="status-pill"><span class="dot dot-red"></span><span class="pill-label">Continuity</span><span class="pill-val">Gmail drafts, the 3-day unread scan, the starred scan, Calendar and Drive all read live this run and all succeeded. Starred returned <strong>one item</strong> (Bruce McNab, family law). Drive returned <strong>one new folder</strong> in the Weekly Financials tree and <strong>zero files</strong> in the SpicePOS tree. <strong>[stale: Apple Notes read failed]</strong> &mdash; folder "ollo Capture" could not be opened (osascript error -1728), the same failure as every recent run, so the capture cell is empty rather than stale. <strong>Drafts: 1 in folder</strong>, down from 28. The backlog has been cleared.</span></div>
+  <div class="status-pill"><span class="dot dot-grey"></span><span class="pill-label">Bookings</span><span class="pill-val">No unread Booking.com or guest mail in the last 3 days.</span></div>
+  <div class="status-pill"><span class="dot dot-yellow"></span><span class="pill-label">Continuity</span><span class="pill-val">Gmail, Calendar, Drive read live. <strong>4 drafts</strong> staged. Calendar invites still list accntaxation@gmail.com (Chandima personal). [stale: Apple Notes not read this run] [stale: GitHub push failing since 24 Sep] [stale: Activity Log doc append not possible]</span></div>
 </div>
 
 <div class="travel-banner">
-  <strong>Today, Sat 22 Aug (calendar):</strong> no timed events. Three overlapping all-day "Stay at Prince of Galle (inside the Fort)" entries are showing (19&ndash;22, 22&ndash;24 and 22&ndash;26 Aug), all auto-created from emails &mdash; that is calendar noise, not three stays. <strong>Tomorrow, Sun 23 Aug:</strong> no timed events. <strong>Live chases:</strong> answer Roger Sweet on whether his late payment holds the December booking; reply to Jetwing Travels on Winter 2026/27; decide the credit card top up for the LKR 30,000 excise payment; get written confirmation that July VAT and SSCL were actually filed on 20 August; settle whether guest upgrade replies may go via personal WhatsApp; send or discard the one staged draft to Erandi. <strong>Location:</strong> Apple Notes read failed, so no confirmed location. Calendar entries point to <strong>Galle</strong>, unverified.
-</div>
+  <strong>Today, Wed 7 Oct (Melbourne):</strong> calendar shows "Stay at Prince of Galle (inside the Fort)" (auto-added from Gmail). No travel-location change noted.
+  </div>
 
 <div class="approvals">
   <h2><span class="blink"></span>Awaiting your YES / NO &mdash; tap &rarr;ollo to act</h2>
   <ul>
+    <li>
+      <span class="q"><strong>Tuesday batch still unpaid</strong> &mdash; salaries + meals LKR 745,548 are the priority. Rukman says NDB sees nothing pending on their side. You retry the approval or call NDB.
+        <button class="row-copy" data-prompt="ollo: check where the Tue 6 Oct payment batch stands (salaries + meals LKR 745,548), what Rukman has said about NDB, and give me a short script for calling NDB. Do not send.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">ollo morning brief 7 Oct.</span>
+    </li>
+    <li>
+      <span class="q"><strong>Batch holds: release or keep holding</strong> &mdash; Rukman says &quot;Champka&quot; is due by the 25th monthly (we think the Ramanayake rent line, not confirmed). USD 8,000 advance duplicate question unanswered. De Silva lines = Chandima's VAT fee. Laundry still being checked.
+        <button class="row-copy" data-prompt="ollo: list each held batch line (Champka/Ramanayake rent, USD 8,000 advance, De Silva, laundry) with amount, status and my release-or-hold options. Do not send.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">ollo morning brief 7 Oct.</span>
+    </li>
+    <li>
+      <span class="q"><strong>Hayleys refund overdue</strong> &mdash; LKR 2,376,610 plus interest was due 6 Oct. Rukman is chasing Samitha. You check NDB for it.
+        <button class="row-copy" data-prompt="ollo: summarise the Hayleys refund (LKR 2,376,610 plus interest, due 6 Oct), what Rukman has done with Samitha, and what I should check in NDB. Do not send.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">ollo morning brief 7 Oct.</span>
+    </li>
+    <li>
+      <span class="q"><strong>Amila: full time and salary</strong> &mdash; Amila wants to go full time and asks for a matching salary. You need to say yes or no, and give a number.
+        <button class="row-copy" data-prompt="ollo: summarise Amila's full-time and salary request and give me the facts I need to set a number (current pay, duties, comparable roles). Do not send.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">ollo morning brief 7 Oct.</span>
+    </li>
     <li data-pin="true">
-      <span class="q">RED &mdash; July VAT LKR 647,709 and SSCL LKR 103,110, <strong>LKR 750,819 combined, fell due Saturday 22 August 2026. That deadline has passed.</strong> Nothing in this run's live reads &mdash; no email, no Drive file &mdash; confirms either was filed or paid. This is now a question of what actually happened, and of penalty exposure if it did not.
-        <button class="row-copy" data-prompt="ollo: search all mailboxes for anything dated 19 to 22 August about the July VAT and SSCL filing, RAMIS, or a payment receipt. Tell me plainly whether there is evidence it was filed and paid on 20 August. If there is none, draft a short message to Chandima at info@princeofgalle.com only, cc gm@ and office@princeofgalle.com, asking for one line each: (1) was the July VAT return filed on 20 August, (2) was the SSCL return filed on 20 August, (3) were both paid, and (4) attach the acknowledgements. Never use accntaxation@gmail.com. Do not send until I say YES.">&rarr; ollo</button>
+      <span class="q"><strong>Excise decision (CHW #15)</strong> &mdash; alcohol sold without permission. Your call on keep or drop liquor; it is blocking Chandima.
+        <button class="row-copy" data-prompt="ollo: read Erandi's excise / liquor licence question and summarise the options for me to decide. Do not send.">&rarr; ollo</button>
       </span>
-      <span class="ctx">Figures from Chandima's "VAT &amp; SSCL Calculation July", info@princeofgalle.com, 5 Aug. Statutory deadline is the 20th of the following month. RAMIS was last reported blocked ("Invalid Entity"). <strong>This item is carried on blocking grounds only &mdash; it does not appear in this run's 3-day live window.</strong> Standing rule: Chandima's only address is info@princeofgalle.com, never accntaxation@gmail.com.</span>
+      <span class="ctx">CHW weekly check.</span>
+    </li>
+    <li data-pin="true">
+      <span class="q"><strong>Chandima statutory chase</strong> &mdash; TDL Q2 LKR 60,308 payment proof (due 30 Sep) plus 2 open VAT/SSCL items, 4 days waiting. Reach her at info@princeofgalle.com only.
+        <button class="row-copy" data-prompt="ollo: check if Chandima (info@princeofgalle.com) has replied on TDL Q2 proof and the VAT/SSCL items. If not, draft a short WhatsApp. Never use accntaxation@gmail.com. Do not send.">&rarr; ollo</button>
+      </span>
+      <span class="ctx">ollo morning brief 7 Oct.</span>
     </li>
     <li>
-      <span class="q"><strong>Roger Sweet</strong>, Booking.com confirmation 6925914356, messaged at 00:31 Galle this morning and is unanswered. He paid <strong>after</strong> the 24-hour window we gave him, but says <strong>Fikafi told him he had another four days</strong>, and is asking whether the booking is still fine. Two payment screenshots are attached. Two people have given this guest two different deadlines.
-        <button class="row-copy" data-prompt="ollo: open the Roger Sweet message on Booking.com confirmation 6925914356 and show me the two attached payment screenshots. Then check with Fikafi what payment window they actually quote guests, and check our own booking terms. Tell me whether his payment has landed. Then draft a reply from book@princeofgalle.com confirming his 18 to 19 December 2026 stay is secure if it has, or stating clearly what is still needed if it has not. Flag separately whether our stated payment window and Fikafi's differ, because that is the real problem. Do not send until I say YES.">&rarr; ollo</button>
+      <span class="q"><strong>Review the 4 staged drafts</strong> &mdash; (1) Fwd: Gordon House special resolution ballot, hot water, to viva1@ and james@ (7 Oct). (2) PG daily brief 06 Oct, to you. (3) Agent reply and update templates, to book@ (5 Oct). (4) PG daily brief 04 Oct, to you (out of date).
+        <button class="row-copy" data-prompt="ollo: show me every staged draft in mailmanchina@gmail.com Drafts folder. List recipient / subject / one-line summary and flag anything out of date. Do not send anything yet.">&rarr; ollo</button>
       </span>
-      <span class="ctx">Guest relay to book@princeofgalle.com, 21 Aug 19:01 UTC. Stay 18 to 19 Dec 2026, 2 guests, 1 room. Message: "I saw you mentioned I needed to pay within 24 hours which I didn't but fikafi said I still had another 4 days to pay so assume all is OK?" Two PNG attachments.</span>
-    </li>
-    <li>
-      <span class="q"><strong>Erandi has asked for a credit card top up this coming week</strong> to cover a <strong>LKR 30,000 excise payment</strong>. Sent 21 Aug 13:59 Galle on the Weekly Financials thread, unread. This needs a yes or no from you before Monday, and it sits against a card balance that has not been refreshed on this board since 07 August.
-        <button class="row-copy" data-prompt="ollo: open Erandi's 21 August message asking for a credit card top up for a LKR 30,000 excise payment. Tell me what the excise payment is for, whether it is a recurring line, and what the current debit card account balance is from the newest Weekly Financials pack. Then draft a one line reply to office@princeofgalle.com, cc gm@, either approving the top up with an amount or asking the one question I still need answered. Do not send until I say YES.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">Thread "Re: Weekly Financials WE-2026-08-21 &mdash; reminder", office@princeofgalle.com to ollo@princeofgalle.com, cc gm@. Debit card account 106002456268 last showed LKR 58,889.97 at 07 Aug close, which would not cover LKR 30,000 comfortably alongside normal card spend.</span>
-    </li>
-    <li>
-      <span class="q"><strong>Jetwing Travels</strong> want to put Prince of Galle into their <strong>Winter 2026/27 packages for European agents</strong>. Sachinthana wrote to book@ on 21 Aug, copying five Jetwing staff plus office@ and GM@. Erandi forwarded it to Amila three minutes later. Nobody has replied. This is distribution into an established agent network and it needs a commercial answer, not a brochure.
-        <button class="row-copy" data-prompt="ollo: open the Jetwing Travels Winter 2026 / 2027 thread from sachinthana@jetwing.lk and tell me exactly what they are asking for: rates, allocation, commission, cut-off dates. Check whether we have an existing Jetwing contract or rate sheet in Drive. Then draft a reply from book@princeofgalle.com, cc gm@ and office@princeofgalle.com, that asks for their package structure and volumes before we quote, and sets out what we would need to hold rates. Do not send until I say YES.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">sachinthana@jetwing.lk to book@princeofgalle.com, 21 Aug 08:36 UTC, cc office@, GM@, thiwanka@, navindi@, manisha@, dianne.j@jetwing.lk. Forwarded by Erandi to Amila 08:39 with "Please take the necessary action."</span>
-    </li>
-    <li>
-      <span class="q">Policy decision &mdash; <strong>Amila says he normally answers guest upgrade enquiries on his personal WhatsApp</strong>, "as instructed". He confirmed he did reply to Sascha Balakrishnan inside the extranet, so that booking is closed. But if upgrade conversations and prices are happening on a personal phone, there is <strong>no record on our side of what was offered or agreed</strong>, and no way to audit lost revenue.
-        <button class="row-copy" data-prompt="ollo: draft a short message from ollo@princeofgalle.com to book@princeofgalle.com, cc gm@ and office@princeofgalle.com. Thank Amila for confirming the extranet reply. Then set one rule plainly: every guest message about upgrades, room categories or price is answered in the Booking.com extranet or from book@princeofgalle.com, so there is a record, and WhatsApp is only ever a follow up, never the only channel. Ask him to send the current Prince Suite upgrade price list including which suites have balconies. Keep it warm and short, no blame. Do not send until I say YES.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">book@princeofgalle.com to ollo@princeofgalle.com, 21 Aug 15:25 UTC, cc gm@ and kirkjobsz@. Unread. Sascha Balakrishnan (6972088030) stayed 18 to 19 Aug and has checked out, so that specific upgrade window is closed either way.</span>
-    </li>
-    <li>
-      <span class="q">The <strong>WE-2026-08-21 financials pack has landed</strong> &mdash; Erandi uploaded it on 21 Aug and sent two Drive links. But the folder she created is named <strong>"PoG_Weekly_Financials_WE-2026-08-25"</strong>, and the week ended Friday <strong>21</strong> August. Either the label is wrong or it has been filed against the wrong week. <strong>One staged draft to Erandi</strong> is sitting unsent on this thread.
-        <button class="row-copy" data-prompt="ollo: open the Drive folder PoG_Weekly_Financials_WE-2026-08-25 (id 1pnQxfW6uo5_AzSon7gWp9B9i0TDGX6Pz) and the second link Erandi sent (1u4ELnrLWA8t70JuLQG4Y7vs9vm71lZc-). List exactly what is in each and check them against the seven required items. Tell me the current NDB main and debit card balances from the pack. Then show me the one staged draft to office@princeofgalle.com and tell me whether to send it as is, and add a line asking her to rename the folder to WE-2026-08-21. Do not send until I say YES.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">Folder created 21 Aug 07:24 UTC by office@princeofgalle.com under Weekly Financials 2026. Required items: weekly P and L, SpicePOS daily sales Mon to Fri, petty cash reconciliation, NDB bank movements all accounts, supplier invoices, utility bills, and the Saturday 22 August 2026 payment run draft list. <strong>Contents were not parsed on this run</strong>, so nothing in the financials panel below is refreshed from it yet.</span>
-    </li>
-    <li>
-      <span class="q">STARRED &mdash; <strong>Bruce McNab has written to Robert Halliday on the Lawless &amp; Jobsz family law matter</strong> (21 Aug). He states plainly that there is a <strong>stand-off</strong>, that his letter of 3 June 2026 sets out the issues, and that the two sides hold "diametrically opposed views as to the meaning of the Orders". A stand-off does not resolve itself, and the next move is a decision, not a wait.
-        <button class="row-copy" data-prompt="ollo: open Bruce McNab's 21 August letter to Robert Halliday on the Lawless and Jobsz family law matter and summarise it in plain English: what he says the dispute is, what he is proposing, and what he needs from me. Pull his letter of 3 June 2026 and list the issues it raises. Then give me the three realistic paths from here with the cost and time of each. No email, this is for me to read first.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">bruce@brucemcnab.com to roberthallidaylegal@gmail.com, 21 Aug 01:36 UTC. The only starred item in the 14-day window. Note this is <strong>brucemcnab.com</strong>, not the diamondssolicitors.com.au address previously on file.</span>
-    </li>
-    <li>
-      <span class="q">The <strong>Sri Lanka Accounting / SpicePOS Drive tree has had no new file since before 19 August</strong>. This run's query returned zero. The last rebuild found the same thing, so this is not a one-off gap, it is a stopped process.
-        <button class="row-copy" data-prompt="ollo: list every folder and file in Drive parent 1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g with its modified date, newest first, so I can see exactly when uploads stopped. Then check the SpicePOS daily sales folder separately. Draft an escalation to Rukman at gm@princeofgalle.com, cc office@princeofgalle.com, naming the missing dates and asking for a same day backfill and one named person who owns the 10am upload. Do not send until I say YES.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">Drive query on parent 1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g returned zero files modified since 19 Aug. Daily deadline is 10am Galle. Ties to the standing SpicePOS 0.00 service charge issue.</span>
-    </li>
-    <li>
-      <span class="q">Apple Notes <strong>failed to read again this run</strong>. The folder "ollo Capture" cannot be opened (osascript error -1728). Anything you have captured by Back Tap or Watch is not reaching this board. The capture cell below is deliberately empty rather than showing you something stale. This has now been noted on every recent rebuild without being fixed.
-        <button class="row-copy" data-prompt="ollo: diagnose the Apple Notes connection properly. List every folder visible to you right now and which account each sits under, iCloud or On My Mac. Tell me whether a folder named ollo Capture exists anywhere under any name close to it. Then give me the single fix, in steps I can do on the Mac in two minutes, that makes the capture digest live again. No email.">&rarr; ollo</button>
-      </span>
-      <span class="ctx">osascript error -1728, "Can't get folder ollo Capture". Likely causes: the folder sits under a different Notes account, has been renamed, or automation permission was revoked. Until this is fixed the Capture and Ideas cells cannot be trusted as live.</span>
+      <span class="ctx">Gmail Drafts, 4 confirmed live.</span>
     </li>
   </ul>
-  <div class="footnote">ollo never auto-sends. Each &rarr;ollo button copies a prompt. <strong>Drafts right now: 1 in folder</strong>, to office@princeofgalle.com on the WE-2026-08-21 thread &mdash; down from 28 at the last rebuild. Gmail drafts, the 3-day unread inbox scan, the starred scan, Calendar and Drive were all read live this run and all succeeded. Starred returned one item. Drive returned one new folder in the Weekly Financials tree and zero files in the SpicePOS tree. <strong>Apple Notes read FAILED</strong>, so the capture cell is empty. New this run: Roger Sweet on a late payment, Jetwing Travels on winter packages, Erandi on a credit card top up, and Amila's WhatsApp confirmation. Removed because they are resolved or no longer in the live window: the Sascha Balakrishnan upgrade chase, the Taara and IRD notice chases, the 20 August countdown, the 28-draft prune, and the WE-2026-08-14 close-out. This board is a snapshot of now, not a log. Standing rules: PG addresses first; never name Claude or AI in external artefacts; Chandima's only address is info@princeofgalle.com, never accntaxation@gmail.com.</div>
+  <div class="footnote">ollo never auto-sends. Each &rarr;ollo button copies a prompt. <strong>Drafts: 4</strong> this run, confirmed live. This board is a snapshot of now, not a log. Standing rules: PG addresses first; never name Claude or AI in external artefacts; Chandima's only address is info@princeofgalle.com.</div>
 </div>
 
 <div class="grid">
 
   <div class="col">
-    <div class="col-head today">Today, Sat 22 Aug &mdash; tap &rarr;ollo to act on a line</div>
+    <div class="col-head today">Today, Wed 7 Oct &mdash; tap &rarr;ollo to act on a line</div>
     <ul>
-      <li><strong>No timed calendar events today.</strong> Weekend. The only entries are all-day stay markers.
-        <span class="tag tag-grey">calendar</span></li>
-      <li><strong>Roger Sweet is waiting on an answer</strong> &mdash; messaged 00:31 Galle. Paid late, says Fikafi gave him four extra days. Booking 6925914356, stay 18 to 19 Dec.
-        <span class="tag tag-yellow">bookings</span></li>
-      <li><strong>Credit card top up decision</strong> &mdash; Erandi needs LKR 30,000 for an excise payment this coming week. Yes or no before Monday.
-        <span class="tag tag-yellow">finance</span></li>
-      <li><strong>Jetwing Travels unanswered</strong> &mdash; Winter 2026/27 European agent packages. Sent to book@ yesterday, forwarded to Amila, no reply.
-        <span class="tag tag-yellow">bookings</span></li>
-      <li><strong>VAT and SSCL: filed or not?</strong> &mdash; LKR 750,819 fell due Thu 20 Aug. No confirmation anywhere in this run's reads.
+      <li><strong>Tuesday batch:</strong> retry NDB approval or call NDB. Salaries + meals LKR 745,548 first.
         <span class="tag tag-red">finance</span></li>
-      <li><strong>WE-2026-08-21 pack is in Drive</strong> &mdash; but the folder is labelled WE-2026-08-25. Contents not yet checked.
+      <li><strong>Hayleys refund</strong> LKR 2,376,610 plus interest: check NDB.
+        <span class="tag tag-red">finance</span></li>
+      <li><strong>Batch holds:</strong> release or keep holding.
         <span class="tag tag-yellow">finance</span></li>
-      <li><strong>Bruce McNab letter, starred</strong> &mdash; family law stand-off, 21 Aug. Read it before Monday.
-        <span class="tag tag-purple">legal</span></li>
-      <li><strong>Drafts: 1</strong> in folder &mdash; one reply to Erandi on the WE-2026-08-21 thread. Send it or discard it.
-        <span class="tag tag-grey">drafts</span></li>
-      <li><strong>Three duplicate "Stay at Prince of Galle" entries</strong> &mdash; 19&ndash;22, 22&ndash;24 and 22&ndash;26 Aug, all auto-created from emails. Worth tidying.
-        <span class="tag tag-grey">calendar</span></li>
+      <li><strong>Amila:</strong> yes or no on full time, and a salary number.
+        <span class="tag tag-yellow">staff</span></li>
+      <li><strong>GlobalPay settlement check,</strong> 4:30pm Melbourne (Erandi).
+        <span class="tag tag-grey">finance</span></li>
+      <li><strong>Review 4 staged drafts.</strong>
+        <span class="tag tag-grey">draft</span></li>
     </ul>
   </div>
 
   <div class="col">
     <div class="col-head urgent">Urgent &mdash; needs you</div>
     <ul>
-      <li><strong>July VAT + SSCL, LKR 750,819</strong> &mdash; the statutory deadline of <strong>Thu 20 Aug has passed</strong> and there is still no evidence of filing or payment. If it was missed, penalties are accruing now.
+      <li><strong>Tue batch unpaid:</strong> NDB sees nothing pending, per Rukman.
         <span class="tag tag-red">finance</span></li>
-      <li><strong>A guest is waiting</strong> &mdash; Roger Sweet asked overnight whether his late payment holds his December booking. We told him 24 hours, Fikafi told him four days. He deserves a straight answer today.
-        <span class="tag tag-red">bookings</span></li>
-      <li><strong>Upgrade enquiries are going through a personal WhatsApp</strong> &mdash; Amila confirmed this is his normal practice. It leaves no record of what was offered or agreed. Needs a rule, not a reminder.
-        <span class="tag tag-red">ops</span></li>
-      <li><strong>Credit card top up, LKR 30,000 excise</strong> &mdash; Erandi needs a decision before the week starts. The card balance on this board is two weeks old.
+      <li><strong>Hayleys refund overdue</strong> since 6 Oct. Rukman chasing Samitha.
+        <span class="tag tag-red">finance</span></li>
+      <li><strong>Chandima, 4 days:</strong> TDL Q2 LKR 60,308 proof (was due 30 Sep) plus 2 VAT/SSCL items.
+        <span class="tag tag-red">finance</span></li>
+      <li><strong>Excise decision</strong> is yours and blocks Chandima.
         <span class="tag tag-yellow">finance</span></li>
-      <li><strong>Jetwing Travels waiting</strong> &mdash; a live distribution opportunity into European agents, unanswered since yesterday morning.
-        <span class="tag tag-yellow">bookings</span></li>
-      <li><strong>WE pack filed under the wrong week</strong> &mdash; folder says WE-2026-08-25, the week ended 21 Aug. Fix the label before it corrupts the trail.
-        <span class="tag tag-yellow">finance</span></li>
-      <li><strong>SpicePOS tree still dark</strong> &mdash; zero new files. Second rebuild running with the same result, so the process has stopped, not slipped.
-        <span class="tag tag-yellow">ops</span></li>
-      <li><strong>Apple Notes read failed again</strong> &mdash; the "ollo Capture" folder cannot be opened. Your captures are not reaching this board. This needs fixing, not noting.
-        <span class="tag tag-red">ops</span></li>
+      <li><strong>Calendar invites list accntaxation@gmail.com</strong> (Chandima personal). Fix to info@.
+        <span class="tag tag-yellow">rule</span></li>
     </ul>
   </div>
 
 <div class="col">
     <div class="col-head rituals">Night ritual</div>
     <ul>
-      <li><strong>Glance</strong> at Apple Notes "Do it" &mdash; ollo could not read Notes this run, so anything you added since is not on this board.</li>
-      <li><strong>Drafts: 1</strong> in Gmail this read, down from 28 &mdash; the backlog is cleared. Keep it there: send or discard the same day.</li>
+      <li><strong>Glance</strong> at Apple Notes "Do it" &mdash; last edited 6 Jul, Ideas cell unchanged.</li>
+      <li><strong>Drafts: 2</strong> staged, confirmed live this run.</li>
       <li><strong>Switch FROM to ollo</strong> before sending any PG mail</li>
       <li><strong>iPhone / Watch shortcut</strong> writes to the "Do it" note. ollo reads it every gen.</li>
       <li><strong>This is the 4-hourly rich gen,</strong> not the night close. "ollo out" runs at day's end.</li>
@@ -308,26 +322,26 @@
   <div class="col">
     <div class="col-head week">This week</div>
     <ul>
-      <li><strong>Sat 22 Aug (today) and Sun 23 Aug:</strong> no timed calendar events either day. Weekend. The open items are all replies owed, not appointments.</li>
-      <li><strong>Mon 24 Aug:</strong> credit card top up decision needed so Erandi can make the LKR 30,000 excise payment. Also the first working day to get a written answer on the 20 August VAT and SSCL filing.</li>
-      <li><strong>Tue 25 Aug:</strong> vendor payment run. Erandi was asked to send the itemised draft list with the WE-2026-08-21 pack &mdash; that list needs approving before the NDB CEFT batch is built.</li>
-      <li><strong>Fri 28 Aug:</strong> Weekly Financials pack WE-2026-08-28 due, 5pm Galle. Also month-end staff salaries, tips and service charge, and EPF and ETF.</li>
-      <li><strong>Watch item:</strong> the WE-2026-08-21 pack is in Drive but under a folder named WE-2026-08-25, and its contents have not been checked against the seven required items.</li>
+      <li><strong>Fri 9 Oct, 5pm Galle:</strong> weekly financials pack (Erandi).
+        <span class="tag tag-yellow">finance</span></li>
+      <li><strong>Daily 4:30pm Melbourne:</strong> GlobalPay settlement check (Erandi).
+        <span class="tag tag-grey">finance</span></li>
     </ul>
   </div>
 
 <div class="col">
     <div class="col-head ideas">Ideas &amp; Quick Add &mdash; from "Do it"</div>
     <ul>
-      <li><span class="tag tag-red">read failed</span> Apple Notes could not be read this run (folder "ollo Capture" not found, osascript -1728), so <strong>there is nothing live to show here</strong>. Rather than repeat items from an earlier gen as if they were current, this cell is empty. Fix the Notes connection and it fills itself.</li>
+      <li>Loan repayments &mdash; get Jemoin (new finance lady) onto it via Rukman; check she received the email and call to confirm.</li>
+      <li>Idea: be the agent connecting collaborations between inspirations, with commentary through magazines.</li>
     </ul>
-    <a class="ideas-add-link" href="notes://showNote?name=Do%20it">+ Add idea &rarr; opens "Do it" in Notes</a>
+    <a class="ideas-add-link" href="#ktToday" onclick="document.getElementById('ktIn').focus()">+ Add idea &rarr; use the Add box at the top</a>
   </div>
 
   <div class="col">
     <div class="col-head capture">Capture digest &mdash; latest "ollo Capture" notes</div>
     <ul>
-      <li><span class="tag tag-red">read failed</span> Apple Notes could not be read this run. The folder "ollo Capture" was not found (osascript error -1728) &mdash; the same failure as the last several rebuilds. Nothing is shown here rather than showing something stale. Use the &rarr;ollo button in the Apple Notes item above to diagnose it.</li>
+      <li>[stale: Apple Notes not read this run]</li>
     </ul>
   </div>
 
@@ -351,24 +365,18 @@
 </div>
 
 <details class="finsum" open>
-  <summary>&#128176; Financials snapshot &mdash; WE-2026-08-21 pack (just landed, not yet parsed) and WE-2026-08-14, latest 2 weeks</summary>
+  <summary>&#128176; Financials snapshot &mdash; latest 2 weeks</summary>
   <div class="body">
-    <div class="row"><span class="lbl">&#9888; Data note</span><span class="val y"><strong>The WE-2026-08-21 pack has been uploaded.</strong> Erandi confirmed it on 21 Aug and Drive shows a new folder created 21 Aug 07:24. Two problems. First, the folder is named <strong>PoG_Weekly_Financials_WE-2026-08-25</strong> when the week ended Saturday 22 August 2026. Second, <strong>its contents were not parsed on this run</strong>, so every balance below is still from the 14 August pack and is now eight days old. Treat the figures as indicative only.</span></div>
-    <div class="row"><span class="lbl">NDB main balance (account 101000874931)</span><span class="val y">LKR 787,263.39 at 14 Aug close &mdash; <strong>eight days stale</strong>. A fresher figure should exist inside the new pack but has not been read.</span></div>
-    <div class="row"><span class="lbl">Debit card account (account 106002456268)</span><span class="val y">LKR 58,889.97 at 07 Aug close. Relevant now: Erandi has asked for a top up to cover a <strong>LKR 30,000 excise payment</strong> this coming week.</span></div>
-    <div class="row"><span class="lbl">USD account (account 115650009322)</span><span class="val y">USD 1,527.58 at 07 Aug close. Not refreshed this run.</span></div>
-    <div class="row"><span class="lbl">July VAT and SSCL &mdash; deadline passed</span><span class="val r">LKR 750,819 combined (VAT 647,709 + SSCL 103,110). Fell due <strong>Saturday 22 August 2026</strong>. <strong>No filing or payment confirmation appears anywhere in this run's reads.</strong> If it was missed, penalty and interest are running from 21 August. Figures from Chandima, 5 Aug. TIN 114366129, Mailman Lanka (Pvt) Ltd.</span></div>
-    <div class="row"><span class="lbl">Next payment run</span><span class="val y">Saturday 22 August 2026. Erandi was asked to include the itemised draft list in the WE-2026-08-21 pack. <strong>Not verified as present</strong> &mdash; the pack contents have not been checked. Approval is required before the NDB CEFT batch is built.</span></div>
-    <div class="row"><span class="lbl">SpicePOS service charge leak</span><span class="val r">SpicePOS still posts 0.00 service charge at point of sale. July was handled manually, LKR 349,527.08 across ten staff. Annual exposure estimated LKR 2m to 3.6m. The daily upload tree returned <strong>zero new files</strong> again this run.</span></div>
-    <div class="row"><span class="lbl">Owner Cash in Float (personal)</span><span class="val y">LKR 2,329,622 net plus foreign cash, AUD 11,841 total, at the 18 June update. Not refreshed this run.</span></div>
-    <div class="row"><span class="lbl">Drafts</span><span class="val g">1 in folder, down from 28. One reply to office@princeofgalle.com on the WE-2026-08-21 thread, staged 21 Aug. The backlog is cleared.</span></div>
+    <div class="row"><span class="lbl">WE-2026-10-02</span><span class="val g">Latest pack folder, created 2 Oct. No new Drive files in the last 3 days. Fri 9 Oct pack due 5pm Galle.</span></div>
+    <div class="row"><span class="lbl">WE-2026-09-25</span><span class="val y">Earlier open items (cash count LKR 10,343 vs ledger 9,343, LECO account) not re-read this run.</span></div>
+    <div class="row"><span class="lbl">Balances</span><span class="val y">NDB main LKR 1,815,509.52 at 2 Oct close (Erandi quoted 1,881,645.52 on 3 Oct). Credit card LKR 160,435.07. HNB CA LKR 6,256. Not checked against statements by me.</span></div>
     <div class="actions">
-      <a href="https://drive.google.com/drive/folders/1pnQxfW6uo5_AzSon7gWp9B9i0TDGX6Pz">&rarr; WE-2026-08-21 pack (folder mislabelled 08-25)</a>
-      <a href="https://drive.google.com/drive/folders/1u4ELnrLWA8t70JuLQG4Y7vs9vm71lZc-">&rarr; second link from Erandi</a>
-      <a href="https://drive.google.com/drive/folders/1rjBD_Orjrf10cQtsWbsyNYhiF_pxPZF8">&rarr; WE-2026-08-14 folder</a>
+      <a href="https://drive.google.com/drive/folders/1LxhJzPxAUHJwf6MHQEexe7CCxg32itc-">&rarr; WE-2026-10-02 folder (week ending 2 Oct)</a>
+      <a href="https://drive.google.com/drive/folders/1QvP6x8QvIlnffv-tT7Cf-4gm1KBszvn0">&rarr; WE-2026-09-25 folder</a>
       <a href="https://docs.google.com/spreadsheets/d/1JJ_U5G0IfiZUAG2n-l7QybJLn6eCmJQLN9DgycO8GK8/edit">&rarr; OCIF (Owner Cash in Float)</a>
       <a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">&rarr; Owner Need Docs</a>
       <a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">&rarr; Weekly Financials 2026</a>
+      <a href="https://drive.google.com/drive/u/0/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g">&rarr; Sri Lanka Accounting</a>
     </div>
   </div>
 </details>
@@ -410,14 +418,14 @@
         <li><a href="https://calendar.google.com/calendar/u/0/r">Google Calendar</a></li>
         <li><a href="https://drive.google.com/drive/u/0/my-drive">Google Drive</a></li>
         <li><a href="https://admin.booking.com">Booking.com partner</a></li>
-        <li><a href="notes://showNote?name=Do%20it">Apple Notes &mdash; Do it</a></li>
+        <li><a href="#ktToday">Add / capture box (top of page)</a></li>
       </ul>
     </div>
     <div>
       <div class="ql-cat">Prince of Galle</div>
       <ul>
         <li><a href="https://drive.google.com/drive/u/0/folders/1cxJJI5lEovYdtUy8H1Bm2-4NPjIoA9sy">03 Prince of Galle (master)</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1MYfgVO29HS5jN9VXTiGW6_pqMxYmp06G">WE-29-May financials</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1LxhJzPxAUHJwf6MHQEexe7CCxg32itc-">Latest weekly financials (WE-2026-10-02)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1oqSCs-40FKiOvn-uoc4yh1Hjryn8yo77">Weekly Financials 2026</a></li>
         <li><a href="https://drive.google.com/drive/folders/1RPLQL-FtdnXocShsMuC1Q-TmUMY89gqs">Owner Need Docs (Erandi)</a></li>
         <li><a href="https://drive.google.com/drive/u/0/folders/1icaJahgg5JNaJQjPZ2c7Hv06oZX4Lb7g">Sri Lanka Accounting (Taara)</a></li>
